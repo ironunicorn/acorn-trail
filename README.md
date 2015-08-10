@@ -66,8 +66,8 @@ and to their profiles.
 ### Phase 5: Searching for Trips (~1 day)
 I'll need to add a `search` route to the trips controller. On the Backbone
 side, there will be a `SearchResults` view that shows results in a given radius
-with the Google Maps API. Place markers will expand with details and link when
-clicked.
+by trail head location with the Google Maps API. Place markers will expand with
+details and link when clicked.
 
 [Details][phase-five]
 
