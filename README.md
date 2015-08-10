@@ -2,7 +2,7 @@
 
 [Heroku link][heroku]
 
-[heroku]: http://flux-capacitr.herokuapp.com
+[heroku]: http://acorn-trail.herokuapp.com/
 
 ## Minimum Viable Product
 AcornTrail is EveryTrail for Squirrels on Rails and Backbone. Squirrels can:
