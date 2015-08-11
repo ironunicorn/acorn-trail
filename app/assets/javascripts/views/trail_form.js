@@ -6,9 +6,7 @@ AcornTrail.Views.TrailForm = Backbone.CompositeView.extend({
     // var coords = new AcornTrail.Collections.TrailCoordinates({
     //   trail: this.model
     // });
-    this._map = new AcornTrail.Views.MapDraw({
-      // collection: coords
-    });
+    this._map = new AcornTrail.Views.MapDraw();
 
     this.$el.html(this.template({
       trail: this.model
@@ -22,6 +20,6 @@ AcornTrail.Views.TrailForm = Backbone.CompositeView.extend({
 
   remove: function () {
     this._map.remove();
-    this.remove();
+    Backbone.View.prototype.remove.call(this);
   }
 });
