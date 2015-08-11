@@ -1,0 +1,14 @@
+<label for="trail-title">Name your Trail</label>
+<input type="text"
+       name="trail[title]"
+       id="trail-title"
+       value="<%= trail.escape('title') %>">
+<br>
+<label for="trail-description">Overview (optional)</label>
+<textarea name="name"
+          id="trail-description"><%= trail.escape('description') %></textarea>
+<br>
+<label>Draw Trail</label>
+<div class="google-maps-draw"></div>
+<br>
+<input type="submit" value="Create Trail">

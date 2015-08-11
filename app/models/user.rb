@@ -7,6 +7,13 @@ class User < ActiveRecord::Base
   validates :session_token, :password_digest, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
 
+  has_many(
+    :authored_trails,
+    class_name: :Trail,
+    foreign_key: :user_id,
+    primary_key: :id
+  )
+
   def self.find_by_credentials(username, password)
     user = User.find_by_username(username)
     return user if user && user.is_password?(password)

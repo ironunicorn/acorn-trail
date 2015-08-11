@@ -14,3 +14,18 @@
 
  @import "bootstrap-sprockets";
  @import "bootstrap";
+
+.google-maps-draw {
+  height: 400px;
+  width: 600px;
+}
+
+#map-canvas {
+  height: 400px;
+  width: 600px;
+}
+
+.container-fluid, #content {
+  max-width: 900px;
+  margin: auto;
+}

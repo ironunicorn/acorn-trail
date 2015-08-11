@@ -9,15 +9,15 @@ AcornTrail is EveryTrail for Squirrels on Rails and Backbone. Squirrels can:
 
 <!-- This is a Markdown checklist. Use it to keep track of your progress! -->
 
-- [ ] Create accounts
-- [ ] Create sessions (log in)
-- [ ] Create trips with gps files
-- [ ] Within trips, create acorn stash sites with photos and comments
+- [x] Create accounts
+- [x] Create sessions (log in)
+- [ ] Create trails by drawing trails directly on map
+- [ ] Within trails, create acorn stash sites with photos and comments
 - [ ] Account avatars
-- [ ] View trips and acorn stash sites
-- [ ] Search for trips by location
-- [ ] Rate other trips out of 5 acorns
-- [ ] Review trips
+- [ ] View trails and acorn stash sites
+- [ ] Search for trails by location
+- [ ] Rate other trails out of 5 acorns
+- [ ] Review trails
 - [ ] Public feed based on popularity
 
 ## Design Docs
@@ -36,45 +36,44 @@ Heroku and ensuring that everything works before moving on to phase 2.
 
 [Details][phase-one]
 
-### Phase 2: Trip Creation and Display (~2 days)
-I will add API routes to serve trip data as JSON, then add Backbone models and
-collections that fetch data from those routes. My trip form will read gpx files
-and store the contents in the trip_route field in my database along with a title
-and description. I will then call the Google Maps API by the starting
-coordinates and draw the rest of the trip with JavaScript. By the end of this
-phase, users will be able to create and view their own trips, all inside a
-single Backbone app.
+### Phase 2: trail Creation and Display (~2 days)
+I will add API routes to serve trail data as JSON, then add Backbone models and
+collections that fetch data from those routes. My trail form will read selected
+coordinates from GoogleMaps API and store the coordinates in the
+trail_coordinates table in my database along with a title and description in the
+trails table. By the end of this phase, users will be able to create and view
+their own trails, all inside a single Backbone app.
 
 [Details][phase-two]
 
 ### Phase 3: Editing and Displaying Acorn Stashes (~2 days)
 I will add an `AcornStashForm` view for writing content and placing that content
-on the `TripView` map with coordinates selected by the user. Users will be able
-to add as many acorn stashes to their trip as they would like with a composite
+on the `trailView` map with coordinates selected by the user. Users will be able
+to add as many acorn stashes to their trail as they would like with a composite
 view.
 
 [Details][phase-three]
 
 ### Phase 4: Picture Uploads (~1 day)
 I plan to use Filepicker to add functionality to the `AcornStashForm`,
-`TripShow`, and `EditProfile` views in this phase. I'll need
+`trailshow`, and `EditProfile` views in this phase. I'll need
 to integrate Filepicker for file upload so users can add images to acorn stashes
 and to their profiles.
 
 [Details][phase-four]
 
-### Phase 5: Searching for Trips (~1 day)
-I'll need to add a `search` route to the trips controller. On the Backbone
+### Phase 5: Searching for trails (~1 day)
+I'll need to add a `search` route to the trails controller. On the Backbone
 side, there will be a `SearchResults` view that shows results in a given radius
 by trail head location with the Google Maps API. Place markers will expand with
 details and link when clicked.
 
 [Details][phase-five]
 
-### Phase 6: Reviews and Trip Feed (~2 days)
-I'll start by creating a `ReviewForm` and `ReviewView` to add to my `TripShow`
+### Phase 6: Reviews and trail Feed (~2 days)
+I'll start by creating a `ReviewForm` and `ReviewView` to add to my `trailshow`
 composite view. The average rating and number of reviews will determine the
-order in which trips are displayed on the `TripFeed` page from a Backbone
+order in which trails are displayed on the `trailFeed` page from a Backbone
 collection. This will be the first page users see whether they are logged in or
 not.
 
@@ -85,7 +84,7 @@ not.
 - [ ] Optional list search by miles from search spot
 - [ ] Public feed also based on squirrel location
 - [ ] Pagination/infinite scroll
-- [ ] Draw trails directly on map without gps file
+- [ ] Create trails with gps files
 - [ ] View squirrel profiles
 - [ ] Custom feed for signed in squirrels based on rating history
 

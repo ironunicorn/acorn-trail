@@ -10,25 +10,34 @@ session_token   | string    | not null, unique
 profile_pic_url | string    |
 description     | text      |
 
-## trips
+## trails
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
 author_id   | integer   | not null, foreign key (references users)
 title       | string    | not null
-trail_head  | string    | not null
-route       | text      | not null
 description | text      |
 
-## acorn_stashes
+## trail_coordinates
 column name | data type | details
 ------------|-----------|-----------------------
 id          | integer   | not null, primary key
-trip_id     | integer   | not null, foreign key (references trips)
-coordinates | text      | not null
-title       | string    | not null
-image_url   | string    |
-description | text      |
+trail_id    | integer   | not null, foreign key (references trails)
+latitude    | string    | not null
+longitude   | string    | not null
+timestamp   | datetime  |
+elevation   | float     |
+order       | integer   | not null
+
+## acorn_stashes
+column name          | data type | details
+---------------------|-----------|-----------------------
+id                   | integer   | not null, primary key
+trail_coordinate_id  | integer   | not null, foreign key (references trail_coordinates)
+coordinates          | text      | not null
+title                | string    | not null
+image_url            | string    |
+description          | text      |
 
 ## reviews
 column name | data type | details

@@ -4,7 +4,9 @@ window.AcornTrail = {
   Views: {},
   Routers: {},
   initialize: function() {
-    // alert('Hello from Backbone!');
+    var $rootEl = $('#content');
+    new AcornTrail.Routers.AcornRouter({ $rootEl: $rootEl });
+    Backbone.history.start();
   }
 };
 
