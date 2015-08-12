@@ -15,6 +15,12 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
+ $green: #6CA180;
+ $beige: #D9C49A;
+ $hersheybrown: #473016;
+ $wood: #664116;
+ $bark: #915E23;
+
 .google-maps-draw {
   height: 350px;
   width: 100%;
@@ -43,4 +49,44 @@
 .form {
   max-width: 800px;
   margin: auto;
+}
+
+.navbar {
+  background-color: $beige;
+  a.navbar-brand {
+    color: $hersheybrown;
+  }
+  .navbar-nav li a {
+    color: $hersheybrown;
+  }
+}
+
+.trail-list {
+  padding: 20px;
+}
+
+.trail-list-item {
+  border: 2px solid $hersheybrown;
+  border-radius: 7px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  color: $hersheybrown;
+  div.title {
+    background-color: $green;
+    width: 100%;
+    height: 35px;
+    margin-top: -10px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    z-index: -1;
+    h5 {
+      display: block;
+      padding: 6px 15px;
+      font-size: 15pt;
+    }
+  }
+  p {
+    display: block;
+    padding: 6px 15px;
+  }
 }

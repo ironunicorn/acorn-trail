@@ -8,6 +8,7 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
     '': 'trailFeed',
     'trails/new': 'trailNew',
     'trails/:id/edit': 'trailEdit',
+    'trails/:id/share_acorn_stashes': 'AcornStashesNew',
     'trails/:id': 'trailShow'
   },
 

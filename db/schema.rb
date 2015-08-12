@@ -11,10 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150811162215) do
+ActiveRecord::Schema.define(version: 20150812181815) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "acorn_stashes", force: :cascade do |t|
+    t.integer  "trail_coordinate_id", null: false
+    t.string   "title",               null: false
+    t.text     "description"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
+
+  add_index "acorn_stashes", ["trail_coordinate_id"], name: "index_acorn_stashes_on_trail_coordinate_id", using: :btree
 
   create_table "trail_coordinates", force: :cascade do |t|
     t.integer  "trail_id"
@@ -53,6 +63,7 @@ ActiveRecord::Schema.define(version: 20150811162215) do
   add_index "users", ["session_token"], name: "index_users_on_session_token", using: :btree
   add_index "users", ["username"], name: "index_users_on_username", using: :btree
 
+  add_foreign_key "acorn_stashes", "trail_coordinates"
   add_foreign_key "trail_coordinates", "trails"
   add_foreign_key "trails", "users"
 end

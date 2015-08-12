@@ -34,7 +34,6 @@ column name          | data type | details
 ---------------------|-----------|-----------------------
 id                   | integer   | not null, primary key
 trail_coordinate_id  | integer   | not null, foreign key (references trail_coordinates)
-coordinates          | text      | not null
 title                | string    | not null
 image_url            | string    |
 description          | text      |

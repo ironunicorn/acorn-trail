@@ -1,4 +1,5 @@
 class Api::TrailCoordinatesController < ApplicationController
+
   def create
     @trail_coordinate = TrailCoordinate.new(trail_coord_params)
     if @trail_coordinate.save

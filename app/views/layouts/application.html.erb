@@ -6,7 +6,7 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
   <% if Rails.env.production? %>
-    <% api_key = "key=AIzaSyAVF7ecicoRmLPe3wIlN7KCkC5NvRLPOV0" %>
+    <% api_key = ENV[:GOOGLE_MAPS] %>
   <% else %>
     <% api_key = '' %>
   <% end %>
@@ -38,7 +38,7 @@
             <ul class="dropdown-menu">
               <% if current_user %>
                 <li><a href="#">Edit Profile</a></li>
-                <li><%= button_to "Logout", session_url, method: :delete %></li>
+                <li><%= button_to "Logout", session_url, method: :delete, class: "form-control" %></li>
               <% else %>
                 <li><a href="<%= new_user_url %>">Sign Up</a></li>
                 <li><a href="<%= new_session_url %>">Login</a></li>

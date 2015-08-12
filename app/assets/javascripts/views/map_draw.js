@@ -2,7 +2,7 @@ AcornTrail.Views.MapDraw = Backbone.View.extend({
   attributes: {
     id: "map-canvas"
   },
-  
+
 
   render: function () {
     var mapOptions = {
@@ -33,7 +33,7 @@ AcornTrail.Views.MapDraw = Backbone.View.extend({
     var trailPathLine = new google.maps.Polyline({
       path: this.trailPath,
       geodesic: true,
-      strokeColor: '#FF0000',
+      strokeColor: '#664116',
       strokeOpacity: 1.0,
       strokeWeight: 2
     });

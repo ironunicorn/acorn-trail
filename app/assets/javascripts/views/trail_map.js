@@ -23,7 +23,7 @@ AcornTrail.Views.TrailMap = Backbone.View.extend({
     var trailPathLine = new google.maps.Polyline({
       path: this.route(),
       geodesic: true,
-      strokeColor: '#FF0000',
+      strokeColor: '#664116',
       strokeOpacity: 1.0,
       strokeWeight: 2
     });

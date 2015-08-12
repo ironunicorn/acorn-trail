@@ -12,7 +12,7 @@ AcornTrail.Models.Trail = Backbone.Model.extend({
 
   parse: function (response) {
     if (response.trailCoordinates) {
-      this.trailCoordinates().set(response.trailCoordinates);
+      this.trailCoordinates().set(response.trailCoordinates, { parse: true });
       delete response.trailCoordinates;
     }
     return response;

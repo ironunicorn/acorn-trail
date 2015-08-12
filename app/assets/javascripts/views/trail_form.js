@@ -33,7 +33,7 @@ AcornTrail.Views.TrailForm = Backbone.CompositeView.extend({
         success: function () {
           view.model.trailCoordinates().add(newCoord);
           Backbone.history.navigate(
-            '/trails/' + view.model.get('id'),
+            '/trails/' + view.model.get('id') + '/acorn_stashes',
             { trigger: true }
           )
         }
