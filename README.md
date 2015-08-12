@@ -40,9 +40,8 @@ Heroku and ensuring that everything works before moving on to phase 2.
 I will add API routes to serve trail data as JSON, then add Backbone models and
 collections that fetch data from those routes. My trail form will read selected
 coordinates from GoogleMaps API and store the coordinates in the
-trail_coordinates table in my database along with a title and description in the
-trails table. By the end of this phase, users will be able to create and view
-their own trails, all inside a single Backbone app.
+trail_coordinates table in my database along with a title and description in
+the trails table. By the end of this phase, users will be able to create and view their own trails, all inside a single Backbone app.
 
 [Details][phase-two]
 

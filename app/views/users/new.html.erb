@@ -1,8 +1,21 @@
-<form action="<%= users_url %>" method="post">
-  <%= auth_token %>
-  <label for="username">Username</label>
-  <input type="text" id="username" name="user[username]">
-  <label for="password">Password</label>
-  <input type="password" id="password" name="user[password]">
-  <input type="submit" value="Create Account!">
-</form>
+<div id="sign">
+  <div class="form">
+    <h1>Sign Up</h1>
+    <form action="<%= users_url %>" method="post">
+      <%= auth_token %>
+      <label for="username">Username</label>
+      <input type="text"
+             id="username"
+             name="user[username]"
+             class="form-control">
+      <br>
+      <label for="password">Password</label>
+      <input type="password"
+             id="password"
+             name="user[password]"
+             class="form-control">
+      <br>
+      <input type="submit" value="Create Account!" class="form-control">
+    </form>
+  </div>
+</div>

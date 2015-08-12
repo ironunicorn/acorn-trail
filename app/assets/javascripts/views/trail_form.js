@@ -1,15 +1,16 @@
 AcornTrail.Views.TrailForm = Backbone.CompositeView.extend({
   template: JST['trail_form'],
-  tagName: 'form',
+
+  className: 'form',
 
   events: {
-    "submit": "createTrail"
+    "submit form": "createTrail"
   },
 
   createTrail: function (e) {
     e.preventDefault();
     var view = this;
-    var formData = this.$el.serializeJSON().trail;
+    var formData = $(e.currentTarget).serializeJSON().trail;
     this.model.save(formData, {
       success: function () {
         view.collection.add(view.model);
