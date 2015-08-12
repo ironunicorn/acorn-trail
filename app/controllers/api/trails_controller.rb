@@ -1,6 +1,6 @@
 class Api::TrailsController < ApplicationController
   def create
-    @trail = current_user.trails.new(trail_params)
+    @trail = current_user.authored_trails.new(trail_params)
     if @trail.save
       render json: @trail
     else
@@ -15,7 +15,7 @@ class Api::TrailsController < ApplicationController
 
   def show
     @trail = Trail.find(params[:id])
-    render json: @trail
+    render 'show'
   end
 
   def destroy
@@ -35,6 +35,6 @@ class Api::TrailsController < ApplicationController
 
   private
   def trail_params
-    params.require(:trail).permit(:title, :description, :trail_coordinates)
+    params.require(:trail).permit(:title, :description)
   end
 end

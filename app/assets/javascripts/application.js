@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require underscore
 //= require backbone
+//= require jquery.serializejson
 //= require acorn_trail
 //= require_tree ../templates
 //= require_tree ./models

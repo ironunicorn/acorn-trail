@@ -16,16 +16,21 @@
  @import "bootstrap";
 
 .google-maps-draw {
-  height: 400px;
-  width: 600px;
+  height: 300px;
+  width: 500px;
 }
 
 #map-canvas {
-  height: 400px;
-  width: 600px;
+  height: 300px;
+  width: 500px;
 }
 
 .container-fluid, #content {
   max-width: 900px;
   margin: auto;
+}
+
+.google-maps-show {
+  height: 300px;
+  width: 500px;
 }

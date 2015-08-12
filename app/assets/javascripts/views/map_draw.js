@@ -2,6 +2,7 @@ AcornTrail.Views.MapDraw = Backbone.View.extend({
   attributes: {
     id: "map-canvas"
   },
+  
 
   render: function () {
     var mapOptions = {
