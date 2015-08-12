@@ -6,7 +6,7 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
   },
 
   render: function () {
-    this._map = new AcornTrail.Views.MapDraw();
+    this._map = new AcornTrail.Views.TrailMap();
 
     this.$el.html(this.template({
       trail: this.model

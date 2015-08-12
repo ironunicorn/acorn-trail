@@ -4,6 +4,10 @@ AcornTrail.Views.TrailMap = Backbone.View.extend({
     id: "map-canvas"
   },
 
+  initialize: function () {
+    this.listenTo(this.collection, "sync", this.addlines);
+  },
+
   render: function (options) {
     this.collection = options.collection;
     var mapOptions = {
@@ -34,6 +38,8 @@ AcornTrail.Views.TrailMap = Backbone.View.extend({
         coord.get('longitude')
       ));
     }.bind(this))
+
+    return this._route
   }
 
 });
