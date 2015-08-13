@@ -50,10 +50,14 @@ AcornTrail.Views.AcornMap = Backbone.CompositeView.extend({
   route: function () {
     this._route = [];
     this.collection.each(function (coord) {
-      this._route.push(new google.maps.LatLng(
+      var location = new google.maps.LatLng(
         coord.get('latitude'),
         coord.get('longitude')
-      ));
+      );
+      this._route.push(location);
+      if (coord.get('order') === 0) {
+        this._map.setCenter(location);
+      }
     }.bind(this))
 
     return this._route;
