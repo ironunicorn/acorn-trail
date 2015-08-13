@@ -5,7 +5,7 @@ json.trailCoordinates do
     json.(coord, :id, :latitude, :longitude, :order)
 
     if coord.acorn_stash
-      json.acornStash coord.acorn_stash, :title, :description
+      json.acornStash coord.acorn_stash, :title, :description, :image_url
     end
   end
 end

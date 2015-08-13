@@ -13,8 +13,10 @@
 
   <script type="text/javascript" charset="utf-8">
     window.CLOUDINARY_OPTIONS = {
-      cloud_name: "",
-      upload_preset: ""
+      cloud_name: ENV['CLOUD_NAME'],
+      api_key: ENV['CLOUD_API_KEY'],
+      signature: ENV['CLOUD_API_SECRET'],
+      upload_preset: ENV['UPLOAD_PRESET']
     };
   </script>
   <script src="http://widget.cloudinary.com/global/all.js"
