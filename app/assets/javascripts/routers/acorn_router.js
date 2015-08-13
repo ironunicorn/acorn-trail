@@ -40,6 +40,7 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
 
   trailShow: function (id) {
     var trail = this.collection.getOrFetch(id);
+    trail.trailHead();
     var view = new AcornTrail.Views.TrailShow({
       model: trail
     });

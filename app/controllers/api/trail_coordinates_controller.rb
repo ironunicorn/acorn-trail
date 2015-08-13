@@ -9,6 +9,11 @@ class Api::TrailCoordinatesController < ApplicationController
     end
   end
 
+  def index
+    @trail_coordinates = TrailCoordinate.where(trail_id: params[:trail_id])
+    render json: @trail_coordinates
+  end
+
   private
   def trail_coord_params
     params.require(:trail_coordinate).permit(

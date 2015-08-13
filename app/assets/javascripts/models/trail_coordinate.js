@@ -10,7 +10,7 @@ AcornTrail.Models.TrailCoordinate = Backbone.Model.extend({
   acornStash: function () {
     if (!this._acornStash) {
       this._acornStash = new AcornTrail.Collections.AcornStashes([],
-        { trail_coordinate: this }
+        { coord: this }
       );
     }
 

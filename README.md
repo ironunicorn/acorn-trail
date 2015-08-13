@@ -10,8 +10,8 @@ AcornTrail is EveryTrail for Squirrels on Rails and Backbone. Squirrels can:
 - [x] Create accounts
 - [x] Create sessions (log in)
 - [x] Create trails by drawing trails directly on map
-- [ ] Within trails, create acorn stash sites with photos and comments
-- [ ] View trails and acorn stash sites
+- [ ] Within trails, create acorn stash sites with images and comments
+- [x] View trails and acorn stash sites
 - [ ] Edit current user and show author with image and description
 - [ ] Search for trails by location
 - [ ] Rate other trails out of 5 acorns
@@ -53,9 +53,9 @@ view.
 [Details][phase-three]
 
 ### Phase 4: Picture Uploads (~1 day)
-I plan to use Filepicker to add functionality to the `AcornStashForm`,
+I plan to use Cloudinary to add functionality to the `AcornStashForm`,
 `trailshow`, and `EditProfile` views in this phase. I'll need
-to integrate Filepicker for file upload so users can add images to acorn stashes
+to integrate Cloudinary for file upload so users can add images to acorn stashes
 and to their profiles.
 
 [Details][phase-four]

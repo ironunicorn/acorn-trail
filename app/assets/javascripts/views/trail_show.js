@@ -13,7 +13,9 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
     }));
 
     this.$('.google-maps-show').html(this._map.$el)
-    this._map.render({ collection: this.model.trailCoordinates() });
+    this._map.render({
+      collection: this.model.trailCoordinates()
+     });
     this.acornStashes();
     return this;
   },
@@ -23,6 +25,7 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
     this.model.trailCoordinates().each(function (coord) {
       if (coord.acornStash().length) {
         var acorn = coord.acornStash().at(0);
+        acorn.order = coord.get('order')
         var view = new AcornTrail.Views.AcornStashItem({
           model: acorn
         })
