@@ -1,17 +1,19 @@
-AcornTrail.Views.ParentStashForm = Backbone.CompositeView.extend({
-  template: JST['parent_stash_form'],
+AcornTrail.Views.AcornStashesNew = Backbone.CompositeView.extend({
+  template: JST['acorn_stashes_new'],
 
   initialize: function () {
-    this.collection.each(this.addTrailListItem.bind(this));
+    this.acornStashes = [];
   },
 
   events: {
-    'click .stash-form-bottom button': 'addAcornStashForm'
+    'click .stash-form-bottom a': 'addAcornStashForm',
+    'click .stash-form-bottom button': 'createAcornStashes'
   },
 
   render: function () {
     var content = this.template();
     this.$el.html(content);
+    this.addTrailShow();
     this.addAcornStashForm();
     this.attachSubviews();
     return this;
@@ -19,9 +21,12 @@ AcornTrail.Views.ParentStashForm = Backbone.CompositeView.extend({
 
   addAcornStashForm: function () {
     var subview = new AcornTrail.Views.AcornStashForm({
-      model: new AcornTrail.Models.AcornStash()
+      model: this.model,
+      collection: this.collection
     });
     this.addSubview('.acorn-stash-forms', subview);
+
+    this.acornStashes.push(subview);
   },
 
   removeAcornStashForm: function (stashForm) {
@@ -37,5 +42,15 @@ AcornTrail.Views.ParentStashForm = Backbone.CompositeView.extend({
 
   removeTrailShow: function (trailShow) {
     this.removeModelSubview('.show-trail', trailShow);
+  },
+
+  createAcornStashes: function () {
+    this.acornStashes.forEach( function (acornStash) {
+      acornStash.createStash();
+    });
+    Backbone.history.navigate(
+      '/trails/' + this.model.get('id'),
+      { trigger: true }
+    );
   }
 });

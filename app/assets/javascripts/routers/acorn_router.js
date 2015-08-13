@@ -46,6 +46,14 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
     this._swapView(view);
   },
 
+  AcornStashesNew: function (id) {
+    var trail = this.collection.getOrFetch(id);
+    var view = new AcornTrail.Views.AcornStashesNew({
+      model: trail
+    });
+    this._swapView(view);
+  },
+
   _swapView: function (view) {
     this._currentView && this._currentView.remove();
     this._currentView = view;

@@ -7,9 +7,9 @@ Rails.application.routes.draw do
   namespace :api, :defaults => { :format => :json } do
     resources :trails, :only => [:create, :destroy, :index, :show, :update] do
       resources :trail_coordinates, :only => [:create] do
-        resource :acorn_stash, :only => [:create]
       end
     end
+    resource :acorn_stash, :only => [:create]
   end
 
 
