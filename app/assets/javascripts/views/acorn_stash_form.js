@@ -7,6 +7,10 @@ AcornTrail.Views.AcornStashForm = Backbone.CompositeView.extend({
     this.newStash = new AcornTrail.Models.AcornStash();
   },
 
+  events: {
+    "click button": "upload"
+  },
+
   render: function () {
     this._map = new AcornTrail.Views.AcornMap();
 
@@ -26,7 +30,10 @@ AcornTrail.Views.AcornStashForm = Backbone.CompositeView.extend({
   },
 
   createStash: function () {
-    this.newStash.set({ trail_coordinate_id: this._map.trail_coordinate_id });
+    this.newStash.set({
+      trail_coordinate_id: this._map.trail_coordinate_id,
+      image_url: this.image_url
+    });
     var formData = this.$el.serializeJSON().acorn_stash;
     this.newStash.set(formData);
     this.newStash.save({}, {
@@ -34,7 +41,15 @@ AcornTrail.Views.AcornStashForm = Backbone.CompositeView.extend({
         return response;
       }
     });
-  }
+  },
+
+  upload: function(e) {
+    e.preventDefault();
+    cloudinary.openUploadWidget(CLOUDINARY_OPTIONS, function(error, result){
+      var data = result[0];
+      this.image_url = data.url;
+    });
+  },
 
 
 })

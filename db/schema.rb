@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150812181815) do
+ActiveRecord::Schema.define(version: 20150813211448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20150812181815) do
     t.text     "description"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
+    t.string   "image_url"
   end
 
   add_index "acorn_stashes", ["trail_coordinate_id"], name: "index_acorn_stashes_on_trail_coordinate_id", using: :btree

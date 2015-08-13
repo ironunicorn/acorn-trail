@@ -15,6 +15,10 @@
 //= require underscore
 //= require backbone
 //= require jquery.serializejson
+//= require jquery.ui.widget
+//= require jquery.iframe-transport
+//= require jquery.fileupload
+//= require jquery.cloudinary
 //= require acorn_trail
 //= require_tree ../templates
 //= require_tree ./models

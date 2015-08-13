@@ -13,7 +13,8 @@ class Api::AcornStashesController < ApplicationController
     params.require(:acorn_stash).permit(
       :trail_coordinate_id,
       :title,
-      :description
+      :description,
+      :image_url
     )
   end
 end
