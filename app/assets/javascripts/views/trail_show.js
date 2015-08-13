@@ -21,5 +21,9 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
   remove: function () {
     this._map.remove();
     Backbone.View.prototype.remove.call(this);
+  },
+
+  addAcornStashItem: function (acornStash) {
+    
   }
 });

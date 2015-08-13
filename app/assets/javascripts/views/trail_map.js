@@ -15,11 +15,12 @@ AcornTrail.Views.TrailMap = Backbone.View.extend({
       zoom: 12
     };
     this._map = new google.maps.Map(this.el, mapOptions);
-    this.addLines();
+    this.labelIndex = 1;
+    this.addLinesAndAcorns();
   },
 
 
-  addLines: function () {
+  addLinesAndAcorns: function () {
     var trailPathLine = new google.maps.Polyline({
       path: this.route(),
       geodesic: true,
@@ -33,13 +34,24 @@ AcornTrail.Views.TrailMap = Backbone.View.extend({
   route: function () {
     this._route = []
     this.collection.each(function (coord) {
-      this._route.push(new google.maps.LatLng(
+      var location = new google.maps.LatLng(
         coord.get('latitude'),
         coord.get('longitude')
-      ));
+      )
+      this._route.push(location);
+      coord.acornStash().length && this.addMarker(location);
     }.bind(this))
 
     return this._route
+  },
+
+  addMarker: function (location) {
+    var marker = new google.maps.Marker({
+      position: location,
+      map: this._map,
+      label: (this.labelIndex++).toString()
+    });
+    marker.setMap(this._map);
   }
 
 });
