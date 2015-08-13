@@ -25,7 +25,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'bcrypt'
 
 gem 'newrelic_rpm'
-# gem 'figaro'
 
 gem 'backbone-on-rails'
 

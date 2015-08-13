@@ -6,7 +6,7 @@
   <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
   <% if Rails.env.production? %>
-    <% api_key = google_analytics_key %>
+    <% api_key = ENV['GOOGLE_MAPS'] %>
   <% else %>
     <% api_key = '' %>
   <% end %>
