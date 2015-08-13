@@ -4,7 +4,7 @@ AcornTrail.Views.AcornStashItem = Backbone.CompositeView.extend({
     this.listenTo(this.model, 'sync', this.render);
   },
   render: function () {
-    this.$el.html(this.template({ acorn_stash: this.model }));
+    this.$el.html(this.template({ acornStash: this.model }));
     return this;
   }
 })

@@ -14,16 +14,21 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
 
     this.$('.google-maps-show').html(this._map.$el)
     this._map.render({ collection: this.model.trailCoordinates() });
-
+    this.acornStashes();
     return this;
   },
 
-  remove: function () {
-    this._map.remove();
-    Backbone.View.prototype.remove.call(this);
-  },
-
-  addAcornStashItem: function (acornStash) {
-    
+  acornStashes: function () {
+    var parent = this;
+    this.model.trailCoordinates().each(function (coord) {
+      if (coord.acornStash().length) {
+        var acorn = coord.acornStash().at(0);
+        var view = new AcornTrail.Views.AcornStashItem({
+          model: acorn
+        })
+        parent.addSubview(".acorn-stashes", view);
+      }
+    })
   }
+
 });
