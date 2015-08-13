@@ -24,7 +24,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
 
-gem 'figaro'
+# gem 'figaro'
 
 gem 'backbone-on-rails'
 
