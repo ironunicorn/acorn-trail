@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150813211448) do
+ActiveRecord::Schema.define(version: 20150814003731) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20150813211448) do
     t.text     "description"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+    t.string   "image_url"
   end
 
   add_index "users", ["password_digest"], name: "index_users_on_password_digest", using: :btree

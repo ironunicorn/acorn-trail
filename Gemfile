@@ -32,6 +32,7 @@ gem 'bootstrap-sass'
 
 gem 'cloudinary'
 
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

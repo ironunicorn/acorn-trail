@@ -11,14 +11,24 @@
     <% api_key = '' %>
   <% end %>
 
-  <script type="text/javascript" charset="utf-8">
+  <!-- <script type="text/javascript" charset="utf-8">
     window.CLOUDINARY_OPTIONS = {
       cloud_name: "<%= ENV['CLOUD_NAME'] %>",
       api_key: "<%= ENV['CLOUD_API_KEY'] %>",
       signature: "<%= ENV['CLOUD_API_SECRET'] %>",
       upload_preset: "<%= ENV['UPLOAD_PRESET'] %>"
     };
+  </script> -->
+
+  <script type="text/javascript" charset="utf-8">
+    window.CLOUDINARY_OPTIONS = {
+      cloud_name: "disran0g3",
+      api_key: "214772958124614",
+      signature: "Pv1AEznJPwL6omSHzoZwhswtFTg",
+      upload_preset: "fjeeklzb"
+    };
   </script>
+
 
   <script src="http://widget.cloudinary.com/global/all.js"
           type="text/javascript"
@@ -26,6 +36,8 @@
 
   <script type="text/javascript"
           src="https://maps.googleapis.com/maps/api/js?<%= api_key %>"></script>
+
+
 </head>
 <body>
   <nav class="navbar navbar-default">
@@ -50,7 +62,7 @@
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
             <ul class="dropdown-menu">
               <% if current_user %>
-                <li><a href="#">Edit Profile</a></li>
+                <li><a href="#/edit_profile">Edit Profile</a></li>
                 <li><%= button_to "Logout", session_url, method: :delete, class: "form-control" %></li>
               <% else %>
                 <li><a href="<%= new_user_url %>">Sign Up</a></li>

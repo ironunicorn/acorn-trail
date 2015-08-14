@@ -1,0 +1,20 @@
+<h4><%= user.escape('username') %></h4>
+<div class="updated"></div>
+<% if (user.escape('description')) { %>
+  <p><%= user.escape('description') %></p>
+<% } else { %>
+  <label>Tell us a little about yourself</label>
+  <textarea name="user[description]" class="form-control"></textarea>
+<% } %>
+<% if (user.escape('image_url')) { %>
+  <img src="<%= user.get('image_url') %>"/>
+  <div class="button">
+    <button class="image form-control">Update Profile Picture</button>
+  </div>
+<% } else { %>
+  <div class="button">
+    <button class="image form-control">Upload Profile Picture</button>
+  </div>
+<% } %>
+
+<input type="submit" class="form-control" value="Update Profile">

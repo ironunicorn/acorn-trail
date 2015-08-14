@@ -17,6 +17,7 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
       collection: this.model.trailCoordinates()
      });
     this.acornStashes();
+    this.author();
     return this;
   },
 
@@ -29,9 +30,17 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
         var view = new AcornTrail.Views.AcornStashItem({
           model: acorn
         })
+        parent.acornStashes = true;
         parent.addSubview(".acorn-stashes", view);
       }
     })
+  },
+
+  author: function () {
+    if (this.acornStashes) {
+      var view = new AcornTrail.Views.AuthorShow({ model: this.model.author() });
+      this.addSubview(".author", view);
+    }
   }
 
 });

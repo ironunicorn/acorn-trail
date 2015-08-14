@@ -14,7 +14,7 @@ class Api::TrailsController < ApplicationController
   end
 
   def show
-    @trail = Trail.includes(:acorn_stashes).find(params[:id])
+    @trail = Trail.includes(:acorn_stashes, :author).find(params[:id])
     render 'show'
   end
 

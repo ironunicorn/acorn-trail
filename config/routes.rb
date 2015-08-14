@@ -4,11 +4,12 @@ Rails.application.routes.draw do
   resources :users, only: [:new, :create, :destroy]
   resource :session, only: [:new, :create, :destroy]
 
-  namespace :api, :defaults => { :format => :json } do
-    resources :trails, :only => [:create, :destroy, :index, :show, :update] do
-      resources :trail_coordinates, :only => [:create, :index] do
+  namespace :api, defaults: { format: :json } do
+    resources :trails, only: [:create, :destroy, :index, :show, :update] do
+      resources :trail_coordinates, only: [:create, :index] do
       end
     end
+    resources :users, only: [:update, :show]
     resource :acorn_stash, :only => [:create]
   end
 

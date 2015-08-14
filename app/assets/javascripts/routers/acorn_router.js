@@ -9,7 +9,8 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
     'trails/new': 'trailNew',
     'trails/:id/edit': 'trailEdit',
     'trails/:id/share_acorn_stashes': 'AcornStashesNew',
-    'trails/:id': 'trailShow'
+    'trails/:id': 'trailShow',
+    'edit_profile': 'editProfile'
   },
 
   trailFeed: function () {
@@ -40,7 +41,6 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
 
   trailShow: function (id) {
     var trail = this.collection.getOrFetch(id);
-    trail.trailHead();
     var view = new AcornTrail.Views.TrailShow({
       model: trail
     });
@@ -53,6 +53,18 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
       model: trail
     });
     this._swapView(view);
+  },
+
+  editProfile: function () {
+    var user = new AcornTrail.Models.User({ id: 1 });
+    user.fetch({
+      success: function () {
+        var view = new AcornTrail.Views.EditProfile({
+          model: user.currentUser()
+        });
+        this._swapView(view);
+      }.bind(this)
+    });
   },
 
   _swapView: function (view) {
