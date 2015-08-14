@@ -3,7 +3,6 @@ AcornTrail.Views.MapDraw = Backbone.View.extend({
     id: "map-canvas"
   },
 
-
   render: function () {
     var mapOptions = {
       center: { lat: 37.7833, lng: -122.4167 },
@@ -24,7 +23,9 @@ AcornTrail.Views.MapDraw = Backbone.View.extend({
     this.trailPath.push(location);
     var marker = new google.maps.Marker({
       position: location,
-      map: this._map
+      map: this._map,
+      icon: "http://res.cloudinary.com/disran0g3/image/upload/c_scale,h_38,w_34/v1439589233/better_acorn_nrfwkw.png",
+      suppressInfoWindows: true
     });
     this.addLines();
   },

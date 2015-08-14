@@ -35,7 +35,8 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
     var marker = new google.maps.Marker({
       position: { lat: parseFloat(trail.trailHead.latitude), lng: parseFloat(trail.trailHead.longitude) },
       map: this._map,
-      model: trail
+      model: trail,
+      icon: "http://res.cloudinary.com/disran0g3/image/upload/c_scale,h_38,w_34/v1439589233/better_acorn_nrfwkw.png"
     });
 
     google.maps.event.addListener(marker, 'click', function (event) {

@@ -51,7 +51,8 @@ AcornTrail.Views.TrailMap = Backbone.View.extend({
     var marker = new google.maps.Marker({
       position: location,
       map: this._map,
-      label: (this.labelIndex++).toString()
+      label: (this.labelIndex++).toString(),
+      icon: "http://res.cloudinary.com/disran0g3/image/upload/c_scale,h_38,w_34/v1439589233/better_acorn_nrfwkw.png"
     });
     marker.setMap(this._map);
   },
