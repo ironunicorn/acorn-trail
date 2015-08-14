@@ -9,13 +9,20 @@ AcornTrail.Views.TrailForm = Backbone.CompositeView.extend({
 
   createTrail: function (e) {
     e.preventDefault();
+    if (this._map.trailPath.length < 2) {
+      this.$('.errors').html("please draw at least two points on your trail");
+      return;
+    }
     var view = this;
     var formData = $(e.currentTarget).serializeJSON().trail;
     this.model.save(formData, {
       success: function () {
         view.collection.add(view.model);
         view.addRoute();
-      }
+      },
+      // error: function (model, response) {
+      //   console.log(response);
+      // }
     })
   },
 

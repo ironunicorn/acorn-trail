@@ -2,6 +2,13 @@ json.(@trail, :id, :title, :description)
 
 json.author @trail.author, :username, :description, :image_url
 
+json.reviews do
+  json.array! @trail.reviews do |review|
+    json.(review, :rating, :content)
+    json.reviewAuthor review.author, :username, :id
+  end
+end
+
 json.trailCoordinates do
   json.array! @trail.trail_coordinates do |coord|
     json.(coord, :id, :latitude, :longitude, :order)

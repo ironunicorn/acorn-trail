@@ -44,6 +44,5 @@ column name | data type | details
 id          | integer   | not null, primary key
 trip_id     | integer   | not null, foreign key (references trips)
 user_id     | integer   | not null, foreign key (references trips)
-title       | string    | not null
 description | text      |
 rating      | integer   | not null

@@ -17,38 +17,32 @@ AcornTrail.Models.Trail = Backbone.Model.extend({
     return this._author;
   },
 
+  reviews: function () {
+    if (!this._reviews) {
+      this._reviews = new AcornTrail.Collections.Reviews([],
+        { trail: this });
+    }
+
+    return this._reviews;
+  },
+
   parse: function (response) {
     if (response.trailCoordinates) {
       this.trailCoordinates().set(response.trailCoordinates, { parse: true });
       delete response.trailCoordinates;
     }
+    if (response.reviews) {
+      this.reviews().set(response.reviews, { parse: true });
+      delete response.reviews;
+    }
     if (response.author) {
       this.author().set(response.author);
       delete response.author;
     }
+    if (response.trailHead) {
+      this.trailHead = response.trailHead;
+      delete response.trailHead;
+    }
     return response;
-  },
-  //
-  // trailHead: function () {
-  //   var trail = this;
-  //   var collection = this.trailCoordinates();
-  //   var trailHead = this.trailCoordinates().findWhere({
-  //     order: 0,
-  //     trail_id: this.id
-  //   });
-  //
-  //   if (!trailHead) {
-  //     trailHead = new AcornTrail.Models.TrailCoordinate({ order: 0 },
-  //       { trail: trail }
-  //     );
-  //     collection.add(trailHead);
-  //     trailHead.fetch({
-  //       error: function () { collection.remove(trailHead); }
-  //     });
-  //   } else {
-  //     trailHead.fetch();
-  //   }
-  //
-  //   return trailHead;
-  // }
+  }
 });
