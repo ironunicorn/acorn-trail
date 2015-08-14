@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AcornTrail</title>
   <%= stylesheet_link_tag    'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
@@ -11,24 +12,14 @@
     <% api_key = '' %>
   <% end %>
 
-  <!-- <script type="text/javascript" charset="utf-8">
+  <script type="text/javascript" charset="utf-8">
     window.CLOUDINARY_OPTIONS = {
       cloud_name: "<%= ENV['CLOUD_NAME'] %>",
       api_key: "<%= ENV['CLOUD_API_KEY'] %>",
       signature: "<%= ENV['CLOUD_API_SECRET'] %>",
       upload_preset: "<%= ENV['UPLOAD_PRESET'] %>"
     };
-  </script> -->
-
-  <script type="text/javascript" charset="utf-8">
-    window.CLOUDINARY_OPTIONS = {
-      cloud_name: "disran0g3",
-      api_key: "214772958124614",
-      signature: "Pv1AEznJPwL6omSHzoZwhswtFTg",
-      upload_preset: "fjeeklzb"
-    };
   </script>
-
 
   <script src="http://widget.cloudinary.com/global/all.js"
           type="text/javascript"
@@ -36,7 +27,6 @@
 
   <script type="text/javascript"
           src="https://maps.googleapis.com/maps/api/js?<%= api_key %>"></script>
-
 
 </head>
 <body>
