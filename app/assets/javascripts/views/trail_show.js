@@ -1,5 +1,6 @@
 AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
   template: JST['trail_show'],
+  className: 'container-fluid',
 
   initialize: function (options) {
     this.listenTo(this.model, "sync", this.render);
@@ -24,18 +25,21 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
      });
     this.acornStashes();
     this.author();
-    this.reviewForm();
-
+    if (this.model.author().get('id') !== currentUserID ) {
+      this.reviewForm();
+    }
     this.attachSubviews();
+
     return this;
   },
 
   acornStashes: function () {
     var parent = this;
+    var acornOrder = 1;
     this.model.trailCoordinates().each(function (coord) {
       if (coord.acornStash().length) {
         var acorn = coord.acornStash().at(0);
-        acorn.order = coord.get('order')
+        acorn.order = acornOrder++;
         var view = new AcornTrail.Views.AcornStashItem({
           model: acorn
         })
@@ -46,8 +50,10 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
   },
 
   author: function () {
+    this.$(".author").html('')
     var view = new AcornTrail.Views.AuthorShow({ model: this.model.author() });
     this.addSubview(".author", view);
+    view.render();
   },
 
   addReview: function (review) {

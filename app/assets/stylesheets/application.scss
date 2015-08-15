@@ -21,52 +21,72 @@
  $wood: #664116;
  $bark: #915E23;
 
-.google-maps-draw, .google-maps-search {
-  height: 350px;
-  width: 100%;
-  margin: auto;
-}
-
 #map-canvas {
   height: 100%;
   width: 100%;
-  border-radius: 7px;
 }
 
-.container-fluid, #content, #sign {
-  max-width: 900px;
-  margin: auto;
-  padding: 0 30px;
-  box-sizing: border-box;
-}
-
-img.logo {
-  float: left;
-  height: 45px;
-  width: 45px;
-  margin-right: 3px;
-}
-
-.google-maps-show {
-  height: 300px;
+/* Navbar */
+.navbar {
+  position: fixed;
+  z-index: 5;
   width: 100%;
-  margin: auto;
+  top: 0px;
+  background-color: white;
+
+  img.logo {
+    float: left;
+    height: 45px;
+    width: 45px;
+    margin-right: 3px;
+  }
+
+  .navbar-right li, .dropdown-menu li {
+    text-align: center;
+  }
 }
+
+/* Trail Show */
+.row {
+  width: 100%;
+}
+.title {
+  font-weight: bold;
+  color: $wood;
+  font-size: 2em;
+
+}
+.google-maps-show {
+  height: 70vh;
+  width: 100%;
+  margin: 50px 0px;
+}
+
+.author img {
+  display: block;
+  max-width: 30%;
+}
+
+.trail-content {
+  margin: 50px 0px;
+}
+
+.google-maps-draw, .google-maps-search {
+  height: 92vh;
+  width: 100%;
+  margin: 50px 0px;
+}
+
+
+
+
 
 .form {
-  max-width: 800px;
-  margin: auto;
+  height: 100%;
+  width: 100%;
+  background-size: 100%;
 }
 
-.navbar {
-  background-color: $beige;
-  a.navbar-brand {
-    color: $hersheybrown;
-  }
-  .navbar-nav li a {
-    color: $hersheybrown;
-  }
-}
 
 .trail-list {
   padding: 20px;

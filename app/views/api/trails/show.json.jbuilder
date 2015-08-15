@@ -1,6 +1,6 @@
 json.(@trail, :id, :title, :description)
 
-json.author @trail.author, :username, :description, :image_url
+json.author @trail.author, :id, :username, :description, :image_url
 
 json.reviews do
   json.array! @trail.reviews do |review|
