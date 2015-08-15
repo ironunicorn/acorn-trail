@@ -50,9 +50,8 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
   },
 
   author: function () {
-    this.$(".author").html('')
-    var view = new AcornTrail.Views.AuthorShow({ model: this.model.author() });
-    this.addSubview(".author", view);
+    var view = new AcornTrail.Views.AuthorShow({ model: this.model.author() })
+    this.$('.author').html(view.$el)
     view.render();
   },
 

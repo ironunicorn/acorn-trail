@@ -47,8 +47,30 @@
 }
 
 /* Trail Show */
-.row {
+.title-row {
   width: 100%;
+  position: relative;
+  top: 50px;
+}
+
+.row {
+  top: 50px;
+  position: relative;
+  width: 100%;
+  .author {
+    border: 1px solid $beige;
+    display: block;
+    text-align: right;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-right: -30px;
+    img {
+      width: 80%;
+    }
+  }
+  .review-form, .reviews {
+    margin-right: -30px;
+  }
 }
 .title {
   font-weight: bold;
@@ -57,19 +79,21 @@
 
 }
 .google-maps-show {
-  height: 70vh;
   width: 100%;
-  margin: 50px 0px;
+  height: 70vh;
 }
-
-.author img {
+.row {
   display: block;
-  max-width: 30%;
+  position: relative;
 }
 
-.trail-content {
-  margin: 50px 0px;
+
+.acorn-stash-item {
+  margin: 5px auto;
+  border: 1px solid $beige;
+
 }
+
 
 .google-maps-draw, .google-maps-search {
   height: 92vh;
