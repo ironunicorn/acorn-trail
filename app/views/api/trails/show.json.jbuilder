@@ -4,7 +4,7 @@ json.author @trail.author, :username, :description, :image_url
 
 json.reviews do
   json.array! @trail.reviews do |review|
-    json.(review, :rating, :content)
+    json.(review, :rating, :content, :created_at)
     json.reviewAuthor review.author, :username, :id
   end
 end

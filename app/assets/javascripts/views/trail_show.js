@@ -5,6 +5,10 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.model.trailCoordinates(), "sync", this.acornStashes);
     this.listenTo(this.model.author(), "sync", this.author);
+    this.listenTo(this.model.reviews(), "add", this.addReview);
+    this.listenTo(this.model.reviews(), "remove", this.removeReview);
+    this.model.reviews().each(this.addReview.bind(this));
+    if (options.currentUser) { this.currentUser = options.currentUser };
   },
 
   render: function () {
@@ -18,9 +22,11 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
     this._map.render({
       collection: this.model.trailCoordinates()
      });
-    this.attachSubviews();
     this.acornStashes();
     this.author();
+    this.reviewForm();
+
+    this.attachSubviews();
     return this;
   },
 
@@ -42,6 +48,29 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
   author: function () {
     var view = new AcornTrail.Views.AuthorShow({ model: this.model.author() });
     this.addSubview(".author", view);
+  },
+
+  addReview: function (review) {
+    var view = new AcornTrail.Views.ReviewShow({
+      model: review,
+      author: review.reviewAuthor()
+    });
+    this.addSubview(".reviews", view);
+  },
+
+  removeReview: function (review) {
+    this.removeModelSubview(".reviews", review)
+  },
+
+  reviewForm: function () {
+    var review = new AcornTrail.Models.Review();
+    review.set({ trail_id: this.model.get('id') })
+    var view = new AcornTrail.Views.ReviewForm({
+      model: review,
+      collection: this.model.reviews()
+    });
+    this.$(".review-form").html(view.$el);
+    view.render();
   }
 
 });

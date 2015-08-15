@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     end
     resources :users, only: [:update, :show]
     resource :acorn_stash, only: :create
-    resources :reviews, only: :create
+    resources :reviews, only: [:create, :show]
   end
 
 

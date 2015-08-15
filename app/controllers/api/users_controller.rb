@@ -2,7 +2,6 @@ class Api::UsersController < ApplicationController
   before_action :require_current_user, only: :update
   def show
     @user = User.find(params[:id])
-    @current_user = current_user
     render 'show'
   end
 

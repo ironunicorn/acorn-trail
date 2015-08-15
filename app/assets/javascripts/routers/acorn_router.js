@@ -2,6 +2,7 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
   initialize: function (options) {
     this.$rootEl = options.$rootEl;
     this.collection = new AcornTrail.Collections.Trails();
+    this.currentUser = new AcornTrail.Models.User({ id: currentUserID });
   },
 
   routes: {
@@ -57,15 +58,11 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
   },
 
   editProfile: function () {
-    var user = new AcornTrail.Models.User({ id: 1 });
-    user.fetch({
-      success: function () {
-        var view = new AcornTrail.Views.EditProfile({
-          model: user.currentUser()
-        });
-        this._swapView(view);
-      }.bind(this)
+    this.currentUser.fetch();
+    var view = new AcornTrail.Views.EditProfile({
+      model: this.currentUser
     });
+    this._swapView(view);
   },
 
   trailSearch: function () {
