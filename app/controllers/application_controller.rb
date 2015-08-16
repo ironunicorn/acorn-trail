@@ -26,6 +26,11 @@ class ApplicationController < ActionController::Base
     redirect_to new_session_url unless current_user
   end
 
+  def ensure_author
+    trail = Trail.find(params[:id])
+    redirect_to root_url unless trail.user_id == current_user.id
+  end
+
   def user_params
     params.require(:user).permit(:username, :password, :description)
   end

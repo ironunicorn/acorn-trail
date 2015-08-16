@@ -1,5 +1,6 @@
 class Api::TrailCoordinatesController < ApplicationController
-
+  before_action :ensure_author
+  
   def create
     @trail_coordinate = TrailCoordinate.new(trail_coord_params)
     if @trail_coordinate.save
@@ -8,11 +9,6 @@ class Api::TrailCoordinatesController < ApplicationController
       render json: @trail_coordinate.errors.full_messages
     end
   end
-
-  # def index
-  #   @trail_coordinates = TrailCoordinate.where(trail_id: params[:trail_id])
-  #   render json: @trail_coordinates
-  # end
 
   private
   def trail_coord_params

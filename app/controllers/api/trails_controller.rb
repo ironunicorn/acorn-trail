@@ -1,4 +1,7 @@
 class Api::TrailsController < ApplicationController
+  before_action :ensure_login, only: [:create]
+  before_action :ensure_author, only: [:update, :destroy]
+  
   def create
     @trail = current_user.authored_trails.new(trail_params)
     if @trail.save

@@ -5,14 +5,13 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
 
   namespace :api, defaults: { format: :json } do
+    resources :users, only: [:update, :show]
     get '/trails/search/', to: 'trails#search'
     get '/trails/feed/', to: 'trails#feed'
     resources :trails, only: [:create, :destroy, :index, :show, :update] do
-      resources :trail_coordinates, only: [:create, :index] do
-      end
+      resources :trail_coordinates, only: [:create]
+      resources :reviews, only: [:create, :show]
     end
-    resources :users, only: [:update, :show]
     resource :acorn_stash, only: :create
-    resources :reviews, only: [:create, :show]
   end
 end

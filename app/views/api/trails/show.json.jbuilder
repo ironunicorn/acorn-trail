@@ -1,4 +1,4 @@
-json.(@trail, :id, :title, :description)
+json.(@trail, :id, :title, :description, :user_id)
 
 json.author @trail.author, :id, :username, :description, :image_url
 

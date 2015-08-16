@@ -25,7 +25,7 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
      });
     this.acornStashes();
     this.author();
-    if (this.model.author().get('id') !== currentUserID ) {
+    if (currentUserID !== -1 && this.model.get('user_id') !== currentUserID ) {
       this.reviewForm();
     }
     this.attachSubviews();
@@ -68,7 +68,7 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
   },
 
   reviewForm: function () {
-    var review = new AcornTrail.Models.Review();
+    var review = new AcornTrail.Models.Review({}, {trail: this.model});
     review.set({ trail_id: this.model.get('id') })
     var view = new AcornTrail.Views.ReviewForm({
       model: review,

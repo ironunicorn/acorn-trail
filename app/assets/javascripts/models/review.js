@@ -1,5 +1,11 @@
 AcornTrail.Models.Review = Backbone.Model.extend({
-  urlRoot: '/api/reviews',
+  urlRoot: function () {
+    return this.trail.url() + "/reviews";
+  },
+
+  initialize: function (params, options) {
+    this.trail = options.trail;
+  },
 
   parse: function (response) {
     if (response.reviewAuthor) {

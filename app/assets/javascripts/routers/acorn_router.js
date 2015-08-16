@@ -4,6 +4,7 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
     this.collection = new AcornTrail.Collections.Trails();
     this.currentUser = new AcornTrail.Models.User({ id: currentUserID });
     this.feed = new AcornTrail.Collections.TrailFeed();
+    this.savedLocation = '';
   },
 
   routes: {
@@ -25,12 +26,16 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
   },
 
   trailNew: function () {
-    var trail = new AcornTrail.Models.Trail();
-    var view = new AcornTrail.Views.TrailForm({
-      collection: this.collection,
-      model: trail
-    });
-    this._swapView(view);
+    if (currentUserID === -1) {
+      location.href = 'session/new'
+    } else {
+      var trail = new AcornTrail.Models.Trail();
+      var view = new AcornTrail.Views.TrailForm({
+        collection: this.collection,
+        model: trail
+      });
+      this._swapView(view);
+    }
   },
 
   trailEdit: function (id) {

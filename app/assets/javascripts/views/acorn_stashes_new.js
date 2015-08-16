@@ -11,9 +11,12 @@ AcornTrail.Views.AcornStashesNew = Backbone.CompositeView.extend({
   },
 
   render: function () {
+    if (currentUserID !== this.model.get('user_id')) {
+      Backbone.history.navigate('trails/' + this.model.get('id'), { trigger: true })
+    }
     var content = this.template();
     this.$el.html(content);
-    this.addTrailShow();
+    this.addTrailPreview();
     this.addAcornStashForm();
     this.attachSubviews();
     return this;
@@ -33,15 +36,15 @@ AcornTrail.Views.AcornStashesNew = Backbone.CompositeView.extend({
     this.removeModelSubview('.acorn-stash-forms', stashForm);
   },
 
-  addTrailShow: function () {
-    var subview = new AcornTrail.Views.TrailShow({
+  addTrailPreview: function () {
+    var subview = new AcornTrail.Views.TrailPreview({
       model: this.model
     });
     this.addSubview('.show-trail', subview);
   },
 
-  removeTrailShow: function (trailShow) {
-    this.removeModelSubview('.show-trail', trailShow);
+  removeTrailPreview: function (trailPreview) {
+    this.removeModelSubview('.show-trail', trailPreview);
   },
 
   createAcornStashes: function () {

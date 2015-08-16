@@ -1,5 +1,5 @@
 class Api::UsersController < ApplicationController
-  before_action :require_current_user, only: :update
+  before_action :ensure_login, only: :update
   def show
     @user = User.find(params[:id])
     render 'show'
@@ -8,7 +8,7 @@ class Api::UsersController < ApplicationController
   def update
     @user = current_user
     if @user.update(user_params)
-      render json: @user
+      render 'show'
     else
       render json: @user.errors.full_messages
     end
@@ -17,9 +17,5 @@ class Api::UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:description, :image_url)
-  end
-
-  def require_current_user
-    redirect_to root_url unless current_user == User.find(params[:id])
   end
 end
