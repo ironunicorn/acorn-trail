@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     get '/trails/search/', to: 'trails#search'
+    get '/trails/feed/', to: 'trails#feed'
     resources :trails, only: [:create, :destroy, :index, :show, :update] do
       resources :trail_coordinates, only: [:create, :index] do
       end
@@ -14,6 +15,4 @@ Rails.application.routes.draw do
     resource :acorn_stash, only: :create
     resources :reviews, only: [:create, :show]
   end
-
-
 end

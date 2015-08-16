@@ -3,6 +3,7 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
     this.$rootEl = options.$rootEl;
     this.collection = new AcornTrail.Collections.Trails();
     this.currentUser = new AcornTrail.Models.User({ id: currentUserID });
+    this.feed = new AcornTrail.Collections.TrailFeed();
   },
 
   routes: {
@@ -16,9 +17,9 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
   },
 
   trailFeed: function () {
-    this.collection.fetch();
+    this.feed.fetch();
     var view = new AcornTrail.Views.TrailFeed({
-      collection: this.collection
+      collection: this.feed
     });
     this._swapView(view);
   },

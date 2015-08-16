@@ -13,6 +13,11 @@ class Api::TrailsController < ApplicationController
     render json: @trails
   end
 
+  def feed
+    @trails = trail_feed
+    render 'feed'
+  end
+
   def show
     @trail = Trail.includes(:acorn_stashes, :author, :reviews).find(params[:id])
     render 'show'
@@ -49,7 +54,7 @@ class Api::TrailsController < ApplicationController
       'lat' => [37.67767358309138, 37.8887756788066],
       'lng' => [-122.56501542968749, -122.26838457031249]
     }
-    
+
     # defaults.merge(options)
   end
 
@@ -66,8 +71,7 @@ class Api::TrailsController < ApplicationController
       Trail.includes(:trail_coordinates).find_by_sql([<<-SQL, binds])
         SELECT trails.*
         FROM trails
-        INNER JOIN trail_coordinates
-        ON trails.id = trail_coordinates.trail_id
+        INNER JOIN trail_coordinates ON trails.id = trail_coordinates.trail_id
         WHERE trail_coordinates.order = 0
         AND CAST(trail_coordinates.latitude AS float) BETWEEN :lat_min AND :lat_max
         AND CAST(trail_coordinates.longitude AS float) BETWEEN :lng_min AND 180
@@ -77,12 +81,25 @@ class Api::TrailsController < ApplicationController
       Trail.includes(:trail_coordinates).find_by_sql([<<-SQL, binds])
         SELECT trails.*
         FROM trails
-        INNER JOIN trail_coordinates
-        ON trails.id = trail_coordinates.trail_id
+        INNER JOIN trail_coordinates ON trails.id = trail_coordinates.trail_id
         WHERE trail_coordinates.order = 0
         AND CAST(trail_coordinates.latitude AS float) BETWEEN :lat_min AND :lat_max
         AND CAST(trail_coordinates.longitude AS float) BETWEEN :lng_min AND :lng_max
       SQL
     end
+  end
+
+  def trail_feed
+    Trail.includes(:acorn_stashes).find_by_sql([<<-SQL])
+      SELECT
+        CAST(trails.created_at AS DATE) AS creation_date,
+        trails.*,
+        SUM(reviews.rating) / COUNT(reviews.id) AS average,
+        COUNT(reviews.id) AS popularity
+      FROM trails
+      LEFT OUTER JOIN reviews ON trails.id = reviews.trail_id
+      GROUP BY creation_date, trails.id
+      ORDER BY creation_date DESC, average DESC, popularity DESC
+    SQL
   end
 end

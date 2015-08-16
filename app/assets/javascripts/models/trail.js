@@ -17,6 +17,14 @@ AcornTrail.Models.Trail = Backbone.Model.extend({
     return this._author;
   },
 
+  acornImage: function () {
+    if (!this._acornImage) {
+      this._acornImage = new AcornTrail.Models.AcornStash();
+    }
+
+    return this._acornImage;
+  },
+
   reviews: function () {
     if (!this._reviews) {
       this._reviews = new AcornTrail.Collections.Reviews([],
@@ -42,6 +50,12 @@ AcornTrail.Models.Trail = Backbone.Model.extend({
     if (response.trailHead) {
       this.trailHead = response.trailHead;
       delete response.trailHead;
+    }
+    if (response.acornImages) {
+      if (response.acornImages.length) {
+        this.acornImage().set(response.acornImages[0])
+      }
+      delete response.acornImages;
     }
     return response;
   }

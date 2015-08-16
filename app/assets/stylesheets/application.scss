@@ -70,11 +70,15 @@
   height: 400px;
   margin-bottom: 10px;
 }
-
+.trail-content {
+  overflow-y: scroll;
+  max-height: 400px;
+}
 
 .acorn-stash-item {
   margin: 5px auto;
   border: 1px solid $beige;
+  width: 100%;
 
 }
 
