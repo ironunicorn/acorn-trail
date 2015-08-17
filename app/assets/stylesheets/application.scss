@@ -117,6 +117,7 @@ button.reset {
 
 .trail-form-box {
   border: 1px solid lightgrey;
+  background-color: white;
   border-radius: 5px;
   padding: 10px 0px;
 }
@@ -124,6 +125,9 @@ button.reset {
 .trail-form {
   max-width: 900px;
   margin: auto;
+  background-color: rgba(245,245,220,0.5);
+  border-radius: 5px;
+  padding: 15px;
 }
 
 .create-trail {
