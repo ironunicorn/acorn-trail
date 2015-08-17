@@ -1,24 +1,27 @@
-<form>
-  <label>Title</label>
-  <input type="text"
-         name="acorn_stash[title]"
-         class="form-control"
-         value="<%= acornStash.get('title') %>">
-  <br>
-  <label>Description (optional)</label>
-  <textarea name="acorn_stash[description]"
-            class="form-control"><%= acornStash.get('description') %></textarea>
-  <br>
-  <div class="upload">
-    <% if (acornStash.get('image_url')) { %>
-      <p>Upload Complete</p><button>Edit Picture</button>
-    <% } else { %>
-      <button>Upload Image</button>
-    <% } %>
-  </div>
-  <!-- <button class="cancel">Cancel</button> -->
-  <input type="hidden"
-         class="image"
-         name="acorn_stash[image_url]"
-         value="<%= acornStash.get('image_url') %>">
-</form>
+<div class="acorn-stash-form">
+  <form>
+    <div class="trail-form-text">Title</div>
+    <input type="text"
+           name="acorn_stash[title]"
+           class="form-control"
+           value="<%= acornStash.get('title') %>">
+    <br>
+    <div class="trail-form-text">Description (optional)</div>
+    <textarea name="acorn_stash[description]"
+              class="form-control"><%= acornStash.get('description') %></textarea>
+    <br>
+    <div class="upload">
+      <% if (acornStash.get('image_url')) { %>
+        <div class="alert alert-success">Upload Complete</div>
+        <button class="btn btn-primary">Edit Picture</button>
+      <% } else { %>
+        <button class="btn btn-primary">Upload Image</button>
+      <% } %>
+    </div>
+    <!-- <button class="cancel">Cancel</button> -->
+    <input type="hidden"
+           class="image"
+           name="acorn_stash[image_url]"
+           value="<%= acornStash.get('image_url') %>">
+  </form>
+</div>

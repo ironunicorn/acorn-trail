@@ -1,20 +1,29 @@
-<div class="errors"></div>
-<form>
-  <label for="trail-title">Name your Trail</label>
-  <input type="text"
-         name="trail[title]"
-         id="trail-title"
-         class="form-control"
-         value="<%= trail.escape('title') %>">
-  <br>
-  <label for="trail-description">Overview (optional)</label>
-  <textarea name="trail[description]"
-            class="form-control"
-            id="trail-description"><%= trail.escape('description') %></textarea>
-  <br>
-  <label>Draw Trail</label>
-  <div class="google-maps-draw"></div>
-  <button class="reset">Start Over</button>
-  <br>
-  <input type="submit" value="Create Trail" class="form-control">
-</form>
+<div class="trail-form">
+  <div class="container-fluid">
+      <div class="errors"></div>
+      <form>
+
+          <div class="trail-form-text">Name your Trail</div>
+          <input type="text"
+                 name="trail[title]"
+                 class="form-control"
+                 value="<%= trail.escape('title') %>">
+        <br>
+        <div class="trail-form-text">Trail Overview (optional)</div>
+        <textarea name="trail[description]"
+                  class="form-control"
+                  id="trail-description"><%= trail.escape('description') %></textarea>
+        <br>
+        <div class="trail-form-box">
+          <div class="container-fluid">
+            <div class="draw-word">Draw Trail</div>
+            <button class="reset btn btn-warning">Start Over</button>
+          </div>
+          <div class="container-fluid">
+            <div class="google-maps-draw"></div>
+          </div>
+        </div>
+        <input type="submit" value="Create Trail" class="btn btn-success btn-lg create-trail">
+      </form>
+  </div>
+</div>

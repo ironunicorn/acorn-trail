@@ -44,8 +44,6 @@ AcornTrail.Views.TrailMap = Backbone.View.extend({
     return this._route
   },
 
-  centerTrailHead: function () {
-  },
 
   addMarker: function (location) {
     var marker = new google.maps.Marker({

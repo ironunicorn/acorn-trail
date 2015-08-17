@@ -1,19 +1,18 @@
 
   <div class="container-fluid">
-
-
-  <div class="col-sm-8">
-    <div class="google-maps-show"></div>
-  </div>
-  <div class=".col-sm-4">
-    <div class="trail-content">
-      <div class="title"><%= trail.escape('title') %></div>
-      <div class="description"><%= trail.escape('description') %></div>
-      <div class="acorn-stashes"></div>
-      <div class="featured-acorn"></div>
+    <div class="col-sm-8">
+      <div class="google-maps-show"></div>
+    </div>
+    <div class="col-sm-4">
+      <div class="trail-content">
+        <div class="trail-info">
+          <div class="title"><%= trail.escape('title') %></div>
+          <div class="description"><%= trail.escape('description') %></div>
+        </div>
+        <div class="author"></div>
+      </div>
     </div>
   </div>
-  <div class="author col-sm-6"></div>
   <div class="review-form col-sm-6"></div>
 </div>
     <h4>Reviews</h4>

@@ -49,7 +49,7 @@ AcornTrail.Views.AcornStashForm = Backbone.CompositeView.extend({
       if (result) {
         var data = result[0];
         this.$('input.image').val(data.url);
-        this.$('div.upload').html('<p>Upload Complete</p><button>Edit Picture</button>');
+        this.$('div.upload').html('<div class="alert alert-success">Picture Uploaded</div><button class="btn btn-primary">Edit Picture</button>');
         this.setModel();
       }
     }.bind(this));

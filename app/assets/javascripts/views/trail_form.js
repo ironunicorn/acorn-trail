@@ -4,25 +4,31 @@ AcornTrail.Views.TrailForm = Backbone.CompositeView.extend({
   className: 'form',
 
   events: {
-    "submit form": "createTrail",
-    "click button.reset": "resetMap"
+    "click button.reset": "resetMap",
+    "click .create-trail": "createTrail"
   },
 
   createTrail: function (e) {
     e.preventDefault();
     if (this._map.trailPath.length < 2) {
-      this.$('.errors').html("please draw at least two points on your trail");
+      var $div = $('<div>');
+      $div.addClass('alert alert-danger');
+      $div.html("Please draw at least two points on your trail");
+      this.$('.errors').html($div);
       return;
     }
     var view = this;
-    var formData = $(e.currentTarget).serializeJSON().trail;
+    var formData = $('form').serializeJSON().trail;
     this.model.save(formData, {
       success: function () {
         view.collection.add(view.model);
         view.addRoute();
       },
       error: function (model, response) {
-        this.$('.errors').html(response.responseJSON);
+        var $div = $('<div>');
+        $div.addClass('alert alert-danger');
+        $div.html(response.responseJSON)
+        this.$('.errors').html($div);
       }.bind(this)
     })
   },
