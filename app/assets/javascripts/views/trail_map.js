@@ -38,21 +38,31 @@ AcornTrail.Views.TrailMap = Backbone.View.extend({
       }
 
       this._route.push(location);
-      coord.acornStash().length && this.addMarker(location);
+      coord.acornStash().length && this.addMarker(location, coord.acornStash().at(0));
     }.bind(this))
 
     return this._route
   },
 
 
-  addMarker: function (location) {
+  addMarker: function (location, acornStash) {
+    var acornView = new AcornTrail.Views.AcornStashItem({
+      model: acornStash
+    });
+    var infowindow = new google.maps.InfoWindow({
+      content: acornView.el
+    });
+    acornView.render();
     var marker = new google.maps.Marker({
       position: location,
       map: this._map,
-      label: (this.labelIndex++).toString(),
+      infowindow: infowindow,
       icon: "http://res.cloudinary.com/disran0g3/image/upload/c_scale,h_38,w_34/v1439589233/better_acorn_nrfwkw.png"
     });
     marker.setMap(this._map);
+    marker.addListener('click', function() {
+      infowindow.open(this._map, marker);
+    }.bind(this));
   },
 
 });

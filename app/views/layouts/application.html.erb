@@ -17,9 +17,9 @@
       cloud_name: "<%= ENV['CLOUD_NAME'] %>",
       api_key: "<%= ENV['CLOUD_API_KEY'] %>",
       signature: "<%= ENV['CLOUD_API_SECRET'] %>",
-      upload_preset: "<%= ENV['UPLOAD_PRESET'] %>"
+      upload_preset: "<%= ENV['UPLOAD_PRESET'] %>",
+      theme: 'minimal'
     };
-
 
     window.currentUserID = <%= current_user.try(:id) || -1 %>
   </script>

@@ -1,4 +1,6 @@
-<h4><%= acornStash.order %>: <%= acornStash.escape('title') %></h4>
-<hr>
+<h4><%= acornStash.escape('title') %></h4>
 <p><%= acornStash.escape('description') %></p>
-<img src="<%= acornStash.get('image_url') %>"/>
+<% if (acornStash.get('image_url')) { %>
+  <img src="<%= acornStash.get('image_url') %>"/>
+
+<% } %>
