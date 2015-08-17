@@ -47,7 +47,24 @@ AcornTrail.Views.AcornStashesNew = Backbone.CompositeView.extend({
     this.removeModelSubview('.show-trail', trailPreview);
   },
 
+// transact??
   createAcornStashes: function () {
+    for (var i = 0; i < this.acornStashes.length; i++) {
+      var data = this.acornStashes[i].$el.serializeJSON().acorn_stash;
+      var errors = [];
+      if (!data.title) {
+        errors.push("All stashes must have title.");
+      } else if (!this.acornStashes[i]._map.trail_coordinate_id) {
+        errors.push("All stashes must have location.");
+      }
+      this.$(".errors").html('');
+      if (errors.length) {
+        errors.forEach(function (error) {
+          this.$(".errors").append("<p>" + error + "</p>");
+        });
+        return;
+      }
+    }
     this.acornStashes.forEach( function (acornStash) {
       acornStash.createStash();
     });

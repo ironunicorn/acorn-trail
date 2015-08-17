@@ -46,9 +46,11 @@ AcornTrail.Views.AcornStashForm = Backbone.CompositeView.extend({
   upload: function(e) {
     e.preventDefault();
     cloudinary.openUploadWidget(CLOUDINARY_OPTIONS, function(error, result){
-      var data = result[0];
-      this.image_url = data.url;
-      this.$('div.button').html('<p>Upload Complete</p>');
+      if (result) {
+        var data = result[0];
+        this.image_url = data.url;
+        this.$('div.upload').html('<p>Upload Complete</p><button>Edit</button>');
+      }
     }.bind(this));
   },
 
