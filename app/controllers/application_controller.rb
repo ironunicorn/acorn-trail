@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   end
 
   def ensure_author
-    trail = Trail.find(params[:id])
+    trail = Trail.find(params[:trail_id])
     redirect_to root_url unless trail.user_id == current_user.id
   end
 

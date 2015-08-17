@@ -6,15 +6,15 @@
   <label>Tell us a little about yourself</label>
   <textarea name="user[description]" class="form-control"></textarea>
 <% } %>
-<% if (user.escape('image_url')) { %>
-  <img src="<%= user.get('image_url') %>"/>
-  <div class="button">
-    <button class="image form-control">Update Profile Picture</button>
-  </div>
-<% } else { %>
-  <div class="button">
-    <button class="image form-control">Upload Profile Picture</button>
-  </div>
-<% } %>
+<div class="profile-picture">
+  <% if (user.escape('image_url')) { %>
+    <img src="<%= user.get('image_url') %>"/>
+    <% var word = "Update" %>
+  <% } else { %>
+    <% var word = "Create" %>
+  <% } %>
+  <button class="image form-control"><%= word %> Profile Picture</button>
+</div>
 
 <input type="submit" class="form-control" value="Update Profile">
+<button class="cancel form-control">Cancel</button>

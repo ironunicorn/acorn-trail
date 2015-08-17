@@ -4,7 +4,8 @@ AcornTrail.Views.TrailForm = Backbone.CompositeView.extend({
   className: 'form',
 
   events: {
-    "submit form": "createTrail"
+    "submit form": "createTrail",
+    "click button.reset": "resetMap"
   },
 
   createTrail: function (e) {
@@ -20,9 +21,9 @@ AcornTrail.Views.TrailForm = Backbone.CompositeView.extend({
         view.collection.add(view.model);
         view.addRoute();
       },
-      // error: function (model, response) {
-      //   console.log(response);
-      // }
+      error: function (model, response) {
+        this.$('.errors').html(response.responseJSON);
+      }.bind(this)
     })
   },
 
@@ -36,6 +37,7 @@ AcornTrail.Views.TrailForm = Backbone.CompositeView.extend({
         longitude: route[i].K,
         order: i
       }, { trail: view.model });
+  // Shouldn't work, but it does??
       newCoord.save({}, {
         success: function () {
           view.model.trailCoordinates().add(newCoord);
@@ -59,6 +61,10 @@ AcornTrail.Views.TrailForm = Backbone.CompositeView.extend({
     this._map.render();
 
     return this;
+  },
+
+  resetMap: function (){
+    this._map.removeMarkers();
   },
 
   remove: function () {

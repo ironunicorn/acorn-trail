@@ -4,7 +4,7 @@ class Api::AcornStashesController < ApplicationController
     if @acorn_stash.save
       render json: @acorn_stash
     else
-      render json: @acorn_stash.errors.full_messages
+      render json: @acorn_stash.errors.full_messages, status: :unprocessable_entity
     end
   end
 

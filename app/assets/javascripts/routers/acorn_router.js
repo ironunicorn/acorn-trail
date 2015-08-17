@@ -4,7 +4,6 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
     this.collection = new AcornTrail.Collections.Trails();
     this.currentUser = new AcornTrail.Models.User({ id: currentUserID });
     this.feed = new AcornTrail.Collections.TrailFeed();
-    this.savedLocation = '';
   },
 
   routes: {

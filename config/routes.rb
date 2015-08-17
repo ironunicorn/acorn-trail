@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     get '/trails/search/', to: 'trails#search'
     get '/trails/feed/', to: 'trails#feed'
     resources :trails, only: [:create, :destroy, :index, :show, :update] do
-      resources :trail_coordinates, only: [:create]
+      resources :trail_coordinates, only: [:create, :index]
       resources :reviews, only: [:create, :show]
     end
     resource :acorn_stash, only: :create

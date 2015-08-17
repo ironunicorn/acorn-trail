@@ -1,5 +1,5 @@
 AcornTrail.Views.TrailPreview = Backbone.CompositeView.extend({
-  template: JST['trail_show'],
+  template: JST['trail_preview'],
   className: 'container-fluid',
 
   initialize: function (options) {

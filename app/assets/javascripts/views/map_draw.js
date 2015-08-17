@@ -9,6 +9,7 @@ AcornTrail.Views.MapDraw = Backbone.View.extend({
       zoom: 12
     };
     this.trailPath = [];
+    this.markersAndLines = [];
     this._map = new google.maps.Map(this.el, mapOptions);
     this.attachMapListeners();
   },
@@ -27,6 +28,7 @@ AcornTrail.Views.MapDraw = Backbone.View.extend({
       icon: "http://res.cloudinary.com/disran0g3/image/upload/c_scale,h_38,w_34/v1439589233/better_acorn_nrfwkw.png",
       suppressInfoWindows: true
     });
+    this.markersAndLines.push(marker)
     this.addLines();
   },
 
@@ -38,7 +40,16 @@ AcornTrail.Views.MapDraw = Backbone.View.extend({
       strokeOpacity: 1.0,
       strokeWeight: 2
     });
+    this.markersAndLines.push(trailPathLine);
     trailPathLine.setMap(this._map);
+  },
+
+  removeMarkers: function () {
+    this.trailPath = [];
+    this.markersAndLines.forEach(function (marker) {
+      marker.setMap(null);
+    });
+    this.markersAndLines = [];
   },
 
   remove: function () {

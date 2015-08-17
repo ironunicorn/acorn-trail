@@ -13,7 +13,7 @@ AcornTrail is EveryTrail for Squirrels on Rails and Backbone. Squirrels can:
 - [x] Within trails, create acorn stash sites with images and comments
 - [x] View trails and acorn stash sites
 - [x] Edit current user and show author with image and description
-- [x] Search for trails by location
+- [ ] Search for trails by location
 - [ ] Rate other trails out of 5 acorns
 - [ ] Review trails
 - [ ] Public feed based on popularity
@@ -78,13 +78,12 @@ not.
 [Details][phase-six]
 
 ### Bonus Features (TBD)
-- [ ] Automatically place acorn stash on map based on picture timestamp
 - [ ] Optional list search by miles from search spot
 - [ ] Public feed also based on squirrel location
 - [ ] Pagination/infinite scroll
-- [ ] Create trails with gps files
-- [ ] View squirrel profiles
-- [ ] Custom feed for signed in squirrels based on rating history
+- [ ] Create trails with gpx files
+- [ ] Automatically place acorn stash on map based on image timestamp and gpx time
+
 
 
 [phase-one]: ./docs/phases/phase1.md

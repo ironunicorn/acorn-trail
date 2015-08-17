@@ -9,7 +9,7 @@ class UsersController < ApplicationController
       flash[:messages] = "Welcome, #{@user.username}!"
       redirect_to root_url
     else
-      flash.new[:errors] = @user.errors.full_messages
+      flash.now[:errors] = @user.errors.full_messages
       render 'new'
     end
   end

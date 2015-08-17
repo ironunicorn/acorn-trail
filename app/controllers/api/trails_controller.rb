@@ -1,13 +1,13 @@
 class Api::TrailsController < ApplicationController
   before_action :ensure_login, only: [:create]
   before_action :ensure_author, only: [:update, :destroy]
-  
+
   def create
     @trail = current_user.authored_trails.new(trail_params)
     if @trail.save
-      render json: @trail
+      render 'show'
     else
-      render json: @trail.errors.full_messages
+      render json: @trail.errors.full_messages, status: :unprocessable_entity
     end
   end
 
@@ -37,7 +37,7 @@ class Api::TrailsController < ApplicationController
     if @trail.update(trail_params)
       render json: @trail
     else
-      render json: @trail.errors.full_messages
+      render json: @trail.errors.full_messages, status: :unprocessable_entity
     end
   end
 

@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
       flash[:messages] = "Welcome, #{@user.username}!"
       redirect_to root_url
     else
-      flash.new[:errors] = "Invalid username or password"
+      flash.now[:errors] = ["Invalid username or password"]
       render 'new'
     end
   end

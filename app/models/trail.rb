@@ -13,6 +13,5 @@ class Trail < ActiveRecord::Base
 
   def trail_head
     trail_coordinates.first
-    # TrailCoordinate.find_by(trail_id: self.id, order: 0)
   end
 end
