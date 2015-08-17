@@ -2,15 +2,23 @@
   <label>Title</label>
   <input type="text"
          name="acorn_stash[title]"
-         class="form-control">
+         class="form-control"
+         value="<%= acornStash.get('title') %>">
   <br>
   <label>Description (optional)</label>
   <textarea name="acorn_stash[description]"
-            class="form-control"></textarea>
+            class="form-control"><%= acornStash.get('description') %></textarea>
   <br>
   <div class="upload">
-    <button>Upload Image</button>
+    <% if (acornStash.get('image_url')) { %>
+      <p>Upload Complete</p><button>Edit Picture</button>
+    <% } else { %>
+      <button>Upload Image</button>
+    <% } %>
   </div>
-  <label>Select Location</label>
-  <div class="acorn-map"></div>
+  <!-- <button class="cancel">Cancel</button> -->
+  <input type="hidden"
+         class="image"
+         name="acorn_stash[image_url]"
+         value="<%= acornStash.get('image_url') %>">
 </form>

@@ -20,6 +20,7 @@
       upload_preset: "<%= ENV['UPLOAD_PRESET'] %>"
     };
 
+
     window.currentUserID = <%= current_user.try(:id) || -1 %>
   </script>
 
