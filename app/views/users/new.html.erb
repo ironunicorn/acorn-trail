@@ -1,21 +1,26 @@
-
-  <div class="form">
-    <h1>Sign Up</h1>
-    <%= render 'shared/errors', user: @user %>
-    <form action="<%= users_url %>" method="post">
-      <%= auth_token %>
-      <label for="username">Username</label>
-      <input type="text"
-             id="username"
-             name="user[username]"
-             class="form-control">
-      <br>
-      <label for="password">Password</label>
-      <input type="password"
-             id="password"
-             name="user[password]"
-             class="form-control">
-      <br>
-      <input type="submit" value="Create Account!" class="form-control">
-    </form>
-  </div>
+<style>
+  body {
+      background-image: url('http://res.cloudinary.com/disran0g3/image/upload/v1439775018/ltqmdnydawx6wmdlm3qt.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+  }
+</style>
+<div class="form">
+  <h2>Sign Up</h2>
+  <%= render 'shared/errors', user: @user %>
+  <form action="<%= users_url %>" method="post">
+    <%= auth_token %>
+    <br>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">Username</span>
+      <input type="text" class="form-control" name="user[username]" aria-describedby="basic-addon1">
+    </div>
+    <br>
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon2">Password</span>
+      <input type="passowrd" class="form-control" name="user[password]" aria-describedby="basic-addon2">
+    </div>
+    <br>
+    <input type="submit" value="Create Account!" class="btn btn-primary sign-in">
+  </form>
+</div>
