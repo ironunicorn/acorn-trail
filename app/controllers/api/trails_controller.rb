@@ -71,7 +71,7 @@ class Api::TrailsController < ApplicationController
 
     if binds[:lng_min].to_f > binds[:lng_max].to_f
       # Wrap around the International Date Line
-      Trail.includes(:trail_coordinates).find_by_sql([<<-SQL, binds])
+      Trail.includes(:trail_coordinates, :acorn_stashes).find_by_sql([<<-SQL, binds])
         SELECT trails.*
         FROM trails
         INNER JOIN trail_coordinates ON trails.id = trail_coordinates.trail_id
@@ -81,7 +81,7 @@ class Api::TrailsController < ApplicationController
         OR CAST(trail_coordinates.longitude AS float) BETWEEN -180 AND :lng_max
       SQL
     else
-      Trail.includes(:trail_coordinates).find_by_sql([<<-SQL, binds])
+      Trail.includes(:trail_coordinates, :acorn_stashes).find_by_sql([<<-SQL, binds])
         SELECT trails.*
         FROM trails
         INNER JOIN trail_coordinates ON trails.id = trail_coordinates.trail_id

@@ -6,8 +6,6 @@ AcornTrail.Views.EditProfile = Backbone.CompositeView.extend({
   },
   events: {
     "click button.image": "upload",
-    "dblclick .profile-picture": "upload",
-    "dblclick .description": "editDescription",
     "submit": "updateProfile",
     "click button.cancel": "cancel"
   },
@@ -20,7 +18,7 @@ AcornTrail.Views.EditProfile = Backbone.CompositeView.extend({
       user: this.model
     }));
     if (this.updated) {
-      this.$(".updated").html("<p>Updated!</p>")
+      this.$(".updated").html("<div class='alert alert-success'>Updated!</div>");
     }
     return this;
   },
@@ -47,7 +45,8 @@ AcornTrail.Views.EditProfile = Backbone.CompositeView.extend({
       }
     });
   },
-  cancel: function () {
+  cancel: function (e) {
+    e.preventDefault();
     Backbone.history.navigate("", { trigger: true })
   }
 });

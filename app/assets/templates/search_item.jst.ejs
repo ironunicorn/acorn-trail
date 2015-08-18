@@ -4,3 +4,6 @@
 <p>
   <%= trail.escape('description') %>
 </p>
+<% if (trail.acornImage().get('image_url')) { %>
+  <img src="<%= trail.acornImage().get('image_url') %>"/>
+<% } %>

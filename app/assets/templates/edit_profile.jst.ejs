@@ -1,20 +1,31 @@
-<h4><%= user.escape('username') %></h4>
-<div class="updated"></div>
-<div class="description">
-  <% if (user.escape('description')) { %>
-    <p><%= user.escape('description') %></p>
-  <% } else { %>
-    <label>Tell us a little about yourself</label>
-    <textarea name="user[description]" class="form-control"></textarea>
-  <% } %>
-</div>
-<div class="profile-picture">
-  <% if (user.escape('image_url')) { %>
-    <img src="<%= user.get('image_url') %>"/>
-  <% } else { %>
-    <button class="image form-control">Create Profile Picture</button>
-  <% } %>
-</div>
+<style>
+  body {
+      background-image: url('http://res.cloudinary.com/disran0g3/image/upload/v1439867731/angel-oak-tree_vh7qlb.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
+  }
+</style>
 
-<input type="submit" class="form-control" value="Update Profile">
-<button class="cancel form-control">Cancel</button>
+<div class="trail-form">
+  <div class="container-fluid">
+  <div class="meow">
+  <div class="container-fluid">
+      <h2><%= user.escape('username') %></h2>
+      <div class="updated"></div>
+      <div class="profile-description col-sm-8">
+        <div>Tell us about yourself</div>
+        <textarea name="user[description]"
+                  class="form-control"><%= user.escape('description') %></textarea>
+      </div>
+      <div class="profile-picture col-sm-4">
+        <button class="image btn btn-primary">Upload Profile Picture</button>
+        <% if (user.escape('image_url')) { %>
+          <img src="<%= user.get('image_url') %>"/>
+        <% } %>
+      </div>
+    </div>
+  </div>
+  <input type="submit" class="btn btn-large btn-success update" value="Update Profile">
+  <button class="cancel btn btn-danger">Cancel</button>
+</div>
+</div>

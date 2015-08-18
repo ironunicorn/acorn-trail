@@ -19,7 +19,7 @@ AcornTrail.Views.AcornMap = Backbone.CompositeView.extend({
     var marker = null;
     for (var i = 0; i < this.markers.length; i++) {
       this.markers[i].infoWindow.close();
-      if (this.markers[i].position.G === options.coords.G &&
+      if (!this.markers[i].void && this.markers[i].position.G === options.coords.G &&
         this.markers[i].position.K === options.coords.K) {
         marker = this.markers[i];
       };
@@ -28,7 +28,8 @@ AcornTrail.Views.AcornMap = Backbone.CompositeView.extend({
       var acornStash = new AcornTrail.Models.AcornStash();
       var content = new AcornTrail.Views.AcornStashForm({
         model: acornStash,
-        trail_coordinate_id: options.trail_coordinate_id
+        trail_coordinate_id: options.trail_coordinate_id,
+        map: this
       });
       content.render();
       var infoWindow = new google.maps.InfoWindow({
@@ -41,8 +42,15 @@ AcornTrail.Views.AcornMap = Backbone.CompositeView.extend({
         infoWindow: infoWindow,
         view: content
       });
+      content.marker = marker;
       this.markers.push(marker);
       marker.setMap(this._map);
+      google.maps.event.addListener(marker, 'click', function (event) {
+        for (var i = 0; i < this.markers.length; i++) {
+          this.markers[i].infoWindow.close();
+        }
+        infoWindow.open(this._map, marker);
+      }.bind(this));
     }
     marker.view.render();
     marker.infoWindow.open(this._map, marker);

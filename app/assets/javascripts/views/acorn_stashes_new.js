@@ -33,7 +33,7 @@ AcornTrail.Views.AcornStashesNew = Backbone.CompositeView.extend({
     var acornStashes = this._map.markers
     for (var i = 0; i < acornStashes.length; i++) {
       var data = acornStashes[i].view.$el.serializeJSON().acorn_stash;
-      if (!data.title) {
+      if (!data.title && !acornStashes[i].void) {
         var $div = $('<div>');
         $div.addClass('alert alert-danger');
         $div.html("All acorn stashes must have a title.");
@@ -42,7 +42,9 @@ AcornTrail.Views.AcornStashesNew = Backbone.CompositeView.extend({
       }
     }
     acornStashes.forEach( function (acornStash) {
-      acornStash.view.createStash();
+      if (!acornStash.void) {
+        acornStash.view.createStash();
+      }
     });
     Backbone.history.navigate(
       '/trails/' + this.model.get('id'),

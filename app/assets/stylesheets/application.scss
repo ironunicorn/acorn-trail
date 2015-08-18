@@ -125,9 +125,34 @@ button.reset {
 .trail-form {
   max-width: 900px;
   margin: auto;
+  padding-bottom: 50px;
   background-color: rgba(245,245,220,0.5);
   border-radius: 5px;
   padding: 15px;
+  h2 {
+    color: $hersheybrown;
+  }
+  img {
+    width: 100%;
+  }
+  .profile-description {
+    font-size: 1.2em;
+    textarea {
+      height: 300px;
+    }
+  }
+  .profile-picture {
+    margin-top: -15px;
+    .image {
+      margin-bottom: 10px;
+    }
+  }
+  .cancel {
+    float: right;
+  }
+  .update {
+    float: right;
+  }
 }
 
 .create-trail {
@@ -213,3 +238,5 @@ button.reset {
     padding: 6px 15px;
   }
 }
+
+/* edit profile */

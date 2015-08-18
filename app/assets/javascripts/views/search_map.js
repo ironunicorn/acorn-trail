@@ -29,19 +29,31 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
 
   // Event handlers
   addMarker: function (trail) {
-    if (this._markers[trail.id]) { return };
-    var view = this;
+    if (this._markers[trail.get('id')]) { return };
+    var searchItem = new AcornTrail.Views.SearchItem({
+      model: trail
+    });
+
+
+    var infoWindow = new google.maps.InfoWindow({
+      content: searchItem.render().el
+    });
 
     var marker = new google.maps.Marker({
       position: { lat: parseFloat(trail.trailHead.latitude), lng: parseFloat(trail.trailHead.longitude) },
       map: this._map,
       model: trail,
+      infoWindow: infoWindow,
       icon: "http://res.cloudinary.com/disran0g3/image/upload/c_scale,h_38,w_34/v1439589233/better_acorn_nrfwkw.png"
     });
 
     google.maps.event.addListener(marker, 'click', function (event) {
-      view.showMarkerInfo(event, marker);
-    });
+      _(this._markers).each( function (marker) {
+        marker.infoWindow.close();
+      });
+
+      infoWindow.open(this._map, marker);
+    }.bind(this));
 
     this._markers[trail.id] = marker;
   },
@@ -65,36 +77,8 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
   },
 
   removeMarker: function (trail) {
-    var marker = this._markers[trail.id];
+    var marker = this._markers[trail.get('id')];
     marker.setMap(null);
-    delete this._markers[trail.id];
-  },
-
-  showMarkerInfo: function (event, marker) {
-    // This event will be triggered when a marker is clicked. Right now it
-    // simply opens an info window with the title of the marker. However, you
-    // could get fancier if you wanted (maybe use a template for the content of
-    // the window?)
-    var searchItem = new AcornTrail.Views.SearchItem({
-      model: marker.model
-    });
-
-    // this._subviews.push("searchItem")
-
-    var infoWindow = new google.maps.InfoWindow({
-      content: searchItem.render().el
-    });
-
-    infoWindow.open(this._map, marker);
+    delete this._markers[trail.get('id')];
   },
 });
-  //
-  // startBounce: function (id) {
-  //   var marker = this._markers[id];
-  //   marker.setAnimation(google.maps.Animation.BOUNCE);
-  // },
-  //
-  // stopBounce: function (id) {
-  //   var marker = this._markers[id];
-  //   marker.setAnimation(null);
-  // }

@@ -2,7 +2,7 @@ AcornTrail.Views.TrailForm = Backbone.CompositeView.extend({
   template: JST['trail_form'],
 
   events: {
-    "click button.reset": "resetMap",
+    "click .reset": "resetMap",
     "click .create-trail": "createTrail"
   },
 
@@ -67,7 +67,8 @@ AcornTrail.Views.TrailForm = Backbone.CompositeView.extend({
     return this;
   },
 
-  resetMap: function (){
+  resetMap: function (e){
+    e.preventDefault();
     this._map.removeMarkers();
   },
 

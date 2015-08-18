@@ -5,11 +5,12 @@ AcornTrail.Views.AcornStashForm = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.listenTo(this.model, "sync", this.render);
     this.trail_coordinate_id = options.trail_coordinate_id;
+    this.map = options.map;
   },
 
   events: {
     "click .upload button": "upload",
-    // "click button.cancel": "cancel",
+    "click button.cancel": "cancel",
     "blur input, textarea": "setModel"
   },
 
@@ -20,10 +21,6 @@ AcornTrail.Views.AcornStashForm = Backbone.CompositeView.extend({
 
     return this;
   },
-
-  // cancel: function () {
-  //
-  // },
 
   setModel: function (e) {
     var formData = this.$el.serializeJSON().acorn_stash;
@@ -54,6 +51,13 @@ AcornTrail.Views.AcornStashForm = Backbone.CompositeView.extend({
       }
     }.bind(this));
   },
+
+  cancel: function(e) {
+    e.preventDefault();
+    this.marker.void = 1;
+    this.marker.setMap(null);
+    this.remove();
+  }
 
 
 })
