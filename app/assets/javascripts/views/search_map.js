@@ -1,5 +1,4 @@
 AcornTrail.Views.SearchMap = Backbone.View.extend({
-  // Initialization
   attributes: {
     id: "map-canvas"
   },
@@ -14,14 +13,36 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
   render: function () {
     var mapOptions = {
       center: { lat: 37.7833, lng: -122.4167 },
-      zoom: 12
+      zoom: 13,
+      disableDefaultUI: true
     };
 
     this._map = new google.maps.Map(this.el, mapOptions);
 
     this.collection.each(this.addMarker.bind(this));
     this.attachMapListeners();
+    this.autocomplete = new google.maps.places.Autocomplete(
+        /** @type {!HTMLInputElement} */ (
+            document.getElementById('autocomplete')), {
+          types: ['(cities)'],
+          componentRestrictions: {'country': 'us'}
+        });
+    places = new google.maps.places.PlacesService(this._map);
+
+    this.autocomplete.addListener('place_changed', this.onPlaceChanged.bind(this));
   },
+
+  onPlaceChanged: function () {
+    var place = this.autocomplete.getPlace();
+    if (place.geometry) {
+      this._map.panTo(place.geometry.location);
+      this._map.setZoom(13);
+      this.search();
+    } else {
+      document.getElementById('autocomplete').placeholder = 'Search by city';
+    }
+  },
+
 
   attachMapListeners: function () {
     google.maps.event.addListener(this._map, 'idle', this.search.bind(this));
@@ -43,8 +64,7 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
       position: { lat: parseFloat(trail.trailHead.latitude), lng: parseFloat(trail.trailHead.longitude) },
       map: this._map,
       model: trail,
-      infoWindow: infoWindow,
-      icon: "http://res.cloudinary.com/disran0g3/image/upload/c_scale,h_38,w_34/v1439589233/better_acorn_nrfwkw.png"
+      infoWindow: infoWindow
     });
 
     google.maps.event.addListener(marker, 'click', function (event) {
@@ -59,8 +79,6 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
   },
 
   search: function () {
-    // This method will re-fetch the map's collection, using the
-    // map's current bounds as constraints on latitude/longitude.
 
     var mapBounds = this._map.getBounds();
     var ne = mapBounds.getNorthEast();

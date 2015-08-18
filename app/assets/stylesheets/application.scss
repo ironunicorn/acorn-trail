@@ -184,11 +184,47 @@ button.reset {
 }
 
 /* search map */
-
-.google-maps-search {
-  height: 90vh;
-  width: 100%;
+.parent {
+  position: relative;
+  .google-maps-search {
+    height: 100vh;
+    width: 100%;
+  }
+  .header {
+    position: absolute;
+    top: 0px;
+    padding: 10px 20px;
+    font-size: 3em;
+    font-weight: bold;
+    color: #A52C1B;
+  }
+  .navigation {
+    position: absolute;
+    bottom: 0px;
+    left: 5px;
+    padding: 20px;
+    font-size: 3em;
+    color: #A52C1B;
+  }
+  .search-options {
+    position: absolute;
+    padding: 15px;
+    border-radius: 0 0 0 5px;
+    width: 30%;
+    top: 0px;
+    right: 0;
+    background-color: rgba(68,40,19,0.5);
+    .search-input {
+      width: 100%;
+      border-radius: 5px;
+      font-size: 1.5em;
+      padding-left: 5px;
+      background-color: #EBEAEF;
+      color: #AE833F;
+    }
+  }
 }
+
 
 
 /* sign up and in */
