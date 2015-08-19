@@ -28,31 +28,22 @@
   width: 100%;
 }
 
-.clear-top {
-  height: 60px;
-  width: 100%;
-}
-
-/* Navbar */
-
-.navbar {
-  position: fixed;
-  z-index: 5;
-  width: 100%;
-  top: 0px;
-  background-color: white;
-
-  img.logo {
-    float: left;
-    height: 45px;
-    width: 45px;
-    margin-right: 3px;
-  }
-
-  .navbar-right li, .dropdown-menu li {
-    text-align: center;
-  }
-}
+/* base view */
+ .parent {
+   position: relative;
+   .google-maps {
+     height: 100vh;
+     width: 100%;
+   }
+   .navigation {
+     position: absolute;
+     bottom: 0px;
+     left: 15px;
+     padding: 20px;
+     font-size: 3em;
+     color: #A52C1B;
+   }
+ }
 
 /* Trail Show */
 
@@ -201,7 +192,7 @@ button.reset {
   .navigation {
     position: absolute;
     bottom: 0px;
-    left: 5px;
+    left: 15px;
     padding: 20px;
     font-size: 3em;
     color: #A52C1B;
@@ -249,30 +240,28 @@ button.reset {
 
 /* feed */
 
-.trail-list-item {
-  border: 2px solid $hersheybrown;
-  border-radius: 7px;
-  box-sizing: border-box;
-  margin-bottom: 10px;
-  color: $hersheybrown;
-  div.title {
-    background-color: $green;
-    width: 100%;
-    height: 35px;
-    margin-top: -10px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    z-index: -1;
-    h5 {
-      display: block;
-      padding: 6px 15px;
-      font-size: 15pt;
-    }
-  }
-  p {
-    display: block;
-    padding: 6px 15px;
-  }
-}
-
-/* edit profile */
+// .trail-list-item {
+//   border: 2px solid $hersheybrown;
+//   border-radius: 7px;
+//   box-sizing: border-box;
+//   margin-bottom: 10px;
+//   color: $hersheybrown;
+//   div.title {
+//     background-color: $green;
+//     width: 100%;
+//     height: 35px;
+//     margin-top: -10px;
+//     border-top-left-radius: 5px;
+//     border-top-right-radius: 5px;
+//     z-index: -1;
+//     h5 {
+//       display: block;
+//       padding: 6px 15px;
+//       font-size: 15pt;
+//     }
+//   }
+//   p {
+//     display: block;
+//     padding: 6px 15px;
+//   }
+// }

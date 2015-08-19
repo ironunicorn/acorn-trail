@@ -2,8 +2,8 @@ class CreateTrailCoordinates < ActiveRecord::Migration
   def change
     create_table :trail_coordinates do |t|
       t.references :trail, index: true, foreign_key: true
-      t.string :latitude, null: false
-      t.string :longitude, null: false
+      t.float :latitude, null: false
+      t.float :longitude, null: false
       t.integer :order, null: false
       t.datetime :timestamp
       t.float :elevation

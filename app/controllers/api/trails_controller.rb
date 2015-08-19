@@ -22,7 +22,7 @@ class Api::TrailsController < ApplicationController
   end
 
   def show
-    @trail = Trail.includes(:acorn_stashes, :author, :reviews).find(params[:id])
+    @trail = Trail.includes(:acorn_stashes, :author, [reviews: :author]).find(params[:id])
     render 'show'
   end
 
@@ -43,6 +43,7 @@ class Api::TrailsController < ApplicationController
 
   def search
     @trails = filter_trails(filter_options)
+    # render json: @trails
     render 'search'
   end
 
@@ -52,13 +53,13 @@ class Api::TrailsController < ApplicationController
   end
 
   def filter_options
-    # options = params[:filter_data] || {}
+    options = params[:filter_data] || {}
     defaults = {
       'lat' => [37.67767358309138, 37.8887756788066],
       'lng' => [-122.56501542968749, -122.26838457031249]
     }
 
-    # defaults.merge(options)
+    defaults.merge(options)
   end
 
   def filter_trails(filter_data)
@@ -71,24 +72,13 @@ class Api::TrailsController < ApplicationController
 
     if binds[:lng_min].to_f > binds[:lng_max].to_f
       # Wrap around the International Date Line
-      Trail.includes(:trail_coordinates, :acorn_stashes).find_by_sql([<<-SQL, binds])
-        SELECT trails.*
-        FROM trails
-        INNER JOIN trail_coordinates ON trails.id = trail_coordinates.trail_id
-        WHERE trail_coordinates.order = 0
-        AND CAST(trail_coordinates.latitude AS float) BETWEEN :lat_min AND :lat_max
-        AND CAST(trail_coordinates.longitude AS float) BETWEEN :lng_min AND 180
-        OR CAST(trail_coordinates.longitude AS float) BETWEEN -180 AND :lng_max
-      SQL
+      Trail.includes(:trail_coordinates, :acorn_stashes)
+           .references(:trail_coordinates)
+           .where("trail_coordinates.order = 0 AND trail_coordinates.latitude BETWEEN :lat_min AND :lat_max AND trail_coordinates.longitude BETWEEN :lng_min AND 180 OR trail_coordinates.longitude BETWEEN -180 AND :lng_max")
     else
-      Trail.includes(:trail_coordinates, :acorn_stashes).find_by_sql([<<-SQL, binds])
-        SELECT trails.*
-        FROM trails
-        INNER JOIN trail_coordinates ON trails.id = trail_coordinates.trail_id
-        WHERE trail_coordinates.order = 0
-        AND CAST(trail_coordinates.latitude AS float) BETWEEN :lat_min AND :lat_max
-        AND CAST(trail_coordinates.longitude AS float) BETWEEN :lng_min AND :lng_max
-      SQL
+      Trail.includes(:trail_coordinates, :acorn_stashes)
+           .references(:trail_coordinates)
+           .where("trail_coordinates.order = 0 AND trail_coordinates.latitude BETWEEN :lat_min AND :lat_max AND trail_coordinates.longitude BETWEEN :lng_min AND :lng_max", binds)
     end
   end
 
@@ -105,4 +95,11 @@ class Api::TrailsController < ApplicationController
       ORDER BY creation_date DESC, average DESC, popularity DESC
     SQL
   end
+  #
+  # Trail.includes(:acorn_stashes).
+  #      select("CAST(trails.created_at AS DATE) AS creation_date, trails.*, SUM(reviews.rating) / COUNT(reviews.id) AS average, COUNT(reviews.id) AS popularity").
+  #      joins("LEFT OUTER JOIN reviews ON trails.id = reviews.trail_id").
+  #      group("creation_date, trails.id").
+  #      order("creation_date DESC, average DESC, popularity DESC")
+
 end

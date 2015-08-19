@@ -1,34 +1,24 @@
 AcornTrail.Views.SearchMap = Backbone.View.extend({
-  attributes: {
-    id: "map-canvas"
-  },
+  template: JST['trail_search'],
 
-  initialize: function () {
+  initialize: function (options) {
     this._markers = {};
-
+    this._map = options.map._map;
     this.listenTo(this.collection, 'add', this.addMarker);
     this.listenTo(this.collection, 'remove', this.removeMarker);
   },
 
   render: function () {
-    var mapOptions = {
-      center: { lat: 37.7833, lng: -122.4167 },
-      zoom: 13,
-      disableDefaultUI: true
-    };
-
-    this._map = new google.maps.Map(this.el, mapOptions);
-
+    this.$el.html(this.template());
     this.collection.each(this.addMarker.bind(this));
     this.attachMapListeners();
+
     this.autocomplete = new google.maps.places.Autocomplete(
         /** @type {!HTMLInputElement} */ (
-            document.getElementById('autocomplete')), {
-          types: ['(cities)'],
-          componentRestrictions: {'country': 'us'}
-        });
-    places = new google.maps.places.PlacesService(this._map);
-
+          document.getElementById('autocomplete')),
+        { types: ['(cities)'], componentRestrictions: {'country': 'us'} }
+    );
+    new google.maps.places.PlacesService(this._map);
     this.autocomplete.addListener('place_changed', this.onPlaceChanged.bind(this));
   },
 
@@ -61,7 +51,7 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
     });
 
     var marker = new google.maps.Marker({
-      position: { lat: parseFloat(trail.trailHead.latitude), lng: parseFloat(trail.trailHead.longitude) },
+      position: { lat: trail.trailHead.latitude, lng:trail.trailHead.longitude },
       map: this._map,
       model: trail,
       infoWindow: infoWindow
@@ -79,7 +69,6 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
   },
 
   search: function () {
-
     var mapBounds = this._map.getBounds();
     var ne = mapBounds.getNorthEast();
     var sw = mapBounds.getSouthWest();

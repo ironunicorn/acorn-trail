@@ -16,6 +16,16 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
     'explore': 'trailSearch'
   },
 
+  baseView: function () {
+    if (!this._baseView) {
+      this._baseView = new AcornTrail.Views.BaseView();
+      this.$rootEl.html(this._baseView.$el);
+      this._baseView.render();
+    }
+    return this._baseView;
+  },
+
+
   trailFeed: function () {
     this.feed.fetch();
     var view = new AcornTrail.Views.TrailFeed({
@@ -73,17 +83,20 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
   trailSearch: function () {
     var trails = new AcornTrail.Collections.TrailSearch();
     trails.fetch();
-    var view = new AcornTrail.Views.TrailSearch({
-      collection: trails
+    var view = new AcornTrail.Views.SearchMap({
+      collection: trails,
+      map: this.baseView()._map
     });
+
     this._swapView(view);
   },
+
+
 
   _swapView: function (view) {
     this._currentView && this._currentView.remove();
     this._currentView = view;
-    this.$rootEl.html(view.$el);
+    this.baseView().$('.views').html(view.$el);
     view.render();
   }
-
 });

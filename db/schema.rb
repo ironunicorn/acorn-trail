@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 20150814160803) do
 
   create_table "trail_coordinates", force: :cascade do |t|
     t.integer  "trail_id"
-    t.string   "latitude",   null: false
-    t.string   "longitude",  null: false
+    t.float    "latitude",   null: false
+    t.float    "longitude",  null: false
     t.integer  "order",      null: false
     t.datetime "timestamp"
     t.float    "elevation"

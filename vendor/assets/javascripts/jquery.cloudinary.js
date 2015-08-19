@@ -175,8 +175,8 @@
     var crop = options.crop;
     var use_as_html_dimensions = !has_layer && !options.angle && crop != "fit" && crop != "limit" && crop != "lfill";
     if (use_as_html_dimensions) {
-      if (width && !options.html_width && width !== "auto" && parseFloat(width) >= 1) options.html_width = width;
-      if (height && !options.html_height && parseFloat(height) >= 1) options.html_height = height;
+      if (width && !options.html_width && width !== "auto" && width >= 1) options.html_width = width;
+      if (height && !options.html_height && height >= 1) options.html_height = height;
     }
     if (!crop && !has_layer) {
       delete options.width;

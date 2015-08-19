@@ -38,7 +38,7 @@ AcornTrail.Views.TrailMap = Backbone.View.extend({
       }
 
       this._route.push(location);
-      coord.acornStash().length && this.addMarker(location, coord.acornStash().at(0));
+      coord.acornStash().get('title') && this.addMarker(location, coord.acornStash());
     }.bind(this))
 
     return this._route

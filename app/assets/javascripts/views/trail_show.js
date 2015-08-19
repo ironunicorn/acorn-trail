@@ -5,7 +5,7 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
   initialize: function (options) {
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.model.trailCoordinates(), "sync", this.acornStashes);
-    this.listenTo(this.model.author(), "sync", this.author);
+    // this.listenTo(this.model.author(), "sync", this.author);
     this.listenTo(this.model.reviews(), "add", this.addReview);
     this.listenTo(this.model.reviews(), "remove", this.removeReview);
     this.model.reviews().each(this.addReview.bind(this));
@@ -35,11 +35,9 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
 
   acornStashes: function () {
     var parent = this;
-    var acornOrder = 1;
     this.model.trailCoordinates().each(function (coord) {
-      if (coord.acornStash().length) {
-        var acorn = coord.acornStash().at(0);
-        acorn.order = acornOrder++;
+      if (coord.acornStash().get('title')) {
+        var acorn = coord.acornStash();
         var view = new AcornTrail.Views.AcornStashItem({
           model: acorn
         })
