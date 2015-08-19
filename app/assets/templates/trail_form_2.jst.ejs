@@ -1,0 +1,24 @@
+  <div class="header">
+    <div class="draw-word">Draw trail by dropping pins on the map</div>
+    <div class="errors"></div>
+    <div class="buttons">
+      <div class="btn-group">
+        <button class="btn btn-success btn-lg create-trail">Create Trail</button>
+        <button class="reset btn btn-lg btn-warning">Start Over</button>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-right">
+
+    <div class="trail-info-form">
+<form>
+      <input type="text"
+             name="trail[title]"
+             placeholder="Name your Trail"
+             value="<%= trail.escape('title') %>">
+      <br>
+      <textarea name="trail[description]"
+                placeholder="Description (optional)"
+                id="trail-description"><%= trail.escape('description') %></textarea>
+</form>
+    </div>

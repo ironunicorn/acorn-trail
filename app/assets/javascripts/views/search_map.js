@@ -1,5 +1,5 @@
 AcornTrail.Views.SearchMap = Backbone.View.extend({
-  template: JST['trail_search'],
+  template: JST['search_map'],
 
   initialize: function (options) {
     this._markers = {};
@@ -9,10 +9,23 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
   },
 
   render: function () {
+    var view = this;
     this.$el.html(this.template());
+    var navigation = new AcornTrail.Views.Navigation();
+    $('.navigation').html(navigation.render().$el);
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        if (position.coords.latitude) {
+          var location = new google.maps.LatLng(
+            position.coords.latitude,
+            position.coords.longitude
+          )
+          view._map.panTo(location);
+        }
+      })
+    }
     this.collection.each(this.addMarker.bind(this));
     this.attachMapListeners();
-
     this.autocomplete = new google.maps.places.Autocomplete(
         /** @type {!HTMLInputElement} */ (
           document.getElementById('autocomplete')),
@@ -88,4 +101,14 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
     marker.setMap(null);
     delete this._markers[trail.get('id')];
   },
+
+  remove: function () {
+    _(this._markers).each(function (marker) {
+      marker.setMap(null);
+      google.maps.event.clearInstanceListeners(marker);
+    });
+    google.maps.event.clearInstanceListeners(this.autocomplete);
+    google.maps.event.clearInstanceListeners(this._map);
+    Backbone.View.prototype.remove.call(this);
+  }
 });

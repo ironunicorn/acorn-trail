@@ -1,26 +1,15 @@
-AcornTrail.Views.AcornStashesNew = Backbone.CompositeView.extend({
-  template: JST['acorn_stashes_new'],
+AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
+  template: JST['trail_form_3'],
 
-  initialize: function () {
+  initialize: function (options) {
     this.listenTo(this.model, "sync", this.render);
-    this.listenTo(this.model.trailCoordinates(), "sync", this.acornStashes);
+    this._map = options.map;
   },
 
   render: function () {
-    if (currentUserID !== this.model.get('user_id')) {
-      Backbone.history.navigate('trails/' + this.model.get('id'), { trigger: true })
-    }
-    this._map = new AcornTrail.Views.AcornMap();
-
     this.$el.html(this.template({
       trail: this.model
     }));
-
-    this.$('.google-maps-acorn').html(this._map.$el)
-    this._map.render({
-      collection: this.model.trailCoordinates()
-     });
-
     return this;
   },
 
@@ -28,7 +17,6 @@ AcornTrail.Views.AcornStashesNew = Backbone.CompositeView.extend({
     'click .stash-form-bottom button': 'createAcornStashes'
   },
 
-// transact??
   createAcornStashes: function () {
     var acornStashes = this._map.markers
     for (var i = 0; i < acornStashes.length; i++) {
