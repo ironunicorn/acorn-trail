@@ -30,7 +30,13 @@ AcornTrail.Views.TrailForm1 = Backbone.CompositeView.extend({
       this._map.panTo(place.geometry.location);
       this._map.setZoom(14);
       this.remove();
-
+      var view = new AcornTrail.Views.TrailForm2({
+        map: this._map,
+        model: new AcornTrail.Models.Trail(),
+        collection: this.collection
+      });
+      $('.views').html(view.$el);
+      view.render();
     } else {
       document.getElementById('autocomplete').placeholder = 'Sorry, which city?';
     }
@@ -53,14 +59,6 @@ AcornTrail.Views.TrailForm1 = Backbone.CompositeView.extend({
     Backbone.View.prototype.remove.call(this);
     if (url === "") {
       Backbone.history.navigate(url, { trigger: true })
-    } else {
-      var view = new AcornTrail.Views.TrailForm2({
-        map: this._map,
-        model: new AcornTrail.Models.Trail(),
-        collection: this.collection
-      });
-      $('.views').html(view.$el);
-      view.render();
     }
   },
 

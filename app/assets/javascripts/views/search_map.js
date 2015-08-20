@@ -70,7 +70,7 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
       infoWindow: infoWindow
     });
 
-    google.maps.event.addListener(marker, 'click', function (event) {
+    google.maps.event.addListener(marker, 'mouseover', function (event) {
       _(this._markers).each( function (marker) {
         marker.infoWindow.close();
       });

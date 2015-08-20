@@ -8,7 +8,10 @@ AcornTrail.Views.TrailForm2 = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     this._map = options.map;
-    $('.navigation').html(JST['back_to_explore']());
+    var navigation = new AcornTrail.Views.BackToExplore({
+      parentView: this
+    })
+    $('.navigation').html(navigation.render().$el);
   },
 
   render: function () {
@@ -24,7 +27,7 @@ AcornTrail.Views.TrailForm2 = Backbone.CompositeView.extend({
   },
 
   attachMapListeners: function () {
-    google.maps.event.addListener(this._map, 'click', function(event) {
+    this.mapListener = this.mapListener || google.maps.event.addListener(this._map, 'click', function(event) {
       this.addMarker(event.latLng);
     }.bind(this));
   },
@@ -33,8 +36,9 @@ AcornTrail.Views.TrailForm2 = Backbone.CompositeView.extend({
     e.preventDefault();
     if (this.trailPath.length < 2) {
       var $div = $('<div>');
-      $div.addClass('alert alert-danger');
-      $div.html("Please draw at least two points on your trail");
+      $div.addClass('alert alert-danger alert-dismissible');
+
+      $div.html('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Please draw at least two points on your trail');
       this.$('.errors').html($div);
       return;
     }
@@ -47,8 +51,8 @@ AcornTrail.Views.TrailForm2 = Backbone.CompositeView.extend({
       },
       error: function (model, response) {
         var $div = $('<div>');
-        $div.addClass('alert alert-danger');
-        $div.html(response.responseJSON)
+        $div.addClass('alert alert-danger alert-dismissible');
+        $div.html('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + response.responseJSON)
         this.$('.errors').html($div);
       }.bind(this)
     })
@@ -65,14 +69,18 @@ AcornTrail.Views.TrailForm2 = Backbone.CompositeView.extend({
         order: i
       }, { trail: view.model });
       newCoord.save({}, {
-        success: function () {
+        success: function (data) {
           view.model.trailCoordinates().add(newCoord);
+          if (data.get('order') === route.length - 1) {
+            view.model.fetch();
+          }
         }
       })
     };
     var view = new AcornTrail.Views.TrailForm3({
       map: this._map,
-      model: this.model
+      model: this.model,
+      collection: this.model.trailCoordinates()
     });
     this.remove();
     $('.views').html(view.$el);
@@ -118,8 +126,8 @@ AcornTrail.Views.TrailForm2 = Backbone.CompositeView.extend({
   },
 
   remove: function () {
-    google.maps.event.clearInstanceListeners(this._map);
-    this.removeMarkers()
+    google.maps.event.removeListener(this.mapListener);
+    this.removeMarkers();
     Backbone.View.prototype.remove.call(this);
   }
 });

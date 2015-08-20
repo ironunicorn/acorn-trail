@@ -37,12 +37,13 @@
      width: 100%;
    }
    .navigation {
-     position: absolute;
-     bottom: 0px;
-     left: 15px;
      padding: 20px;
+     position: absolute;
+     top: 0px;
+     right: 0px;
      font-size: 3em;
      color: #A52C1B;
+     font-weight: bold;
      a {
        color: #A52C1B;
      }
@@ -67,21 +68,64 @@
      margin-bottom: -10px;
    }
  }
- .search-options {
-   position: absolute;
-   padding: 15px;
-   border-radius: 0 0 0 5px;
+.search-options {
    width: 30%;
-   top: 0px;
-   right: 0;
-   background-color: rgba(68,40,19,0.5);
+   margin-top: -15px;
    .search-input {
-     width: 100%;
      border-radius: 5px;
-     font-size: 1.5em;
+     font-weight: normal;
+     font-size: 0.6em;
      padding-left: 5px;
-     background-color: #EBEAEF;
      color: #AE833F;
+   }
+ }
+
+ .left-hand-side {
+   position: absolute;
+   height: 100vh;
+   width: 38%;
+   padding: 20px;
+   left: 0px;
+   top: 0px;
+   background: rgba(235,234,239, 0.6);
+   overflow-y: scroll;
+   textarea, input {
+     width: 100%;
+     font-size: 1.5em;
+     border-radius: 5px;
+     margin: 5px 0;
+     padding-left: 5px;
+     color: #AE833F;
+     box-shadow: 2px 2px 2px #888888;
+   }
+   .instructions {
+     width: 100%;
+     font-size: 1.5em;
+     padding: 10px;
+     background-color: white;
+     border-radius: 5px;
+     margin: 5px 0 20px 0;
+     color: #AE833F;
+     line-height: 1.4;
+     border: 1px solid lightgrey;
+     box-shadow: 2px 2px 2px #888888;
+   }
+   .form-title {
+     font-size: 3em;
+     color: #A52C1B;
+     font-weight: bold;
+   }
+   textarea {
+     height: 58vh;
+   }
+ }
+
+
+ .search-item {
+   z-index: 100;
+   img {
+     max-width: 200px;
+     max-height: 200px;
    }
  }
 
@@ -124,6 +168,23 @@
      background-color: #EBEAEF;
      color: #AE833F;
    }
+   .acorn-form-title {
+     font-size: 2em;
+     font-weight: bold;
+     color: #EBEAEF;
+   }
+   textarea, input {
+     width: 100%;
+     font-size: 1.5em;
+     border-radius: 5px;
+     margin: 5px 0;
+     padding-left: 5px;
+     color: #AE833F;
+     box-shadow: 2px 2px 2px #888888;
+   }
+   textarea {
+     height: 30vh;
+   }
  }
 
  .upper-right {
@@ -137,25 +198,8 @@
   position: absolute;
   bottom: 0px;
   right: 0px;
-  width: 45%;
   text-align: right;
-  .trail-info-form {
-    position: relative;
-    border-radius: 5px 0 0 0;
-    background: rgba(68,40,19, 0.6);
-    padding: 20px;
-    textarea, input {
-      width: 100%;
-      border-radius: 5px;
-      font-size: 1.5em;
-      padding-left: 5px;
-      background-color: #EBEAEF;
-      color: #AE833F;
-    }
-    textarea {
-      height: 100px;
-    }
-  }
+  padding: 40px 20px;
 }
 
 

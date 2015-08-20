@@ -60,7 +60,7 @@ AcornTrail.Views.TrailMap = Backbone.View.extend({
       icon: "http://res.cloudinary.com/disran0g3/image/upload/c_scale,h_38,w_34/v1439589233/better_acorn_nrfwkw.png"
     });
     marker.setMap(this._map);
-    marker.addListener('click', function() {
+    marker.addListener('mouseover', function() {
       infowindow.open(this._map, marker);
     }.bind(this));
   },

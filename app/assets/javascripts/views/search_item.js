@@ -1,5 +1,6 @@
 AcornTrail.Views.SearchItem = Backbone.CompositeView.extend({
   template: JST['search_item'],
+  className: 'search-item',
 
   events: {
     "click": "trailShow"

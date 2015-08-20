@@ -1,6 +1,6 @@
 AcornTrail.Views.AcornStashForm = Backbone.CompositeView.extend({
   template: JST['acorn_stash_form'],
-  tagName: 'form',
+  className: 'acorn-form',
 
   initialize: function (options) {
     this.listenTo(this.model, "sync", this.render);
@@ -10,8 +10,8 @@ AcornTrail.Views.AcornStashForm = Backbone.CompositeView.extend({
 
   events: {
     "click .upload button": "upload",
-    "click button.cancel": "cancel",
-    "blur input, textarea": "setModel"
+    "click .close": "cancel",
+    "click button.create": "close"
   },
 
   render: function () {
@@ -22,8 +22,14 @@ AcornTrail.Views.AcornStashForm = Backbone.CompositeView.extend({
     return this;
   },
 
-  setModel: function (e) {
-    var formData = this.$el.serializeJSON().acorn_stash;
+  close: function (e) {
+    e.preventDefault();
+    this.setModel();
+    this.$el.addClass('hidden');
+  },
+
+  setModel: function () {
+    var formData = this.$('form').serializeJSON().acorn_stash;
     this.model.set(formData);
   },
 
@@ -31,7 +37,7 @@ AcornTrail.Views.AcornStashForm = Backbone.CompositeView.extend({
     this.model.set({
       trail_coordinate_id: this.trail_coordinate_id,
     });
-    var formData = this.$el.serializeJSON().acorn_stash;
+    var formData = this.$('form').serializeJSON().acorn_stash;
     this.model.set(formData);
     this.model.save({}, {
       error: function (model, response) {
@@ -54,9 +60,14 @@ AcornTrail.Views.AcornStashForm = Backbone.CompositeView.extend({
 
   cancel: function(e) {
     e.preventDefault();
-    this.marker.void = 1;
-    this.marker.setMap(null);
-    this.remove();
+    debugger;
+    if (this.model.get('image_url') || this.model.get('title') || this.model.get('description')) {
+      this.close(e);
+    } else {
+      this.marker.void = 1;
+      this.marker.setMap(null);
+      this.remove();
+    }
   }
 
 

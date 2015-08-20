@@ -1,27 +1,31 @@
-<div class="acorn-stash-form">
-  <form>
-    <div class="trail-form-text">Title</div>
-    <input type="text"
-           name="acorn_stash[title]"
-           class="form-control"
-           value="<%= acornStash.get('title') %>">
-    <br>
-    <div class="trail-form-text">Description (optional)</div>
-    <textarea name="acorn_stash[description]"
-              class="form-control"><%= acornStash.get('description') %></textarea>
-    <br>
-    <div class="upload">
-      <% if (acornStash.get('image_url')) { %>
-        <div class="alert alert-success">Upload Complete</div>
-        <button class="btn btn-primary">Edit Picture</button>
-      <% } else { %>
-        <button class="btn btn-primary">Upload Image</button>
-      <% } %>
-    </div>
-    <button class="cancel btn btn-danger">Cancel</button>
-    <input type="hidden"
-           class="image"
-           name="acorn_stash[image_url]"
-           value="<%= acornStash.get('image_url') %>">
-  </form>
+<div class="m-background"></div>
+
+<div class="m-content">
+  <div class="search-box">
+    <button class="close">&times;</button>
+      <div class="acorn-form-title">Share Acorn Stash Conditions</div>
+      <form>
+        <input type="text"
+               name="acorn_stash[title]"
+               placeholder="Title (required)"
+               value="<%= acornStash.get('title') %>">
+        <br>
+        <textarea name="acorn_stash[description]"
+                  placeholder="Description (optional)"><%= acornStash.get('description') %></textarea>
+        <br>
+        <div class="upload">
+          <% if (acornStash.get('image_url')) { %>
+            <div class="alert alert-success">Upload Complete</div>
+            <button class="btn btn-primary">Edit Picture</button>
+          <% } else { %>
+            <button class="btn btn-primary">Upload Image (optional)</button>
+          <% } %>
+        </div>
+        <button class="create btn btn-success">Share Acorn</button>
+        <input type="hidden"
+               class="image"
+               name="acorn_stash[image_url]"
+               value="<%= acornStash.get('image_url') %>">
+      </form>
+  </div>
 </div>
