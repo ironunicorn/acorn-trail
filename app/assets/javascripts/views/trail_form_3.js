@@ -110,6 +110,9 @@ AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
       strokeWeight: 2
     });
     this.trailPathLine.setMap(this._map);
+    google.maps.event.addListener(this.trailPathLine, 'click', function(event) {
+      this.addMarker(event.latLng);
+    }.bind(this));
   },
 
   route: function () {
@@ -144,6 +147,9 @@ AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
         acornStash.view.createStash();
       }
     });
+    this.remove();
+    $('.confirmation').html('<div class="alert alert-success">' + this.model.escape('title') + ' created!</div>');
+    setTimeout(function () { $('.confirmation').html('')}, 1000)
     Backbone.history.navigate(
       '/trails/' + this.model.get('id'),
       { trigger: true }

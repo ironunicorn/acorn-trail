@@ -94,23 +94,36 @@ AcornTrail.Views.TrailForm2 = Backbone.CompositeView.extend({
 
   addMarker: function (location) {
     this.trailPath.push(location);
-    var marker = new google.maps.Marker({
-      position: location,
-      map: this._map,
-      icon: "http://res.cloudinary.com/disran0g3/image/upload/c_scale,h_38,w_34/v1439589233/better_acorn_nrfwkw.png",
-      suppressInfoWindows: true
-    });
-    this.markersAndLines.push(marker)
+    if (this.trailPath.length === 1) {
+      var marker = new google.maps.Marker({
+        position: location,
+        map: this._map,
+        icon: "http://res.cloudinary.com/disran0g3/image/upload/c_scale,h_38,w_34/v1439589233/better_acorn_nrfwkw.png",
+        suppressInfoWindows: true
+      });
+      this.markersAndLines.push(marker);
+    }
     this.addLines();
   },
 
   addLines: function () {
+    var symbolOne = {
+      path: 'M -2,0 0,-2 2,0 0,2 z',
+      strokeColor: '#292',
+      fillColor: '#292',
+      fillOpacity: 1
+    };
+
     var trailPathLine = new google.maps.Polyline({
       path: this.trailPath,
       geodesic: true,
       strokeColor: '#664116',
       strokeOpacity: 1.0,
-      strokeWeight: 2
+      strokeWeight: 2,
+      icons: [{
+          icon: symbolOne,
+          offset: '0%'
+      }]
     });
     this.markersAndLines.push(trailPathLine);
     trailPathLine.setMap(this._map);

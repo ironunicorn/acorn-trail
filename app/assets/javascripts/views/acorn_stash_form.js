@@ -60,7 +60,6 @@ AcornTrail.Views.AcornStashForm = Backbone.CompositeView.extend({
 
   cancel: function(e) {
     e.preventDefault();
-    debugger;
     if (this.model.get('image_url') || this.model.get('title') || this.model.get('description')) {
       this.close(e);
     } else {

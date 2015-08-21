@@ -98,12 +98,31 @@ AcornTrail.Views.AcornMap = Backbone.CompositeView.extend({
   },
 
   addLines: function () {
+    var symbolOne = {
+      path: 'M -2,0 0,-2 2,0 0,2 z',
+      strokeColor: '#292',
+      fillColor: '#292',
+      fillOpacity: 1
+    };
+
+    var symbolTwo = {
+      path: 'M -2,-2 2,2 M 2,-2 -2,2',
+      strokeColor: '#F00',
+      strokeWeight: 4
+    };
     var trailPathLine = new google.maps.Polyline({
       path: this.route(),
       geodesic: true,
       strokeColor: '#664116',
       strokeOpacity: 1.0,
-      strokeWeight: 2
+      strokeWeight: 2,
+      icons: [{
+          icon: symbolOne,
+          offset: '0%'
+        }, {
+          icon: symbolTwo,
+          offset: '100%'
+      }]
     });
     trailPathLine.setMap(this._map);
   },

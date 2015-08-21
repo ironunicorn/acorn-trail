@@ -13,17 +13,6 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
     this.$el.html(this.template());
     var navigation = new AcornTrail.Views.Navigation();
     $('.navigation').html(navigation.render().$el);
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition(function (position) {
-        if (position.coords.latitude) {
-          var location = new google.maps.LatLng(
-            position.coords.latitude,
-            position.coords.longitude
-          )
-          view._map.panTo(location);
-        }
-      })
-    }
     this.collection.each(this.addMarker.bind(this));
     this.attachMapListeners();
     this.autocomplete = new google.maps.places.Autocomplete(
@@ -67,9 +56,12 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
       position: { lat: trail.trailHead.latitude, lng:trail.trailHead.longitude },
       map: this._map,
       model: trail,
-      infoWindow: infoWindow
+      infoWindow: infoWindow,
+      id: trail.get('id')
     });
-
+    google.maps.event.addListener(marker, 'click', function (event) {
+      Backbone.history.navigate('trails/' + marker.id, { trigger: true });
+    });
     google.maps.event.addListener(marker, 'mouseover', function (event) {
       _(this._markers).each( function (marker) {
         marker.infoWindow.close();

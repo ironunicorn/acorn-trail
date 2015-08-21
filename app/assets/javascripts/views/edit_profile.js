@@ -1,13 +1,12 @@
 AcornTrail.Views.EditProfile = Backbone.CompositeView.extend({
   template: JST['edit_profile'],
-  tagName: "form",
   initialize: function () {
     this.listenTo(this.model, 'sync', this.render)
   },
   events: {
     "click button.image": "upload",
-    "submit": "updateProfile",
-    "click button.cancel": "cancel"
+    "click .update": "updateProfile",
+    "click .close": "cancel"
   },
   editDescription: function () {
     this.$(".description").html("<textarea name='user[description]' class='form-control'>"
@@ -27,8 +26,7 @@ AcornTrail.Views.EditProfile = Backbone.CompositeView.extend({
     cloudinary.openUploadWidget(CLOUDINARY_OPTIONS, function(error, result){
       if (result) {
         var data = result[0];
-        this.$el.append("<input type='hidden' name='user[image_url]' value='"
-          + data.url +"'>");
+        this.$('input.image').val(data.url);
         this.$(".profile-picture").html('<img src="'
           + data.url + '"/>');
       }
@@ -37,11 +35,12 @@ AcornTrail.Views.EditProfile = Backbone.CompositeView.extend({
   updateProfile: function (e) {
     e.preventDefault();
     var view = this;
-    var formData = this.$el.serializeJSON().user;
+    var formData = this.$('form').serializeJSON().user;
     this.model.set(formData);
     this.model.save({}, {
       success: function () {
         view.updated = true;
+        setTimeout(function(){ Backbone.history.navigate("", { trigger: true }) }, 750);
       }
     });
   },

@@ -1,5 +1,7 @@
-<h4>By: <%= author.escape('username') %></h4>
-<p>
+<div class="username">About <%= author.escape('username') %>:</div>
+<div class="description">
   <%= author.escape('description') %>
-</p>
-<img class="profile-picture" src="<%= author.get('image_url') %>"/>
+</div>
+<div class="picture">
+  <img src="<%= author.get('image_url') %>"/>
+</div>

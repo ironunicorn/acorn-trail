@@ -1,31 +1,21 @@
-<style>
-  body {
-      background-image: url('http://res.cloudinary.com/disran0g3/image/upload/v1439867731/angel-oak-tree_vh7qlb.jpg');
-      background-repeat: no-repeat;
-      background-size: cover;
-  }
-</style>
+<div class="m-background"></div>
 
-<div class="trail-form">
-  <div class="container-fluid">
-  <div class="meow">
-  <div class="container-fluid">
-      <h2><%= user.escape('username') %></h2>
+<div class="m-content">
+  <div class="profile-box">
+    <button class="close">&times;</button>
+    <div class="acorn-form-title"><%= user.escape('username') %></div>
+    <form>
       <div class="updated"></div>
-      <div class="profile-description col-sm-8">
-        <div>Tell us about yourself</div>
-        <textarea name="user[description]"
-                  class="form-control"><%= user.escape('description') %></textarea>
-      </div>
-      <div class="profile-picture col-sm-4">
-        <button class="image btn btn-primary">Upload Profile Picture</button>
-        <% if (user.escape('image_url')) { %>
+      <textarea name="user[description]"
+                placeholder="Tell us about yourself"><%= user.escape('description') %></textarea>
+      <div class="profile-picture">
+        <% if (user.get('image_url')) { %>
           <img src="<%= user.get('image_url') %>"/>
         <% } %>
+          <button class="image btn btn-primary">Upload Profile Picture</button>
       </div>
-    </div>
+      <input type='hidden' class='image' name='user[image_url]' value='<%= user.get('image_url') %>'>
+      <button class="btn btn-large btn-success update">Update Profile</button>
+    </form>
   </div>
-  <input type="submit" class="btn btn-large btn-success update" value="Update Profile">
-  <button class="cancel btn btn-danger">Cancel</button>
-</div>
 </div>

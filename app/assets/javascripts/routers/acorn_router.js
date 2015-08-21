@@ -35,6 +35,7 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
   },
 
   trailNew: function () {
+    this.baseView()._map._map.setOptions({draggableCursor:'crosshair'});
     if (currentUserID === -1) {
       this.savedLocation = "trail/new"
       location.href = 'session/new'
@@ -58,9 +59,11 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
   },
 
   trailShow: function (id) {
+    this.baseView()._map._map.setOptions({draggableCursor:''});
     var trail = this.collection.getOrFetch(id);
     var view = new AcornTrail.Views.TrailShow({
-      model: trail
+      model: trail,
+      map: this.baseView()._map._map
     });
     this._swapView(view);
   },
@@ -85,6 +88,7 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
     if (this.savedLocation) {
       Backbone.history.navigate(this.savedLocation, { trigger: true });
     }
+    this.baseView()._map._map.setOptions({draggableCursor:''});
     var trails = new AcornTrail.Collections.TrailSearch();
     trails.fetch();
     var view = new AcornTrail.Views.SearchMap({

@@ -1,19 +1,14 @@
-
-  <div class="container-fluid">
-    <div class="col-sm-8">
-      <div class="google-maps-show"></div>
-    </div>
-    <div class="col-sm-4">
-      <div class="trail-content">
-        <div class="trail-info">
-          <div class="title"><%= trail.escape('title') %></div>
-          <div class="description"><%= trail.escape('description') %></div>
-        </div>
+  <div class="trail-show">
+    <div class="trail-title more"><%= trail.escape('title') %>
+    <span class="glyphicon glyphicon-menu-down stuff" aria-label="more info"></span>
+      <div class="info hidden">
+        <hr>
+        <div class="description"><%= trail.escape('description') %></div>
+        <hr>
         <div class="author"></div>
+        <hr>
+        <div class="review-form"></div>
+        <div class="reviews container"></div>
       </div>
     </div>
   </div>
-  <div class="review-form col-sm-6"></div>
-</div>
-    <h4>Reviews</h4>
-    <div class="reviews container"></div>

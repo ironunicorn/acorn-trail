@@ -1,50 +1,52 @@
 AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
   template: JST['trail_show'],
-  className: 'container-fluid',
 
   initialize: function (options) {
     this.listenTo(this.model, "sync", this.render);
-    this.listenTo(this.model.trailCoordinates(), "sync", this.acornStashes);
-    // this.listenTo(this.model.author(), "sync", this.author);
+    this._map = options.map;
     this.listenTo(this.model.reviews(), "add", this.addReview);
     this.listenTo(this.model.reviews(), "remove", this.removeReview);
     this.model.reviews().each(this.addReview.bind(this));
+    this.markers = [];
     if (options.currentUser) { this.currentUser = options.currentUser };
+    var navigation = new AcornTrail.Views.BackToExplore({
+      parentView: this
+    })
+    $('.navigation').html(navigation.render().$el);
+  },
+
+  events: {
+    'click .more': 'showMore',
+    'click .less': 'showLess'
+  },
+
+  showMore: function () {
+    this.$('.trail-title span').removeClass("glyphicon-menu-down");
+    this.$('.trail-title span').addClass("glyphicon-menu-up");
+    this.$('.trail-title').addClass("trail-info less");
+    this.$('.trail-title').removeClass("more");
+    this.$('.info').removeClass('hidden');
+  },
+
+  showLess: function () {
+    this.$('.trail-title span').removeClass("glyphicon-menu-up");
+    this.$('.trail-title span').addClass("glyphicon-menu-down");
+    this.$('.trail-title').removeClass("trail-info less");
+    this.$('.trail-title').addClass("more");
+    this.$('.info').addClass('hidden');
   },
 
   render: function () {
-    this._map = new AcornTrail.Views.TrailMap();
-
     this.$el.html(this.template({
       trail: this.model
     }));
-
-    this.$('.google-maps-show').html(this._map.$el)
-    this._map.render({
-      collection: this.model.trailCoordinates()
-     });
-    this.acornStashes();
     this.author();
     if (currentUserID !== -1 && this.model.get('user_id') !== currentUserID ) {
       this.reviewForm();
     }
     this.attachSubviews();
-
+    this.addLinesAndAcorns();
     return this;
-  },
-
-  acornStashes: function () {
-    var parent = this;
-    this.model.trailCoordinates().each(function (coord) {
-      if (coord.acornStash().get('title')) {
-        var acorn = coord.acornStash();
-        var view = new AcornTrail.Views.AcornStashItem({
-          model: acorn
-        })
-        parent.acornStash = true;
-        parent.addSubview(".acorn-stashes", view);
-      }
-    })
   },
 
   author: function () {
@@ -74,6 +76,92 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
     });
     this.$(".review-form").html(view.$el);
     view.render();
+  },
+
+  addLinesAndAcorns: function () {
+    var symbolOne = {
+      path: 'M -2,0 0,-2 2,0 0,2 z',
+      strokeColor: '#292',
+      fillColor: '#292',
+      fillOpacity: 1
+    };
+
+    var symbolTwo = {
+      path: 'M -2,-2 2,2 M 2,-2 -2,2',
+      strokeColor: '#F00',
+      strokeWeight: 4
+    };
+    var trailPathLine = new google.maps.Polyline({
+      path: this.route(),
+      geodesic: true,
+      strokeColor: '#664116',
+      strokeOpacity: 1.0,
+      strokeWeight: 2,
+      icons: [{
+          icon: symbolOne,
+          offset: '0%'
+        }, {
+          icon: symbolTwo,
+          offset: '100%'
+      }]
+    });
+    this.markers.push(trailPathLine);
+    trailPathLine.setMap(this._map);
+  },
+
+  route: function () {
+    this._route = [];
+    this.model.trailCoordinates().each(function (coord) {
+      var location = new google.maps.LatLng(
+        coord.get('latitude'),
+        coord.get('longitude')
+      )
+      if (coord.get('order') === 0) {
+        this._map.setCenter(location);
+      }
+
+      this._route.push(location);
+      coord.acornStash().get('title') && this.addMarker(location, coord.acornStash());
+    }.bind(this))
+
+    return this._route
+  },
+
+
+  addMarker: function (location, acornStash) {
+    var acornView = new AcornTrail.Views.AcornStashItem({
+      model: acornStash
+    });
+    var infowindow = new google.maps.InfoWindow({
+      content: acornView.el
+    });
+    acornView.render();
+    var marker = new google.maps.Marker({
+      position: location,
+      map: this._map,
+      infowindow: infowindow,
+      icon: "http://res.cloudinary.com/disran0g3/image/upload/c_scale,h_38,w_34/v1439589233/better_acorn_nrfwkw.png"
+    });
+    marker.setMap(this._map);
+    marker.addListener('mouseover', this.openInfo.bind(this, marker));
+    this.markers.push(marker);
+  },
+
+  openInfo: function(marker) {
+    _(this.markers).each(function (mark) {
+      mark.infowindow && mark.infowindow.close();
+    })
+    marker.infowindow.open(this._map, marker);
+  },
+
+  remove: function () {
+    _(this.markers).each(function (marker) {
+      marker.infowindow && marker.infowindow.close();
+      marker.setMap(null);
+      google.maps.event.clearInstanceListeners(marker);
+    });
+    google.maps.event.clearInstanceListeners(this._map);
+    Backbone.View.prototype.remove.call(this);
   }
 
 });

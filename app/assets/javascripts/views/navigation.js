@@ -2,7 +2,8 @@ AcornTrail.Views.Navigation = Backbone.CompositeView.extend({
   template: JST['navigation'],
   events: {
     'mouseover .hamburger': 'displayNav',
-    'mouseleave .bar': 'displayHamburger'
+    'mouseleave .bar': 'displayHamburger',
+    'click .logout': 'logout'
   },
   render: function () {
     this.$el.html(this.template());
@@ -15,5 +16,14 @@ AcornTrail.Views.Navigation = Backbone.CompositeView.extend({
   displayHamburger: function () {
     this.$(".bar").addClass('hidden');
     this.$(".hamburger").removeClass('hidden');
+  },
+  logout: function () {
+    $.ajax({
+      url: "/session",
+      type: "DELETE",
+      success: function () {
+        location.reload();
+      }
+    });
   }
 });
