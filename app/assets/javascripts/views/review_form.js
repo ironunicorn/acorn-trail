@@ -19,10 +19,7 @@ AcornTrail.Views.ReviewForm = Backbone.CompositeView.extend({
     this.model.save(formData, {
       success: function () {
         view.collection.add(view.model);
-        view.model = new AcornTrail.Models.Review({
-          trail_id: trail_id
-        });
-        view.render();
+        view.model.fetch();
       },
       // error: function () {
       //   thing to write

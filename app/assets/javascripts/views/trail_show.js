@@ -21,19 +21,21 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
   },
 
   showMore: function () {
-    this.$('.trail-title span').removeClass("glyphicon-menu-down");
-    this.$('.trail-title span').addClass("glyphicon-menu-up");
-    this.$('.trail-title').addClass("trail-info less");
-    this.$('.trail-title').removeClass("more");
+    this.$('.title span').removeClass("glyphicon-menu-down");
+    this.$('.title span').addClass("glyphicon-menu-up");
+    this.$('.title').addClass("less");
+    this.$('.title').removeClass("more");
     this.$('.info').removeClass('hidden');
+    this.$('.trail-show').addClass('full');
   },
 
   showLess: function () {
-    this.$('.trail-title span').removeClass("glyphicon-menu-up");
-    this.$('.trail-title span').addClass("glyphicon-menu-down");
-    this.$('.trail-title').removeClass("trail-info less");
-    this.$('.trail-title').addClass("more");
+    this.$('.title span').removeClass("glyphicon-menu-up");
+    this.$('.title span').addClass("glyphicon-menu-down");
+    this.$('.title').removeClass("less");
+    this.$('.title').addClass("more");
     this.$('.info').addClass('hidden');
+    this.$('.trail-show').removeClass('full');
   },
 
   render: function () {

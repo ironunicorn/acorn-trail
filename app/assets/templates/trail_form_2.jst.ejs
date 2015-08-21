@@ -1,17 +1,21 @@
-<div class="left-hand-side">
-  <div class="form-title">Describe Your Journey</div>
-  <div class="trail-info-form">
-    <div class="errors"></div>
-    <form>
-      <input type="text"
-         name="trail[title]"
-         placeholder="Title (required)"
-         value="<%= trail.escape('title') %>">
-      <br>
-      <textarea name="trail[description]"
-            placeholder="Description (optional)"
-            id="trail-description"><%= trail.escape('description') %></textarea>
-    </form>
-    <button class="btn btn-success btn-lg create-trail">Create Trail</button>
+<div class="m-background"></div>
+
+<div class="m-content">
+  <div class="search-box">
+    <div class="acorn-form-title">Describe Your Journey</div>
+    <div class="trail-info-form">
+      <div class="errors"></div>
+      <form>
+        <input type="text"
+           name="trail[title]"
+           placeholder="Title (required)"
+           value="<%= trail.escape('title') %>">
+        <br>
+        <textarea name="trail[description]"
+              placeholder="Description (optional)"
+              id="trail-description"><%= trail.escape('description') %></textarea>
+      </form>
+      <button class="btn btn-success btn-lg create-trail">Create Trail</button>
+    </div>
   </div>
 </div>

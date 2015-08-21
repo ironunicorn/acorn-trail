@@ -1,10 +1,8 @@
-<p>
-  <%= trail.escape('title') %>
-</p>
-<p>
-  <%= trail.escape('description') %>
-</p>
+<div class="title"><%= trail.escape('title') %></div>
+<hr>
+<div class="description"><%= trail.escape('description') %></div>
+
 <% if (trail.acornImage().get('image_url')) { %>
-  <img src="<%= trail.acornImage().get('image_url') %>"/>
+  <div class="picture"><img src="<%= trail.acornImage().get('image_url') %>"/></div>
 <% } %>
-<button class="btn btn-success">Have a closer look</div>
+<button class="btn btn-success">Check it out!</button>

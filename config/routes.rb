@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   root 'feeds#feed'
 
-  resources :users, only: [:new, :create, :destroy]
-  resource :session, only: [:new, :create, :destroy]
+  get '/signin', to: 'sessions#new'
+
+  resources :users, only: [:new, :create]
+  resource :session, only: [:create, :destroy]
 
   namespace :api, defaults: { format: :json } do
     resources :users, only: [:update, :show]

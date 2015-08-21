@@ -2,6 +2,7 @@ AcornTrail.Views.ReviewShow = Backbone.CompositeView.extend({
   template: JST['review_show'],
   initialize: function (options) {
     this.author = options.author;
+    this.listenTo(this.model, 'sync', this.render)
     this.listenTo(this.author, 'sync', this.render);
   },
   render: function () {

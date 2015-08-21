@@ -18,7 +18,12 @@ AcornTrail.Views.Map = Backbone.View.extend({
     var mapOptions = {
       center: location,
       zoom: 13,
-      disableDefaultUI: true
+      disableDefaultUI: true,
+      zoomControl: true,
+      zoomControlOptions: {
+        style: google.maps.ZoomControlStyle.DEFAULT,
+        position: google.maps.ControlPosition.RIGHT_BOTTOM
+      }
     };
 
     this._map = new google.maps.Map(this.el, mapOptions);

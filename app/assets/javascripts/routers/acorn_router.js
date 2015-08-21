@@ -38,7 +38,7 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
     this.baseView()._map._map.setOptions({draggableCursor:'crosshair'});
     if (currentUserID === -1) {
       this.savedLocation = "trail/new"
-      location.href = 'session/new'
+      location.href = 'signin'
     } else {
       this.savedLocation = null;
       var view = new AcornTrail.Views.TrailForm1({

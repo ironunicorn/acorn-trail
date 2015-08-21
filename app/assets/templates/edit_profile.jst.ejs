@@ -9,9 +9,11 @@
       <textarea name="user[description]"
                 placeholder="Tell us about yourself"><%= user.escape('description') %></textarea>
       <div class="profile-picture">
+          <div class="image-space">
         <% if (user.get('image_url')) { %>
-          <img src="<%= user.get('image_url') %>"/>
+            <img src="<%= user.get('image_url') %>"/>
         <% } %>
+          </div>
           <button class="image btn btn-primary">Upload Profile Picture</button>
       </div>
       <input type='hidden' class='image' name='user[image_url]' value='<%= user.get('image_url') %>'>

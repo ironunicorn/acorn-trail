@@ -27,7 +27,7 @@ AcornTrail.Views.EditProfile = Backbone.CompositeView.extend({
       if (result) {
         var data = result[0];
         this.$('input.image').val(data.url);
-        this.$(".profile-picture").html('<img src="'
+        this.$(".image-space").html('<img src="'
           + data.url + '"/>');
       }
     }.bind(this));

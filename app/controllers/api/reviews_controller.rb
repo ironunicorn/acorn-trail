@@ -21,7 +21,7 @@ class Api::ReviewsController < ApplicationController
   end
 
   def ensure_current_user_is_not_author
-    trail = Trail.find(params[:id])
+    trail = Trail.find(params[:trail_id])
     redirect_to root_url unless current_user && current_user.id != trail.user_id
   end
 end

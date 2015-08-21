@@ -1,6 +1,6 @@
-<h4><%= acornStash.escape('title') %></h4>
-<p><%= acornStash.escape('description') %></p>
+<div class="title"><%= acornStash.escape('title') %></div>
+<hr>
+<div class="description"><%= acornStash.escape('description') %></div>
 <% if (acornStash.get('image_url')) { %>
-  <img src="<%= acornStash.get('image_url') %>"/>
-
+  <div class="picture"><img src="<%= acornStash.get('image_url') %>"/></div>
 <% } %>

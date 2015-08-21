@@ -6,23 +6,18 @@
   }
 </style>
 <div class='pad'>
-<div class="form">
-  <h2>Sign In</h2>
-  <%= render 'shared/errors' %>
-  <form action="<%= session_url %>" method="post">
-    <%= auth_token %>
-    <br>
-    <div class="input-group">
-      <span class="input-group-addon" id="basic-addon1">Username</span>
-      <input type="text" class="form-control" name="user[username]" aria-describedby="basic-addon1">
+  <div class='container-fluid'>
+    <div class="form signin col-sm-6">
+      <h1>Sign In</h1>
+      <%= render 'shared/errors' %>
+      <form action="<%= session_url %>" method="post">
+        <%= auth_token %>
+        <br>
+          <input type="text" class="form-control" name="user[username]" placeholder="username">
+          <input type="password" class="form-control" name="user[password]" placeholder="password">
+        <input type="submit" value="Login" class="btn btn-primary sign-in">
+      </form>
     </div>
-    <br>
-    <div class="input-group">
-      <span class="input-group-addon" id="basic-addon2">Password</span>
-      <input type="password" class="form-control" name="user[password]" aria-describedby="basic-addon2">
-    </div>
-    <br>
-    <input type="submit" value="Login" class="btn btn-primary sign-in">
-  </form>
-</div>
+    <%= render "users/new" %>
+  </div>
 </div>
