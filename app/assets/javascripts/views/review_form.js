@@ -20,6 +20,7 @@ AcornTrail.Views.ReviewForm = Backbone.CompositeView.extend({
       success: function () {
         view.collection.add(view.model);
         view.model.fetch();
+        view.remove();
       },
       // error: function () {
       //   thing to write
@@ -28,14 +29,14 @@ AcornTrail.Views.ReviewForm = Backbone.CompositeView.extend({
   },
   rateTrail: function (e) {
     this.rating = $(e.currentTarget).data('number');
-    this.$(".rating").html('')
+    this.$(".acorn-stars").html('')
     for (var i = 1; i <= 5; i++) {
       if (i <= this.rating) {
         var acorn = '<img class="acorn" data-number="' + i + '" src="http://res.cloudinary.com/disran0g3/image/upload/c_scale,h_38,w_34/v1439589233/better_acorn_nrfwkw.png"/>'
       } else {
         var acorn = '<img class="acorn" data-number="' + i + '" src="http://res.cloudinary.com/disran0g3/image/upload/c_scale,h_38,w_34/v1439596065/betteracorn_bandw_h51fhs.png"/>'
       }
-      this.$(".rating").append(acorn)
+      this.$(".acorn-stars").append(acorn)
     }
   }
 

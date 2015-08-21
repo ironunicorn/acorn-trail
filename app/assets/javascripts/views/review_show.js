@@ -1,5 +1,6 @@
 AcornTrail.Views.ReviewShow = Backbone.CompositeView.extend({
   template: JST['review_show'],
+  className: 'review-show',
   initialize: function (options) {
     this.author = options.author;
     this.listenTo(this.model, 'sync', this.render)
@@ -22,7 +23,7 @@ AcornTrail.Views.ReviewShow = Backbone.CompositeView.extend({
       } else {
         var acorn = '<img class="acorn" data-number="' + i + '" src="http://res.cloudinary.com/disran0g3/image/upload/c_scale,h_38,w_34/v1439596065/betteracorn_bandw_h51fhs.png"/>'
       }
-      this.$(".rating").append(acorn);
+      this.$(".acorn-stars").append(acorn);
     }
   }
 });

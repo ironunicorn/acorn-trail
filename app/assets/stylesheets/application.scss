@@ -414,6 +414,42 @@
         border-radius: 5px;
       }
     }
+  }
+  .rating {
+    color: #AE833F;
+    line-height: 1.3;
+    font-weight: bold;
+  }
+  .acorn-stars {
+    img {
+      width: 22px;
+      margin: 0 1px;
+    }
+  }
+  .review-title {
+    font-size: 3em;
+    font-weight: bold;
+    color: #A52C1B;
+    line-height: 1;
+  }
+
+  .review-show {
+    margin-top: 35px;
+    .review-author {
+      font-size: 1.2em;
+      color: #AE833F;
+    }
+    .content {
+      font-size: 1.2em;
+      color: #442813;
+      margin-top: 5px;
+    }
+  }
+  .review-header {
+    color: #AE833F;
+    line-height: 1.3;
+    font-weight: bold;
+    font-size: 2em;
 
   }
 }
