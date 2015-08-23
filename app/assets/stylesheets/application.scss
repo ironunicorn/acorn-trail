@@ -141,6 +141,7 @@
     height: 100vh;
     box-sizing: border-box;
     padding: 0 20px 20px 20px;
+    overflow-y: scroll;
     .title {
       margin-top: 10vh;
       font-size: 3em;
@@ -186,6 +187,7 @@
     height: 70vh;
     box-sizing: border-box;
     padding: 20px;
+    overflow-y: scroll;
     background: rgba(235,234,239, 0.6);
     .title {
       font-size: 3em;
@@ -507,7 +509,7 @@
 
   .trail-show {
     position: absolute;
-    top: 80vh;
+    top: 88vh;
     padding: 25px 20px;
     width: 100%;
     .title {
@@ -592,6 +594,11 @@
 
 
 @media (min-width: 768px) {
+.full {
+  background: rgba(216,205,183, 0.6);
+  height: 100vh;
+  overflow-y: scroll;
+}
 .trail-show {
   position: absolute;
   top: 0px;
@@ -676,12 +683,6 @@
 
   }
 }
-}
-
-.full {
-  background: rgba(216,205,183, 0.6);
-  height: 100vh;
-  overflow-y: scroll;
 }
 
 .form-header {
