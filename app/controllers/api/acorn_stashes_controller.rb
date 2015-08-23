@@ -1,6 +1,6 @@
 class Api::AcornStashesController < ApplicationController
   def create
-    @acorn_stash = AcornStash.new(acorn_stash_params)
+    @acorn_stash = AcornStash.create(acorn_stash_params)
     if @acorn_stash.save
       render json: @acorn_stash
     else

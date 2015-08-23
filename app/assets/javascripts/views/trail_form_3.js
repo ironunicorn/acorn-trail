@@ -49,10 +49,12 @@ AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
       };
     }
     if (!marker) {
-      var acornStash = new AcornTrail.Models.AcornStash();
+      var acornStash = new AcornTrail.Models.AcornStash({
+        trail_coordinate_id: options.trail_coordinate_id
+      });
       var content = new AcornTrail.Views.AcornStashForm({
         model: acornStash,
-        trail_coordinate_id: options.trail_coordinate_id,
+        // trail_coordinate_id: options.trail_coordinate_id,
         map: this
       });
       content.render();
@@ -79,7 +81,6 @@ AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
       var latDiff = Math.pow((model.get('latitude') - location.G), 2);
       var lngDiff = Math.pow((model.get('longitude') - location.K), 2);
       if (best === '') {
-
         best = Math.sqrt(latDiff + lngDiff);
         coords = new google.maps.LatLng(
           model.get('latitude'),
@@ -132,27 +133,25 @@ AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
   },
 
   createAcornStashes: function () {
-    for (var i = 0; i < this.markers.length; i++) {
-      var data = this.markers[i].view.$('form').serializeJSON().acorn_stash;
-      if (!data.title && !this.markers[i].void) {
-        var $div = $('<div>');
-        $div.addClass('alert alert-danger');
-        $div.html("All acorn stashes must have a title.");
-        this.$('.errors').html($div);
-        return;
+    var view = this;
+    var acornStashes = [];
+    _(this.markers).each( function (marker) {
+      if (!marker.void) {
+        acornStashes.push(marker.view.model);
+      }
+    })
+    for (var i = 0; i < acornStashes.length; i++) {
+      if (i === acornStashes.length - 1) {
+        acornStashes[i].save({}, {success: function () {
+          view.remove();
+          Backbone.history.navigate(
+            '/trails/' + view.model.get('id'),
+            { trigger: true }
+          );
+        }});
+      } else {
+        acornStashes[i].save();
       }
     }
-    this.markers.forEach( function (acornStash) {
-      if (!acornStash.void) {
-        acornStash.view.createStash();
-      }
-    });
-    this.remove();
-    $('.confirmation').html('<div class="alert alert-success">' + this.model.escape('title') + ' created!</div>');
-    setTimeout(function () { $('.confirmation').html('')}, 1000)
-    Backbone.history.navigate(
-      '/trails/' + this.model.get('id'),
-      { trigger: true }
-    );
   }
 });

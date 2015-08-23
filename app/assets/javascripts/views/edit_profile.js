@@ -40,7 +40,7 @@ AcornTrail.Views.EditProfile = Backbone.CompositeView.extend({
     this.model.save({}, {
       success: function () {
         view.updated = true;
-        setTimeout(function(){ Backbone.history.navigate("", { trigger: true }) }, 750);
+        setTimeout(function(){ Backbone.history.navigate("/explore", { trigger: true }) }, 750);
       }
     });
   },

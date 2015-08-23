@@ -12,6 +12,6 @@ AcornTrail.Views.BackToExplore = Backbone.CompositeView.extend({
   },
   returnToExplore: function () {
     this.parentView.remove();
-    Backbone.history.navigate('', { trigger: true })
+    Backbone.history.navigate('/explore', { trigger: true })
   }
 })

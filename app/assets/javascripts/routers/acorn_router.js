@@ -7,13 +7,14 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
   },
 
   routes: {
-    '': 'trailSearch',
+    '': 'About',
     'trails/new': 'trailNew',
     'trails/:id/edit': 'trailEdit',
     'trails/:id/share_acorn_stashes': 'AcornStashesNew',
     'trails/:id': 'trailShow',
     'edit_profile': 'editProfile',
-    'explore': 'trailSearch'
+    'explore': 'trailSearch',
+    'about': 'About'
   },
 
   baseView: function () {
@@ -23,6 +24,11 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
       this._baseView.render();
     }
     return this._baseView;
+  },
+
+  About: function () {
+    var view = new AcornTrail.Views.About();
+    this._swapView(view);
   },
 
 
@@ -85,9 +91,9 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
   },
 
   trailSearch: function () {
-    if (this.savedLocation) {
-      Backbone.history.navigate(this.savedLocation, { trigger: true });
-    }
+    // if (this.savedLocation) {
+    //   Backbone.history.navigate(this.savedLocation, { trigger: true });
+    // }
     this.baseView()._map._map.setOptions({draggableCursor:''});
     var trails = new AcornTrail.Collections.TrailSearch();
     trails.fetch();

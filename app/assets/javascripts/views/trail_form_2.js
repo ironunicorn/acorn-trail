@@ -7,10 +7,7 @@ AcornTrail.Views.TrailForm2 = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     this._map = options.map;
-    var navigation = new AcornTrail.Views.BackToExplore({
-      parentView: this
-    })
-    $('.navigation').html(navigation.render().$el);
+    $('.navigation').html('');
   },
 
   render: function () {
