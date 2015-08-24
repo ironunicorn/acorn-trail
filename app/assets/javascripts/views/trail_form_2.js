@@ -31,9 +31,27 @@ AcornTrail.Views.TrailForm2 = Backbone.CompositeView.extend({
           map: view._map,
           model: view.model
         });
-        view.remove();
-        $('.views').html(nextView.$el);
-        nextView.render();
+        $('.views').css({
+          opacity          : 0,
+          WebkitTransition : 'opacity 0.5s ease-in-out',
+          MozTransition    : 'opacity 0.5s ease-in-out',
+          MsTransition     : 'opacity 0.5s ease-in-out',
+          OTransition      : 'opacity 0.5s ease-in-out',
+          transition       : 'opacity 0.5s ease-in-out'
+        });
+        setTimeout(function () {
+          view.remove();
+          $('.views').html(nextView.$el);
+          nextView.render();
+          $('.views').css({
+            opacity          : 1,
+            WebkitTransition : 'opacity 0.5s ease-in-out',
+            MozTransition    : 'opacity 0.5s ease-in-out',
+            MsTransition     : 'opacity 0.5s ease-in-out',
+            OTransition      : 'opacity 0.5s ease-in-out',
+            transition       : 'opacity 0.5s ease-in-out'
+          });
+        }, 500)
       },
       error: function (model, response) {
         var $div = $('<div>');

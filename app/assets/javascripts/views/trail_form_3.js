@@ -5,6 +5,7 @@ AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
     this.listenTo(this.model, "sync", this.render);
     this.listenTo(this.collection, "sync", this.addlines);
     this.markers = [];
+    this.trailPathLines = [];
     this._map = options.map;
   },
 
@@ -18,6 +19,7 @@ AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
     }));
     this.addLines();
     this.attachMapListeners();
+    
     return this;
   },
 
@@ -29,8 +31,10 @@ AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
 
   remove: function () {
     google.maps.event.clearInstanceListeners(this._map);
-    this.trailPathLine.setMap(null);
-    google.maps.event.clearInstanceListeners(this.trailPathLine);
+    _(this.trailPathLines).each(function (trailPathLine) {
+      trailPathLine.setMap(null);
+      google.maps.event.clearInstanceListeners(trailPathLine);
+    });
     _(this.markers).each(function (marker) {
       marker.setMap(null);
       marker.view.remove();
@@ -54,7 +58,6 @@ AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
       });
       var content = new AcornTrail.Views.AcornStashForm({
         model: acornStash,
-        // trail_coordinate_id: options.trail_coordinate_id,
         map: this
       });
       content.render();
@@ -103,17 +106,18 @@ AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
   },
 
   addLines: function () {
-    this.trailPathLine = new google.maps.Polyline({
+    var trailPathLine = new google.maps.Polyline({
       path: this.route(),
       geodesic: true,
       strokeColor: '#664116',
       strokeOpacity: 1.0,
       strokeWeight: 2
     });
-    this.trailPathLine.setMap(this._map);
-    google.maps.event.addListener(this.trailPathLine, 'click', function(event) {
+    trailPathLine.setMap(this._map);
+    google.maps.event.addListener(trailPathLine, 'click', function(event) {
       this.addMarker(event.latLng);
     }.bind(this));
+    this.trailPathLines.push(trailPathLine);
   },
 
   route: function () {
@@ -143,6 +147,10 @@ AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
     for (var i = 0; i < acornStashes.length; i++) {
       if (i === acornStashes.length - 1) {
         acornStashes[i].save({}, {success: function () {
+          var $div = $('<div>');
+          $div.addClass('alert alert-success alert-dismissible');
+          $div.html('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + view.model.get('title') + " stored successfully");
+          $('.confirmation').html($div);
           view.remove();
           Backbone.history.navigate(
             '/trails/' + view.model.get('id'),

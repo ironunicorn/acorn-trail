@@ -3,6 +3,7 @@ AcornTrail.Views.Navigation = Backbone.CompositeView.extend({
   events: {
     'mouseover .hamburger': 'displayNav',
     'mouseleave .bar': 'displayHamburger',
+    'blur .bar': 'displayHamburger',
     'click .logout': 'logout'
   },
   render: function () {

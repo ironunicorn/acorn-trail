@@ -60,7 +60,7 @@
      height: 100vh;
      width: 100%;
    }
-   .navigation {
+   .top-right {
      padding: 20px;
      position: absolute;
      top: 0px;
@@ -70,6 +70,7 @@
      color: #A52C1B;
      font-weight: bold;
      z-index: 10;
+     text-align: right;
      a {
        color: #A52C1B;
      }
@@ -83,13 +84,11 @@
        line-height: 1.2;
        width: 250px;
      }
+     .confirmation {
+       margin-top: 40px;
+       font-size: 0.5em;
+     }
    }
-   .confirmation {
-    top: 0px;
-    right: 80px;
-    position: absolute;
-    padding: 20px;
-  }
  }
 
 
@@ -138,7 +137,6 @@
     }
   }
   .secondary-topic {
-    height: 100vh;
     box-sizing: border-box;
     padding: 0 20px 20px 20px;
     overflow-y: scroll;
@@ -184,7 +182,6 @@
     }
   }
   .tertiary-topic {
-    height: 70vh;
     box-sizing: border-box;
     padding: 20px;
     overflow-y: scroll;
@@ -240,10 +237,6 @@
    font-weight: bold;
    color: #A52C1B;
    max-width: 70%;
-   .errors {
-     font-size: 0.4em;
-     margin-bottom: -10px;
-   }
  }
 .search-options {
    width: 30%;
@@ -694,34 +687,8 @@
   color: #A52C1B;
   width: 100%;
   background: rgba(235,234,239, 0.6);
+  z-index: 10;
   .form-instructions {
     max-width: 70%;
   }
 }
-/* feed */
-
-// .trail-list-item {
-//   border: 2px solid $hersheybrown;
-//   border-radius: 7px;
-//   box-sizing: border-box;
-//   margin-bottom: 10px;
-//   color: $hersheybrown;
-//   div.title {
-//     background-color: $green;
-//     width: 100%;
-//     height: 35px;
-//     margin-top: -10px;
-//     border-top-left-radius: 5px;
-//     border-top-right-radius: 5px;
-//     z-index: -1;
-//     h5 {
-//       display: block;
-//       padding: 6px 15px;
-//       font-size: 15pt;
-//     }
-//   }
-//   p {
-//     display: block;
-//     padding: 6px 15px;
-//   }
-// }

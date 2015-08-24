@@ -9,8 +9,6 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
   routes: {
     '': 'About',
     'trails/new': 'trailNew',
-    'trails/:id/edit': 'trailEdit',
-    'trails/:id/share_acorn_stashes': 'AcornStashesNew',
     'trails/:id': 'trailShow',
     'edit_profile': 'editProfile',
     'explore': 'trailSearch',
@@ -27,21 +25,23 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
   },
 
   About: function () {
+    this.baseView()._map._map.setOptions({
+      zoomControl: false,
+      draggableCursor:'crosshair'
+    });
     var view = new AcornTrail.Views.About();
     this._swapView(view);
   },
 
-
-  trailFeed: function () {
-    this.feed.fetch();
-    var view = new AcornTrail.Views.TrailFeed({
-      collection: this.feed
-    });
-    this._swapView(view);
-  },
-
   trailNew: function () {
-    this.baseView()._map._map.setOptions({draggableCursor:'crosshair'});
+    this.baseView()._map._map.setOptions({
+      zoomControl: true,
+      zoomControlOptions: {
+        style: google.maps.ZoomControlStyle.SMALL,
+        position: google.maps.ControlPosition.RIGHT_BOTTOM
+      },
+      draggableCursor:'crosshair'
+    });
     if (currentUserID === -1) {
       this.savedLocation = "trail/new"
       location.href = 'signin'
@@ -55,29 +55,19 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
     }
   },
 
-  trailEdit: function (id) {
-    var trail = this.collection.getOrFetch(id);
-    var view = new AcornTrail.Views.TrailForm({
-      collection: this.collection,
-      model: trail
-    });
-    this._swapView(view);
-  },
-
   trailShow: function (id) {
-    this.baseView()._map._map.setOptions({draggableCursor:''});
+    this.baseView()._map._map.setOptions({
+      zoomControl: true,
+      zoomControlOptions: {
+        style: google.maps.ZoomControlStyle.SMALL,
+        position: google.maps.ControlPosition.RIGHT_BOTTOM
+      },
+      draggableCursor:''
+    });
     var trail = this.collection.getOrFetch(id);
     var view = new AcornTrail.Views.TrailShow({
       model: trail,
       map: this.baseView()._map._map
-    });
-    this._swapView(view);
-  },
-
-  AcornStashesNew: function (id) {
-    var trail = this.collection.getOrFetch(id);
-    var view = new AcornTrail.Views.AcornStashesNew({
-      model: trail
     });
     this._swapView(view);
   },
@@ -91,10 +81,14 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
   },
 
   trailSearch: function () {
-    // if (this.savedLocation) {
-    //   Backbone.history.navigate(this.savedLocation, { trigger: true });
-    // }
-    this.baseView()._map._map.setOptions({draggableCursor:''});
+    this.baseView()._map._map.setOptions({
+      zoomControl: true,
+      zoomControlOptions: {
+        style: google.maps.ZoomControlStyle.SMALL,
+        position: google.maps.ControlPosition.RIGHT_BOTTOM
+      },
+      draggableCursor: ''
+    });
     var trails = new AcornTrail.Collections.TrailSearch();
     trails.fetch();
     var view = new AcornTrail.Views.SearchMap({
@@ -106,9 +100,36 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
   },
 
   _swapView: function (view) {
-    this._currentView && this._currentView.remove();
-    this._currentView = view;
-    this.baseView().$('.views').html(view.$el);
-    view.render();
+    if (this._currentView) {
+      $('.views').css({
+        opacity          : 0,
+        WebkitTransition : 'opacity 0.5s ease-in-out',
+        MozTransition    : 'opacity 0.5s ease-in-out',
+        MsTransition     : 'opacity 0.5s ease-in-out',
+        OTransition      : 'opacity 0.5s ease-in-out',
+        transition       : 'opacity 0.5s ease-in-out'
+      });
+      setTimeout(function () {
+        this._currentView.remove();
+        this._currentView = view;
+        this.baseView().$('.views').html(view.$el);
+        view.render();
+        $('.views').css({
+          opacity          : 1,
+          WebkitTransition : 'opacity 0.5s ease-in-out',
+          MozTransition    : 'opacity 0.5s ease-in-out',
+          MsTransition     : 'opacity 0.5s ease-in-out',
+          OTransition      : 'opacity 0.5s ease-in-out',
+          transition       : 'opacity 0.5s ease-in-out'
+        });
+      }.bind(this), 500)
+    } else {
+      this._currentView = view;
+      this.baseView().$('.views').html(view.$el);
+      // $('.views').addClass('hide');
+      view.render();
+      $('.views').addClass('visible');
+      // $('.views').removeClass('hide');
+    }
   }
 });

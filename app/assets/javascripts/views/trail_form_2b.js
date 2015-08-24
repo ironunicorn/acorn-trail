@@ -14,11 +14,10 @@ AcornTrail.Views.TrailForm2b = Backbone.CompositeView.extend({
     this.trailPath = [];
     this.markersAndLines = [];
     this.attachMapListeners();
-
     this.$el.html(this.template({
       trail: this.model
     }));
-
+    
     return this;
   },
 
@@ -91,7 +90,6 @@ AcornTrail.Views.TrailForm2b = Backbone.CompositeView.extend({
     if (this.trailPath.length < 2) {
       var $div = $('<div>');
       $div.addClass('alert alert-danger alert-dismissible');
-
       $div.html('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Please draw at least two points on your trail');
       $('.confirmation').html($div);
       return;
@@ -119,9 +117,28 @@ AcornTrail.Views.TrailForm2b = Backbone.CompositeView.extend({
       model: this.model,
       collection: this.model.trailCoordinates()
     });
-    this.remove();
-    $('.views').html(view.$el);
-    view.render();
+    $('.views').css({
+      opacity          : 0,
+      WebkitTransition : 'opacity 0.5s ease-in-out',
+      MozTransition    : 'opacity 0.5s ease-in-out',
+      MsTransition     : 'opacity 0.5s ease-in-out',
+      OTransition      : 'opacity 0.5s ease-in-out',
+      transition       : 'opacity 0.5s ease-in-out'
+    });
+    setTimeout(function () {
+      $('.confirmation').html('');
+      this.remove();
+      $('.views').html(view.$el);
+      view.render();
+      $('.views').css({
+        opacity          : 1,
+        WebkitTransition : 'opacity 0.5s ease-in-out',
+        MozTransition    : 'opacity 0.5s ease-in-out',
+        MsTransition     : 'opacity 0.5s ease-in-out',
+        OTransition      : 'opacity 0.5s ease-in-out',
+        transition       : 'opacity 0.5s ease-in-out'
+      });
+    }.bind(this), 500)
   },
 
 });

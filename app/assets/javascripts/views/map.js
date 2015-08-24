@@ -15,15 +15,12 @@ AcornTrail.Views.Map = Backbone.View.extend({
         }
       })
     }
+
     var mapOptions = {
       center: location,
       zoom: 13,
       disableDefaultUI: true,
-      zoomControl: true,
-      zoomControlOptions: {
-        style: google.maps.ZoomControlStyle.DEFAULT,
-        position: google.maps.ControlPosition.RIGHT_BOTTOM
-      }
+      minZoom: 9
     };
 
     this._map = new google.maps.Map(this.el, mapOptions);
@@ -37,7 +34,22 @@ AcornTrail.Views.Map = Backbone.View.extend({
         ]
       }
     ]
+    this._map.setOptions({styles: remove_poi});
 
-    this._map.setOptions({styles: remove_poi})
+    var allowedBounds = new google.maps.LatLngBounds(
+      new google.maps.LatLng(37.303245, -122.807137),
+      new google.maps.LatLng(38.006680, -121.852699)
+    );
+    var lastValidCenter = this._map.getCenter();
+
+    google.maps.event.addListener(this._map, 'center_changed', function() {
+      if (allowedBounds.contains(this._map.getCenter())) {
+        lastValidCenter = this._map.getCenter();
+        return;
+      }
+
+      this._map.panTo(lastValidCenter);
+    }.bind(this));
+    
   }
 });

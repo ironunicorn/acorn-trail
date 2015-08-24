@@ -15,10 +15,14 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
     $('.navigation').html(navigation.render().$el);
     this.collection.each(this.addMarker.bind(this));
     this.attachMapListeners();
+    var defaultBounds = new google.maps.LatLngBounds(
+      new google.maps.LatLng(37.303245, -122.807137),
+      new google.maps.LatLng(38.006680, -121.852699)
+    );
     this.autocomplete = new google.maps.places.Autocomplete(
         /** @type {!HTMLInputElement} */ (
           document.getElementById('autocomplete')),
-        { types: ['(cities)'], componentRestrictions: {'country': 'us'} }
+        { types: [], bounds: defaultBounds }
     );
     new google.maps.places.PlacesService(this._map);
     this.autocomplete.addListener('place_changed', this.onPlaceChanged.bind(this));
@@ -28,7 +32,7 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
     var place = this.autocomplete.getPlace();
     if (place.geometry) {
       this._map.panTo(place.geometry.location);
-      this._map.setZoom(13);
+      this._map.setZoom(15);
       this.search();
     } else {
       document.getElementById('autocomplete').placeholder = 'Search by city';
@@ -56,6 +60,7 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
       position: { lat: trail.trailHead.latitude, lng:trail.trailHead.longitude },
       map: this._map,
       model: trail,
+      icon: "http://res.cloudinary.com/disran0g3/image/upload/c_scale,h_38,w_34/v1439589233/better_acorn_nrfwkw.png",
       infoWindow: infoWindow,
       id: trail.get('id')
     });
