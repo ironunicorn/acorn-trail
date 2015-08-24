@@ -1,12 +1,16 @@
-<div class="hamburger">&#9776</div>
-<div class="bar hidden">
-  <div><a href="#">about</a></div>
-  <div><a href="#/explore">explore</a></div>
-  <% if (currentUserID === -1) { %>
-    <div><a href="signin">sign in to create trail</a></div>
-  <% } else { %>
-    <div><a href="#/trails/new">create trail</a></div>
-    <div><a href="#/edit_profile">edit profile</a></div>
-    <div class='logout'><a href="javascript:void(0)">logout</a></div>
-  <% } %>
+<div class="dropdown">
+  <div class="hamburger" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+    &#9776
+  </div>
+  <ul class="dropdown-menu dropdown-menu-right ham-nav" aria-labelledby="dropdownMenu1">
+    <li><a href="#">about</a></li>
+    <li><a href="#/explore">explore</a></li>
+    <% if (currentUserID === -1) { %>
+      <li><a href="signin">sign in to create trail</a></li>
+    <% } else { %>
+      <li><a href="#/trails/new">create trail</a></li>
+      <li><a href="#/edit_profile">edit profile</a></li>
+      <li class='logout'><a href="javascript:void(0)">logout</a></li>
+    <% } %>
+  </ul>
 </div>

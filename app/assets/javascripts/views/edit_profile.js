@@ -46,6 +46,6 @@ AcornTrail.Views.EditProfile = Backbone.CompositeView.extend({
   },
   cancel: function (e) {
     e.preventDefault();
-    Backbone.history.navigate("", { trigger: true })
+    Backbone.history.navigate("/explore", { trigger: true })
   }
 });

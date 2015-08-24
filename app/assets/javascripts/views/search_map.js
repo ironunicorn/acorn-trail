@@ -64,9 +64,6 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
       infoWindow: infoWindow,
       id: trail.get('id')
     });
-    google.maps.event.addListener(marker, 'click', function (event) {
-      Backbone.history.navigate('trails/' + marker.id, { trigger: true });
-    });
     google.maps.event.addListener(marker, 'mouseover', function (event) {
       _(this._markers).each( function (marker) {
         marker.infoWindow.close();

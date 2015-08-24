@@ -19,7 +19,7 @@ AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
     }));
     this.addLines();
     this.attachMapListeners();
-    
+
     return this;
   },
 
@@ -144,6 +144,13 @@ AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
         acornStashes.push(marker.view.model);
       }
     })
+    if (!acornStashes.length) {
+      var $div = $('<div>');
+      $div.addClass('alert alert-danger alert-dismissible');
+      $div.html('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Please add at least one acorn to your trail');
+      $('.confirmation').html($div);
+      return;
+    }
     for (var i = 0; i < acornStashes.length; i++) {
       if (i === acornStashes.length - 1) {
         acornStashes[i].save({}, {success: function () {

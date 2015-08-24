@@ -72,14 +72,14 @@ AcornTrail.Views.TrailForm1 = Backbone.CompositeView.extend({
 
   removeBtn: function (event) {
     event.preventDefault();
-    this.remove("");
+    this.remove("explore");
   },
 
   remove: function (url) {
     google.maps.event.clearInstanceListeners(this.autocomplete);
     google.maps.event.clearInstanceListeners(this._map);
     Backbone.View.prototype.remove.call(this);
-    if (url === "") {
+    if (url === "explore") {
       Backbone.history.navigate(url, { trigger: true })
     }
   },
