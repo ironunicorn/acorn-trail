@@ -28,7 +28,7 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
     this.autocomplete = new google.maps.places.Autocomplete(
         /** @type {!HTMLInputElement} */ (
           document.getElementById('autocomplete')),
-        { types: [], bounds: defaultBounds }
+        { types: [], bounds: defaultBounds, componentRestrictions: {'country': 'us'} }
     );
     new google.maps.places.PlacesService(this._map);
     this.autocomplete.addListener('place_changed', this.onPlaceChanged.bind(this));
@@ -36,17 +36,25 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
 
   onPlaceChanged: function () {
     var place = this.autocomplete.getPlace();
-    if (place.geometry) {
+    if (place.geometry && place.geometry.location.lat() < 38.006680 &&
+      place.geometry.location.lat() > 37.303245 && place.geometry.location.lng() > -122.807137 &&
+        place.geometry.location.lng() < -121.852699) {
       this._map.panTo(place.geometry.location);
       this.search();
     } else {
-      document.getElementById('autocomplete').placeholder = 'Search by city';
+      document.getElementById('autocomplete').value = '';
+      document.getElementById('autocomplete').placeholder = 'Enter a place in bay area';
     }
   },
 
 
   attachMapListeners: function () {
     this.mapListener = google.maps.event.addListener(this._map, 'idle', this.search.bind(this));
+    this.mapListener = google.maps.event.addListener(this._map, 'click', function() {
+      _(this._markers).each( function (marker) {
+        marker.infoWindow.close();
+      })
+    }.bind(this));
   },
 
   // Event handlers

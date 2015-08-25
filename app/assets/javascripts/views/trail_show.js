@@ -48,6 +48,11 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
     }
     this.attachSubviews();
     this.addLinesAndAcorns();
+    google.maps.event.addListener(this._map, 'click', function() {
+      _(this.markers).each( function (marker) {
+        marker.infowindow && marker.infowindow.close();
+      })
+    }.bind(this));
     return this;
   },
 

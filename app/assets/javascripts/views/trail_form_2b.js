@@ -8,6 +8,7 @@ AcornTrail.Views.TrailForm2b = Backbone.CompositeView.extend({
 
   initialize: function (options) {
     this._map = options.map;
+    this.topView = options.topView;
   },
 
   render: function () {
@@ -117,7 +118,7 @@ AcornTrail.Views.TrailForm2b = Backbone.CompositeView.extend({
       model: this.model,
       collection: this.model.trailCoordinates()
     });
-    $('.views').css({
+    $('.switcheroo').css({
       opacity          : 0,
       WebkitTransition : 'opacity 0.5s ease-in-out',
       MozTransition    : 'opacity 0.5s ease-in-out',
@@ -127,10 +128,11 @@ AcornTrail.Views.TrailForm2b = Backbone.CompositeView.extend({
     });
     setTimeout(function () {
       $('.confirmation').html('');
+      this.topView.subview = view;
       this.remove();
-      $('.views').html(view.$el);
+      $('.switcheroo').html(view.$el);
       view.render();
-      $('.views').css({
+      $('.switcheroo').css({
         opacity          : 1,
         WebkitTransition : 'opacity 0.5s ease-in-out',
         MozTransition    : 'opacity 0.5s ease-in-out',
