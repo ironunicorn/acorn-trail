@@ -2,7 +2,7 @@
 
 [Heroku link][heroku]
 
-[heroku]: http://acorn-trail.herokuapp.com/
+[heroku]: http://www.acorn-trail.com/
 
 ## Minimum Viable Product
 AcornTrail is EveryTrail for Squirrels on Rails and Backbone. Squirrels can:
