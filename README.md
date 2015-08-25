@@ -1,6 +1,6 @@
 # AcornTrail
 
-[Heroku link][heroku]
+[See it live][heroku]
 
 [heroku]: http://www.acorn-trail.com/
 
