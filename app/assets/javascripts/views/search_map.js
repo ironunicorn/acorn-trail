@@ -9,6 +9,12 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
   },
 
   render: function () {
+    // var mapOptions = {
+    //   zoom: 13,
+    //   disableDefaultUI: true,
+    //   minZoom: 10
+    // };
+    // this._map.setOptions(mapOptions)
     var view = this;
     this.$el.html(this.template());
     var navigation = new AcornTrail.Views.Navigation();
@@ -32,7 +38,6 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
     var place = this.autocomplete.getPlace();
     if (place.geometry) {
       this._map.panTo(place.geometry.location);
-      this._map.setZoom(15);
       this.search();
     } else {
       document.getElementById('autocomplete').placeholder = 'Search by city';
@@ -41,7 +46,7 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
 
 
   attachMapListeners: function () {
-    google.maps.event.addListener(this._map, 'idle', this.search.bind(this));
+    this.mapListener = google.maps.event.addListener(this._map, 'idle', this.search.bind(this));
   },
 
   // Event handlers
@@ -102,7 +107,7 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
       google.maps.event.clearInstanceListeners(marker);
     });
     google.maps.event.clearInstanceListeners(this.autocomplete);
-    google.maps.event.clearInstanceListeners(this._map);
+    google.maps.event.removeListener(this.mapListener);
     Backbone.View.prototype.remove.call(this);
   }
 });

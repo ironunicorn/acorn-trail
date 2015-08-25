@@ -62,9 +62,9 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
         style: google.maps.ZoomControlStyle.SMALL,
         position: google.maps.ControlPosition.RIGHT_BOTTOM
       },
+      zoom: 16,
       draggableCursor:''
     });
-    this.baseView()._map._map.setZoom(16)
     var trail = this.collection.getOrFetch(id);
     var view = new AcornTrail.Views.TrailShow({
       model: trail,
@@ -88,9 +88,9 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
         style: google.maps.ZoomControlStyle.SMALL,
         position: google.maps.ControlPosition.RIGHT_BOTTOM
       },
+      zoom: 13,
       draggableCursor: ''
     });
-    this.baseView()._map._map.setZoom(13);
     var trails = new AcornTrail.Collections.TrailSearch();
     trails.fetch();
     var view = new AcornTrail.Views.SearchMap({
@@ -102,6 +102,7 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
   },
 
   _swapView: function (view) {
+    google.maps.event.clearListeners(this.baseView()._map._map, 'click');
     if (this._currentView) {
       $('.views').css({
         opacity          : 0,

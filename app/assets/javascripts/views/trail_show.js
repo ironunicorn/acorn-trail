@@ -162,7 +162,6 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
       marker.setMap(null);
       google.maps.event.clearInstanceListeners(marker);
     });
-    google.maps.event.clearInstanceListeners(this._map);
     Backbone.View.prototype.remove.call(this);
   }
 

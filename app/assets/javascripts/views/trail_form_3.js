@@ -24,13 +24,13 @@ AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
   },
 
   attachMapListeners: function () {
-    google.maps.event.addListener(this._map, 'click', function(event) {
+    this.mapListener = google.maps.event.addListener(this._map, 'click', function(event) {
       this.addMarker(event.latLng);
     }.bind(this));
   },
 
   remove: function () {
-    google.maps.event.clearInstanceListeners(this._map);
+    google.maps.event.clearListeners(this._map, 'click');
     _(this.trailPathLines).each(function (trailPathLine) {
       trailPathLine.setMap(null);
       google.maps.event.clearInstanceListeners(trailPathLine);

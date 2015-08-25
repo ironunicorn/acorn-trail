@@ -17,12 +17,12 @@ AcornTrail.Views.TrailForm2b = Backbone.CompositeView.extend({
     this.$el.html(this.template({
       trail: this.model
     }));
-    
+
     return this;
   },
 
   attachMapListeners: function () {
-    this.mapListener = this.mapListener || google.maps.event.addListener(this._map, 'click', function(event) {
+    this.mapListener = google.maps.event.addListener(this._map, 'click', function(event) {
       this.addMarker(event.latLng);
     }.bind(this));
   },
@@ -79,7 +79,7 @@ AcornTrail.Views.TrailForm2b = Backbone.CompositeView.extend({
   },
 
   remove: function () {
-    google.maps.event.removeListener(this.mapListener);
+    google.maps.event.clearListeners(this._map, 'click');
     this.removeMarkers();
     $('.confirmation').html('');
     Backbone.View.prototype.remove.call(this);
