@@ -242,6 +242,11 @@
           2px 2px 0 #000;
       }
     }
+    .image:hover {
+      color: #AE833F;
+      border: 2px solid #AE833F;
+      cursor: pointer;
+    }
   }
   .tertiary-topic {
     box-sizing: border-box;
@@ -384,6 +389,11 @@
             -2px 2px 0 #000,
             2px 2px 0 #000;
         }
+      }
+      .image:hover {
+        color: #AE833F;
+        border: 2px solid #AE833F;
+        cursor: pointer;
       }
     }
     .tertiary-topic {
