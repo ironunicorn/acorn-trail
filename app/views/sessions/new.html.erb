@@ -7,8 +7,8 @@
 </style>
 <div class='pad'>
   <div class='container-fluid'>
-    <%= render 'shared/errors' %>
-    <div class="form signin col-sm-6">
+    <div class='form'>
+      <%= render 'shared/errors' %>
       <h1>Sign In</h1>
       <form action="<%= session_url %>" method="post">
         <%= auth_token %>
@@ -17,7 +17,7 @@
           <input type="password" class="form-control" name="user[password]" placeholder="password">
         <input type="submit" value="Login" class="btn btn-primary sign-in">
       </form>
+      <%= render "users/new" %>
     </div>
-    <%= render "users/new" %>
   </div>
 </div>
