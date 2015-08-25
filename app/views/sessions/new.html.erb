@@ -7,9 +7,9 @@
 </style>
 <div class='pad'>
   <div class='container-fluid'>
+    <%= render 'shared/errors' %>
     <div class="form signin col-sm-6">
       <h1>Sign In</h1>
-      <%= render 'shared/errors' %>
       <form action="<%= session_url %>" method="post">
         <%= auth_token %>
         <br>

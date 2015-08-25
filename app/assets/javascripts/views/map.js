@@ -20,7 +20,7 @@ AcornTrail.Views.Map = Backbone.View.extend({
       center: location,
       zoom: 13,
       disableDefaultUI: true,
-      minZoom: 9
+      minZoom: 10
     };
 
     this._map = new google.maps.Map(this.el, mapOptions);
@@ -50,6 +50,6 @@ AcornTrail.Views.Map = Backbone.View.extend({
 
       this._map.panTo(lastValidCenter);
     }.bind(this));
-    
+
   }
 });

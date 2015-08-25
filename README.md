@@ -13,10 +13,9 @@ AcornTrail is EveryTrail for Squirrels on Rails and Backbone. Squirrels can:
 - [x] Within trails, create acorn stash sites with images and comments
 - [x] View trails and acorn stash sites
 - [x] Edit current user and show author with image and description
-- [ ] Search for trails by location
-- [ ] Rate other trails out of 5 acorns
-- [ ] Review trails
-- [ ] Public feed based on popularity
+- [x] Search for trails by location
+- [x] Rate other trails out of 5 acorns
+- [x] Review trails
 
 ## Design Docs
 * [View Wireframes][views]
@@ -68,16 +67,15 @@ details and link when clicked.
 
 [Details][phase-five]
 
-### Phase 6: Reviews and trail Feed (~2 days)
-I'll start by creating a `ReviewForm` and `ReviewView` to add to my `trailshow`
-composite view. The average rating and number of reviews will determine the
-order in which trails are displayed on the `trailFeed` page from a Backbone
-collection. This will be the first page users see whether they are logged in or
-not.
+### Phase 6: Reviews and About Page(~2 days)
+I'll create a `ReviewForm` and `ReviewView` to add to my `trailshow`
+composite view. Then, I'll add an about page that will serve as my welcome page
+by giving squirrels a brief overview of what AcornTrail does.
 
 [Details][phase-six]
 
 ### Bonus Features (TBD)
+- [ ] Public feed based on popularity
 - [ ] Optional list search by miles from search spot
 - [ ] Public feed also based on squirrel location
 - [ ] Pagination/infinite scroll

@@ -6,6 +6,8 @@ AcornTrail.Views.About = Backbone.View.extend({
   },
   render: function () {
     this.$el.html(this.template());
+    var navigation = new AcornTrail.Views.Navigation();
+    $('.navigation').html(navigation.render().$el);
     return this;
   },
   explore: function () {

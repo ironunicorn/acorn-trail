@@ -68,6 +68,9 @@ AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
         icon: "http://res.cloudinary.com/disran0g3/image/upload/c_scale,h_38,w_34/v1439589233/better_acorn_nrfwkw.png",
         view: content
       });
+      marker.addListener('click', function () {
+        marker.view.$el.removeClass('hidden');
+      });
       content.marker = marker;
       this.markers.push(marker);
       marker.setMap(this._map);

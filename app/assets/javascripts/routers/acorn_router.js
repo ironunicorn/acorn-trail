@@ -64,6 +64,7 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
       },
       draggableCursor:''
     });
+    this.baseView()._map._map.setZoom(16);
     var trail = this.collection.getOrFetch(id);
     var view = new AcornTrail.Views.TrailShow({
       model: trail,
@@ -89,6 +90,7 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
       },
       draggableCursor: ''
     });
+    this.baseView()._map._map.setZoom(13);
     var trails = new AcornTrail.Collections.TrailSearch();
     trails.fetch();
     var view = new AcornTrail.Views.SearchMap({
@@ -122,14 +124,39 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
           OTransition      : 'opacity 0.5s ease-in-out',
           transition       : 'opacity 0.5s ease-in-out'
         });
+        var allowedBounds = new google.maps.LatLngBounds(
+          new google.maps.LatLng(37.303245, -122.807137),
+          new google.maps.LatLng(38.006680, -121.852699)
+        );
+        var lastValidCenter = this.baseView()._map._map.getCenter();
+
+        google.maps.event.addListener(this.baseView()._map._map, 'center_changed', function() {
+          if (allowedBounds.contains(this.baseView()._map._map.getCenter())) {
+            lastValidCenter = this.baseView()._map._map.getCenter();
+            return;
+          }
+
+          this.baseView()._map._map.panTo(lastValidCenter);
+        }.bind(this));
       }.bind(this), 500)
     } else {
       this._currentView = view;
       this.baseView().$('.views').html(view.$el);
-      // $('.views').addClass('hide');
       view.render();
-      $('.views').addClass('visible');
-      // $('.views').removeClass('hide');
+      var allowedBounds = new google.maps.LatLngBounds(
+        new google.maps.LatLng(37.303245, -122.807137),
+        new google.maps.LatLng(38.006680, -121.852699)
+      );
+      var lastValidCenter = this.baseView()._map._map.getCenter();
+
+      google.maps.event.addListener(this.baseView()._map._map, 'center_changed', function() {
+        if (allowedBounds.contains(this.baseView()._map._map.getCenter())) {
+          lastValidCenter = this.baseView()._map._map.getCenter();
+          return;
+        }
+
+        this.baseView()._map._map.panTo(lastValidCenter);
+      }.bind(this));
     }
   }
 });
