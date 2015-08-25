@@ -64,7 +64,7 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
       },
       draggableCursor:''
     });
-    this.baseView()._map._map.setZoom(16);
+    this.baseView()._map._map.setZoom(16)
     var trail = this.collection.getOrFetch(id);
     var view = new AcornTrail.Views.TrailShow({
       model: trail,

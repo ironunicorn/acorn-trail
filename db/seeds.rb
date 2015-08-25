@@ -14,8 +14,7 @@ butter = User.create(username: 'Nutter_Butter', password: 'cookie', description:
 steven = User.create(username: 'Steven_Squirrelberg', password: 'cinema', description: 'Clever squirrel.', image_url: 'http://res.cloudinary.com/disran0g3/image/upload/v1440432616/squirrelberg_ktc2t5.jpg')
 sparky = User.create(username: 'Sparky', password: 'unicorn', description: 'Data-driven nut burier and foraging guru.', image_url: 'http://res.cloudinary.com/disran0g3/image/upload/v1440432956/sparky_o9nvoe.jpg')
 flower = User.create(username: 'Flower', password: 'lululemon', description: "Seeking Nutvana and the eternal question: why can't one eat a Lulu Lemon?", image_url: 'http://res.cloudinary.com/disran0g3/image/upload/v1440432616/flower_pyuoqx.jpg')
-scrouge = User.create(username: 'Scrouge_McNut', password: 'monies', description: 'Bah HumNut!', image_url: 'http://res.cloudinary.com/disran0g3/image/upload/v1440432616/scrouge_uqg3na.jpg')
-sports = User.create(username: 'Sports_Nut', password: 'giants', description: 'Go Giants', image_url: 'http://res.cloudinary.com/disran0g3/image/upload/v1440432617/sports_nut_mciggj.jpg')
+
 
 trail1 = peanut.authored_trails.create(title: "Flight of the Acorns", description: "From bright and crisp to complex and elegant, this trail has it all.")
 trail2 = peanut.authored_trails.create(title: "A Crisp, Oaky Rendezvous", description: "A spicy breath of fresh air.")
@@ -83,6 +82,11 @@ coord1.acorn_stash = AcornStash.create(title: "White acorn hor d'oeuvre", descri
 coord2.acorn_stash = AcornStash.create(title: "Red Pecan Entreé", description: "Buried in the warm sun, the earth in this area flavors nuts with hints of vanilla and cardamom.", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440441672/redpecan_xsffqr.jpg")
 coord3.acorn_stash = AcornStash.create(title: "Macadamia gâteau", description: "The salty sea breeze lends a delightful contrast to these creamy nuts.", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440441672/beachnuts_bufpjx.jpg")
 
+flower.authored_reviews.create(trail: trail1, rating: 5, content: "So delicious!! Peanut has really outdone herself.")
+sparky.authored_reviews.create(trail: trail1, rating: 5, content: "I simply must monetize this.")
+butter.authored_reviews.create(trail: trail1, rating: 3, content: "No more macadamia nuts here.")
+
+
 trail2.trail_coordinates.create(latitude: 38.0019794068766, longitude: -122.495155334473, order:  0)
 trail2.trail_coordinates.create(latitude: 38.0021653992605, longitude: -122.494425773621, order:  2)
 trail2.trail_coordinates.create(latitude: 38.0022330327377, longitude: -122.494661808014, order:  1)
@@ -125,6 +129,9 @@ trail2.trail_coordinates.create(latitude: 38.0077111372213, longitude: -122.4905
 
 coord4.acorn_stash = AcornStash.create(title: "Under a pile of forest leaves", description: "Seedy, gritty, and dense- like black currants.", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440443290/ixscyatbl11g2ojc5kpu.jpg")
 coord5.acorn_stash = AcornStash.create(title: "By the roadside", description: "Complex, but refined with cigar box undertones. Careful not to get hit by a car!", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440443577/maqd748apqo92ia2pfbz.jpg")
+
+flower.authored_reviews.create(trail: trail2, rating: 5, content: "Lovely as always")
+professor.authored_reviews.create(trail: trail2, rating: 4, content: "I do say!")
 
 
 trail3.trail_coordinates.create(latitude: 37.4791152752636, longitude: -122.448763847351, order:  0)
@@ -204,6 +211,10 @@ coord7.acorn_stash = AcornStash.create(title: "Introduction", description: "I be
 coord8.acorn_stash = AcornStash.create(title: "Methodology", description: "The acorns scattered as I descended and seemed all around unwilling to participate in my survey.", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440446471/gvpku1en1hcrw0mlkmcm.jpg")
 coord9.acorn_stash = AcornStash.create(title: "Discussion", description: "Too little data for significant conclusions.  I recommend that more research be conducted on the elusive acorn.", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440446650/sv0ytqwoavrusluu5vn4.jpg")
 
+peanut.authored_reviews.create(trail: trail4, rating: 3, content: "Not to my standards")
+flower.authored_reviews.create(trail: trail4, rating: 4, content: "Will this make me fat?")
+butter.authored_reviews.create(trail: trail4, rating: 3, content: "I don't get it.")
+
 trail5.trail_coordinates.create(latitude:  37.760850906203, longitude: -122.458988428116, order:  0)
 trail5.trail_coordinates.create(latitude: 37.7610544723559, longitude: -122.458548545837, order:  1)
 trail5.trail_coordinates.create(latitude: 37.7613683024109, longitude: -122.459245920181, order:  2)
@@ -228,6 +239,8 @@ trail5.trail_coordinates.create(latitude: 37.7614870485709, longitude: -122.4573
 coord10.acorn_stash = AcornStash.create(title: "Results", description: "Acorns are still a mystery.  Let their glorious flavor serve to console me in my inconclusive research.", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440447113/e36wrugnakw62vx0raly.jpg")
 coord11.acorn_stash = AcornStash.create(title: "Abstract", description: "Acorns have been studied by academic squirrels for generations, but there is still an underwhelming amount of information about their ability to escape once we have buried them.", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440446946/xbxxt0u1bccmtfxpstjq.jpg")
 
+steven.authored_reviews.create(trail: trail5, rating: 5, content: "A triumph!")
+flower.authored_reviews.create(trail: trail5, rating: 4, content: "Nutlicious")
 
 trail6.trail_coordinates.create(latitude: 37.3346698743748, longitude:  -121.87903046608, order:  0)
 trail6.trail_coordinates.create(latitude: 37.3346698743748, longitude:  -121.87867641449, order:  1)
@@ -267,6 +280,7 @@ trail6.trail_coordinates.create(latitude: 37.3356594138486, longitude: -121.8823
 coord12.acorn_stash = AcornStash.create(title: "Materials and Methods", description: "This time, I procured my own bunch of acorns to lure others out for my survey.", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440447568/u9vlsj5veotlywlc7rsz.jpg")
 coord13.acorn_stash = AcornStash.create(title: "Citations", description: "So... I actually ended up eating my material.  Back to the office.", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440447658/wzxcadrslukwk21ujzjw.jpg")
 
+
 trail7.trail_coordinates.create(latitude: 37.4016987375809, longitude:  -122.04514503479, order:  0)
 trail7.trail_coordinates.create(latitude: 37.4001645906933, longitude:  -122.04261302948, order:  2)
 trail7.trail_coordinates.create(latitude: 37.4004714225835, longitude: -122.043600082397, order:  3)
@@ -289,6 +303,8 @@ coord14.acorn_stash = AcornStash.create(title: "Nut? Where?", description: "I th
 coord15.acorn_stash = AcornStash.create(title: "This is maybe a peanut", description: "I took it and I hid it from the scary ducks.", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440447997/n2x1iektflbw1lccos2w.jpg")
 coord16.acorn_stash = AcornStash.create(title: "More nuts!", description: "My favorite! Somewhere around here, I think.", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440448100/pynblxxkb7l5j0jj8by2.jpg")
 
+peanut.authored_reviews.create(trail: trail7, rating: 5, content: "This is great!")
+flower.authored_reviews.create(trail: trail7, rating: 5, content: "Love")
 
 trail8.trail_coordinates.create(latitude: 37.8327681558537, longitude: -122.285084724426, order:  0)
 trail8.trail_coordinates.create(latitude: 37.8328020505717, longitude: -122.284140586853, order:  1)
@@ -309,6 +325,8 @@ trail8.trail_coordinates.create(latitude: 37.8318360450078, longitude: -122.2839
 coord17.acorn_stash = AcornStash.create(title: "Pecans!", description: "I think I already ate this one.", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440448262/tgijixcjdsn3fkinmekg.jpg")
 coord18.acorn_stash = AcornStash.create(title: "Peanuts!", description: "I buried them! They're here!", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440448310/zpsmpufcdm6gf03me5nw.jpg")
 
+steven.authored_reviews.create(trail: trail8, rating: 5, content: "What a masterpiece")
+sparky.authored_reviews.create(trail: trail8, rating: 5, content: "A unicorn")
 
 trail9.trail_coordinates.create(latitude: 37.7690694443088, longitude:  -122.48642206192, order:  0)
 trail9.trail_coordinates.create(latitude: 37.7700532328625, longitude: -122.488825321198, order:  2)
@@ -335,6 +353,8 @@ trail9.trail_coordinates.create(latitude: 37.7673901887823, longitude: -122.4918
 coord19.acorn_stash = AcornStash.create(title: "Acorn?", description: "Where?", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440448567/h0kssjngobwhsxbitqa6.jpg")
 coord20.acorn_stash = AcornStash.create(title: "Walnuts!", description: "The best! I already ate them.", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440448662/zuxm8pysirhiq1zrmmt6.jpg")
 
+professor.authored_reviews.create(trail: trail9, rating: 3, content: "No acorns here")
+sparky.authored_reviews.create(trail: trail9, rating: 2, content: "Left me hungry and sad")
 
 trail10.trail_coordinates.create(latitude: 37.4118062757058, longitude: -122.065401077271, order:  0)
 trail10.trail_coordinates.create(latitude: 37.4123175820375, longitude:  -122.06600189209, order:  1)
@@ -354,6 +374,8 @@ trail10.trail_coordinates.create(latitude: 37.4092496916959, longitude: -122.067
 coord21.acorn_stash = AcornStash.create(title: "I found a nut ", description: "I'm keeping him.", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440448804/kpjl5nlgxktmdrwp9y2w.jpg")
 coord22.acorn_stash = AcornStash.create(title: "Is this a nut?", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440452225/bb26ot9xoixtidps95ri.jpg")
 
+flower.authored_reviews.create(trail: trail10, rating: 5, content: "Love <3")
+butter.authored_reviews.create(trail: trail10, rating: 3, content: "Confused")
 
 coord23 = trail11.trail_coordinates.create(latitude: 37.9258351250256, longitude: -122.596821784973, order:  0)
 trail11.trail_coordinates.create(latitude: 37.9262751987304, longitude: -122.598667144775, order:  1)
@@ -380,7 +402,8 @@ trail11.trail_coordinates.create(latitude: 37.9247687816646, longitude: -122.602
 coord23.acorn_stash = AcornStash.create(title: "1000 year old acorn artifact", description: "Handle it gently! I'm going to take it to a museum.", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440452443/jxocfnbj5kcgsgvpunm8.jpg")
 coord24.acorn_stash = AcornStash.create(title: "Holy Peanut Grail", description: "Make sure to pick the right one!", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440452648/flvak0m40x6z7amxwrqu.jpg")
 
-
+peanut.authored_reviews.create(trail: trail11, rating: 5, content: "Simply marvelous")
+sparky.authored_reviews.create(trail: trail11, rating: 4, content: "Lots of low hanging fruit.")
 
 trail12.trail_coordinates.create(latitude: 37.6222197825898, longitude: -122.378468513489, order:  0)
 trail12.trail_coordinates.create(latitude: 37.6234774472993, longitude: -122.381429672241, order:  1)
@@ -422,7 +445,8 @@ trail13.trail_coordinates.create(latitude: 37.7801108717123, longitude: -122.388
 coord28.acorn_stash = AcornStash.create(title: "A paradigm shifting peanut", description: "This low hanging fruit isn't lean.  In fact, it's nice and juicy.", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440453716/hkmyjavvc78hhs8jfk6j.jpg")
 coord27.acorn_stash = AcornStash.create(title: "Acorn Synergy", description: "These freemium nuts are the perfect market fit for early adopters and influencers.", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440453525/ojacmicqcf0ku2ggad89.jpg")
 
-
+steven.authored_reviews.create(trail: trail13, rating: 2, content: "Where's the artistry??")
+flower.authored_reviews.create(trail: trail13, rating: 2, content: "Not something I would buy")
 
 trail14.trail_coordinates.create(latitude: 37.7784997062644, longitude:  -122.40571975708, order:  0)
 coord29 = trail14.trail_coordinates.create(latitude: 37.7802465471996, longitude: -122.403423786163, order:  1)
@@ -451,7 +475,8 @@ trail14.trail_coordinates.create(latitude: 37.7848424072264, longitude: -122.403
 coord29.acorn_stash = AcornStash.create(title: "Walnut Traction", description: "Our nut sales pipeline is growing.", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440453917/rml1ekzgl95hnlzlzy0n.jpg")
 coord30.acorn_stash = AcornStash.create(title: "Oh!!! a park!", description: "I think I'll take a 20 second sabbatical.", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440453979/blgguhf6q13dxdt4wypd.jpg")
 
-
+professor.authored_reviews.create(trail: trail14, rating: 5, content: "Must be studied further!")
+flower.authored_reviews.create(trail: trail14, rating: 5, content: "I'd buy it")
 
 
 trail15.trail_coordinates.create(latitude: 37.5669975405267, longitude: -122.324116230011, order:  0)
@@ -482,7 +507,8 @@ trail15.trail_coordinates.create(latitude:  37.564990542379, longitude: -122.323
 coord31.acorn_stash = AcornStash.create(title: "Macadamia Mission Statement", description: "I think you're gonna be pretty impressed with the nuts stashed here.    ", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440454375/hkt4rj67krhy8xlrogka.jpg")
 coord32.acorn_stash = AcornStash.create(title: "Pivot Peanut", description: "Shhh! This nut's in stealth mode while we build out the user experience.", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440454478/ywgzvaemub7aecmmnhe1.png")
 
-
+steven.authored_reviews.create(trail: trail15, rating: 5, content: "What a masterpiece")
+sparky.authored_reviews.create(trail: trail15, rating: 5, content: "A unicorn")
 
 
 trail16.trail_coordinates.create(latitude: 37.8749888949328, longitude: -122.260279655457, order:  0)
