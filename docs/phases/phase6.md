@@ -5,13 +5,10 @@
 * Review
 
 ### Controllers
-* Api::TripsController (feed)
 * Api::ReviewsController (create)
 
 ### Views
-* trips/feed.json.jbuilder
-* trips/show.json.jbuilder (add subarray of has_many reviews association +
-  author username)
+* api/reviews/show
 
 ## Backbone
 ### Models
@@ -21,7 +18,7 @@
 * Reviews
 
 ### Views
-* TripFeed
+
 * ReviewForm
 * ReviewIndex
 
