@@ -531,5 +531,5 @@ coord34 = trail16.trail_coordinates.create(latitude: 37.8712963925455, longitude
 trail16.trail_coordinates.create(latitude: 37.8704833396357, longitude: -122.255086898804, order: 17)
 trail16.trail_coordinates.create(latitude: 37.8699074217293, longitude: -122.256932258606, order: 18)
 
-coord33.acorn_stash = AcornStash.create(title: "Revolutionary Though Leadership", description: "It's uber for pistachios", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440455012/ezc0fa6en3ril7urdufo.jpg")
+coord33.acorn_stash = AcornStash.create(title: "Revolutionary Thought Leadership", description: "It's uber for pistachios", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440455012/ezc0fa6en3ril7urdufo.jpg")
 coord34.acorn_stash = AcornStash.create(title: "Placing this cashew on the roadmap", description: "Let's circle back and dig up this nut later for leverage.")
