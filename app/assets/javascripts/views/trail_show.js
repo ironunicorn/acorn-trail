@@ -25,8 +25,26 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
     this.$('.title span').addClass("glyphicon-menu-up");
     this.$('.title').addClass("less");
     this.$('.title').removeClass("more");
-    this.$('.info').removeClass('hidden');
-    this.$('.trail-show').addClass('full');
+    this.$('.trail-show').addClass("full");
+    this.$('.info').css({
+      height           : '100vh',
+      'overflow-y'     : 'none',
+      WebkitTransition : 'height 0.5s',
+      MozTransition    : 'height 0.5s',
+      MsTransition     : 'height 0.5s',
+      OTransition      : 'height 0.5s',
+      transition       : 'height 0.5s'
+    });
+    this.$('.full').css({
+      height           : '100vh',
+      'overflow-y'     : 'scroll',
+      background       : 'rgba(216,205,183, 0.6)',
+      WebkitTransition : 'height 0.5s, background 0.5s',
+      MozTransition    : 'height 0.5s, background 0.5s',
+      MsTransition     : 'height 0.5s, background 0.5s',
+      OTransition      : 'height 0.5s, background 0.5s',
+      transition       : 'height 0.5s, background 0.5s'
+    });
   },
 
   showLess: function () {
@@ -34,9 +52,29 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
     this.$('.title span').addClass("glyphicon-menu-down");
     this.$('.title').removeClass("less");
     this.$('.title').addClass("more");
-    this.$('.info').addClass('hidden');
-    this.$('.trail-show').removeClass('full');
+    this.$('.info').css({
+      height           : '0px',
+      'overflow-y'     : 'hidden',
+      WebkitTransition : 'height 0.5s',
+      MozTransition    : 'height 0.5s',
+      MsTransition     : 'height 0.5s',
+      OTransition      : 'height 0.5s',
+      transition       : 'height 0.5s'
+    });
+    this.$('.full').css({
+      height           : '0px',
+      'overflow-y'     : 'visible',
+      background       : 'rgba(216,205,183, 0)',
+      WebkitTransition : 'height 0.5s, background 0.5s',
+      MozTransition    : 'height 0.5s, background 0.5s',
+      MsTransition     : 'height 0.5s, background 0.5s',
+      OTransition      : 'height 0.5s, background 0.5s',
+      transition       : 'height 0.5s, background 0.5s'
+    });
   },
+
+
+
 
   render: function () {
     this.$el.html(this.template({
@@ -167,7 +205,8 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
       marker.setMap(null);
       google.maps.event.clearInstanceListeners(marker);
     });
-    Backbone.View.prototype.remove.call(this);
+
+    Backbone.CompositeView.prototype.remove.call(this);
   }
 
 });

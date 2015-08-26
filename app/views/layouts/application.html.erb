@@ -34,9 +34,34 @@
 
 </head>
 <body>
-
+<div class="messages">
+  <% if flash[:messages] %>
+    <div class="alert alert-success">
+      <%= flash[:messages] %>
+    </div>
+  <% end %>
+</div>
 
 <%= yield %>
+
+<script type="text/javascript" charset="utf-8">
+  setTimeout(function () {
+    $('.messages').css({
+      opacity: '0',
+      WebkitTransition : 'opacity 3s',
+      MozTransition    : 'opacity 3s',
+      MsTransition     : 'opacity 3s',
+      OTransition      : 'opacity 3s',
+      transition       : 'opacity 3s'
+    });
+    setTimeout(function () {
+      $('.messages').css({
+        height: '0px',
+        padding: '0'
+      });
+    }, 3000);
+  }, 50)
+</script>
 
 </body>
 </html>

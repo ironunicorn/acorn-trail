@@ -10,14 +10,24 @@
     <div class='form'>
       <%= render 'shared/errors' %>
       <h1>Sign In</h1>
-      <form action="<%= session_url %>" method="post">
+      <form class="signin" action="<%= session_url %>" method="post">
+        <button class="btn btn-success guest">Log in as Guest</button>
         <%= auth_token %>
         <br>
-          <input type="text" class="form-control" name="user[username]" placeholder="username">
-          <input type="password" class="form-control" name="user[password]" placeholder="password">
+          <input type="text" class="form-control user" name="user[username]" placeholder="username">
+          <input type="password" class="form-control pass" name="user[password]" placeholder="password">
         <input type="submit" value="Login" class="btn btn-primary sign-in">
       </form>
       <%= render "users/new" %>
     </div>
   </div>
 </div>
+
+<script type="text/javascript" charset="utf-8">
+  $(".guest").click(function (e) {
+    e.preventDefault();
+    $(".user").val("guest");
+    $(".pass").val("password");
+    $(".signin").trigger("submit");
+  })
+</script>
