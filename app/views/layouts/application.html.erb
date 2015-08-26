@@ -34,17 +34,17 @@
 
 </head>
 <body>
-<div class="messages">
+<!-- <div class="messages">
   <% if flash[:messages] %>
     <div class="alert alert-success">
       <%= flash[:messages] %>
     </div>
   <% end %>
-</div>
+</div> -->
 
 <%= yield %>
 
-<script type="text/javascript" charset="utf-8">
+<!-- <script type="text/javascript" charset="utf-8">
   setTimeout(function () {
     $('.messages').css({
       opacity          : '0',
@@ -60,7 +60,7 @@
       });
     }, 3000);
   }, 50)
-</script>
+</script> -->
 
 </body>
 </html>
