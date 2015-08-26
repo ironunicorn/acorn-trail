@@ -43,7 +43,7 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
       this.search();
     } else {
       document.getElementById('autocomplete').value = '';
-      document.getElementById('autocomplete').placeholder = 'Enter a place in bay area';
+      document.getElementById('autocomplete').placeholder = 'Enter a place in Bay Area';
     }
   },
 

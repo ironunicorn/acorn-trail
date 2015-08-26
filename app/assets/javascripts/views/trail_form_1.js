@@ -64,13 +64,13 @@ AcornTrail.Views.TrailForm1 = Backbone.CompositeView.extend({
       }.bind(this), 500)
     } else {
       document.getElementById('autocomplete').value = '';
-      document.getElementById('autocomplete').placeholder = 'Enter a place in bay area';
+      document.getElementById('autocomplete').placeholder = 'Enter a place in Bay Area';
     }
   },
 
   handleKey: function (event) {
     if (event.keyCode === 27) {
-      this.remove("");
+      this.remove("explore");
     }
   },
 
