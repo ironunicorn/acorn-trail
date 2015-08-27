@@ -21,10 +21,17 @@ AcornTrail.Views.ReviewForm = Backbone.CompositeView.extend({
         view.collection.add(view.model);
         view.model.fetch();
         view.remove();
+        $div = $('<div>');
+        $div.addClass('alert alert-success alert-dismissible');
+        $div.html('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>Review submitted.')
+        $('.review-messages').html($div);
       },
-      // error: function () {
-      //   thing to write
-      // }
+      error: function (model, response) {
+        $div = $('<div>');
+        $div.addClass('alert alert-danger alert-dismissible');
+        $div.html('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + response.responseJSON)
+        $('.review-messages').html($div);
+      }
     });
   },
   rateTrail: function (e) {
