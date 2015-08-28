@@ -899,6 +899,9 @@
   overflow-y: scroll;
   overflow-x: hidden;
 }
+.info {
+  height: 100vh;
+}
 .trail-show {
   position: absolute;
   top: 0px;
@@ -910,6 +913,7 @@
     color: #A52C1B;
     line-height: 1;
     visibility: visible;
+    overflow-y: visible;
   }
   .stuff {
     font-size: 0.8em;

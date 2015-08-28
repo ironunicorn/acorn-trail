@@ -60,7 +60,7 @@ AcornTrail.Views.TrailForm2b = Backbone.CompositeView.extend({
       geodesic: true,
       strokeColor: '#664116',
       strokeOpacity: 1.0,
-      strokeWeight: 2,
+      strokeWeight: 4,
       icons: [{
           icon: symbolOne,
           offset: '0%'

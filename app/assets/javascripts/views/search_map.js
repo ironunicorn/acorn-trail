@@ -11,6 +11,7 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
 
   render: function () {
     var view = this;
+    
     this.$el.html(this.template());
     var navigation = new AcornTrail.Views.Navigation();
     $('.navigation').html(navigation.render().$el);

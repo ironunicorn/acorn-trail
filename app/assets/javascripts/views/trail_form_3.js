@@ -114,7 +114,7 @@ AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
       geodesic: true,
       strokeColor: '#664116',
       strokeOpacity: 1.0,
-      strokeWeight: 2
+      strokeWeight: 4
     });
     trailPathLine.setMap(this._map);
     google.maps.event.addListener(trailPathLine, 'click', function(event) {
