@@ -8,13 +8,8 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
     this.listenTo(this.collection, 'remove', this.removeMarker);
   },
 
+
   render: function () {
-    // var mapOptions = {
-    //   zoom: 13,
-    //   disableDefaultUI: true,
-    //   minZoom: 10
-    // };
-    // this._map.setOptions(mapOptions)
     var view = this;
     this.$el.html(this.template());
     var navigation = new AcornTrail.Views.Navigation();
@@ -43,7 +38,7 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
       this.search();
     } else {
       document.getElementById('autocomplete').value = '';
-      document.getElementById('autocomplete').placeholder = 'Enter a place in Bay Area';
+      document.getElementById('autocomplete').placeholder = 'Enter a place in the Bay Area';
     }
   },
 

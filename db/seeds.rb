@@ -7,13 +7,22 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 
-guest = User.create(username: 'guest', password: 'password', description: "I'm a squirrel.", image_url: 'http://res.cloudinary.com/disran0g3/image/upload/v1440432616/guest_cudobh.jpg')
+User.create(username: 'Guest', password: 'password', description: "I'm a squirrel.", image_url: 'http://res.cloudinary.com/disran0g3/image/upload/v1440432616/guest_cudobh.jpg')
 peanut = User.create(username: 'Peanut_Noir', password: 'vintage', description: 'Acorn connoisseur and international squirrel of mystery.', image_url: 'http://res.cloudinary.com/disran0g3/image/upload/v1440432616/peanut_noir_z4nxx7.jpg')
 professor = User.create(username: 'Professor_Nutty', password: 'certifiable', description: 'Acornologist specializing in nut sociology and economics.', image_url: 'http://res.cloudinary.com/disran0g3/image/upload/v1440432616/professor_xpd35o.jpg')
 butter = User.create(username: 'Nutter_Butter', password: 'cookie', description: 'I like peanut butter.', image_url: 'http://res.cloudinary.com/disran0g3/image/upload/v1440432617/butter_wveoza.jpg')
 steven = User.create(username: 'Steven_Squirrelberg', password: 'cinema', description: 'Clever squirrel.', image_url: 'http://res.cloudinary.com/disran0g3/image/upload/v1440432616/squirrelberg_ktc2t5.jpg')
 sparky = User.create(username: 'Sparky', password: 'unicorn', description: 'Data-driven nut burier and foraging guru.', image_url: 'http://res.cloudinary.com/disran0g3/image/upload/v1440432956/sparky_o9nvoe.jpg')
 flower = User.create(username: 'Flower', password: 'lululemon', description: "Seeking Nutvana and the eternal question: why can't one eat a Lulu Lemon?", image_url: 'http://res.cloudinary.com/disran0g3/image/upload/v1440432616/flower_pyuoqx.jpg')
+User.create(username: 'Squirrel_Guest', password: 'password', description: "I'm a squirrel.", image_url: 'http://res.cloudinary.com/disran0g3/image/upload/v1440432616/guest_cudobh.jpg')
+User.create(username: 'acorn_lover46', password: 'password', description: "I'm a squirrel.", image_url: 'http://res.cloudinary.com/disran0g3/image/upload/v1440432616/guest_cudobh.jpg')
+User.create(username: 'acorns4ever', password: 'password', description: "lol wut?", image_url: 'http://res.cloudinary.com/disran0g3/image/upload/v1440432616/guest_cudobh.jpg')
+User.create(username: 'acornRULZ', password: 'password', description: "I'm a squirrel.", image_url: 'http://res.cloudinary.com/disran0g3/image/upload/v1440432616/guest_cudobh.jpg')
+User.create(username: 'Rural_Squirrel', password: 'password', description: "The Rural Juror", image_url: 'http://res.cloudinary.com/disran0g3/image/upload/v1440432616/guest_cudobh.jpg')
+User.create(username: 'Sandy_Squirrel', password: 'password', description: "I'm a squirrel.", image_url: 'http://res.cloudinary.com/disran0g3/image/upload/v1440432616/guest_cudobh.jpg')
+User.create(username: 'The_Best_Guest', password: 'password', description: "I'm a squirrel.", image_url: 'http://res.cloudinary.com/disran0g3/image/upload/v1440432616/guest_cudobh.jpg')
+User.create(username: 'Nibbles_the_Squirrel', password: 'password', description: "I'm a squirrel.", image_url: 'http://res.cloudinary.com/disran0g3/image/upload/v1440432616/guest_cudobh.jpg')
+User.create(username: 'Cashew_Money', password: 'password', description: "Acorn Records.", image_url: 'http://res.cloudinary.com/disran0g3/image/upload/v1440432616/guest_cudobh.jpg')
 
 
 trail1 = peanut.authored_trails.create(title: "Flight of the Acorns", description: "From bright and crisp to complex and elegant, this trail has it all.")

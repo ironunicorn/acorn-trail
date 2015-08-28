@@ -5,16 +5,16 @@ AcornTrail.Views.Map = Backbone.View.extend({
 
   render: function () {
     var location = { lat: 37.7833, lng: -122.4167 }
-    // if ("geolocation" in navigator) {
-    //   navigator.geolocation.getCurrentPosition(function (position) {
-    //     if (position.coords.latitude) {
-    //       var location = new google.maps.LatLng(
-    //         position.coords.latitude,
-    //         position.coords.longitude
-    //       )
-    //     }
-    //   })
-    // }
+    if ("geolocation" in navigator) {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        if (position.coords.latitude) {
+          location = new google.maps.LatLng(
+            position.coords.latitude,
+            position.coords.longitude
+          )
+        }
+      })
+    }
 
     var mapOptions = {
       center: location,
@@ -52,4 +52,6 @@ AcornTrail.Views.Map = Backbone.View.extend({
     }.bind(this));
 
   }
+
+
 });

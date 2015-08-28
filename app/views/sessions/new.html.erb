@@ -24,9 +24,22 @@
 </div>
 
 <script type="text/javascript" charset="utf-8">
+  var guests = [
+    "Guest",
+    "Squirrel_Guest",
+    'acorn_lover46',
+    'acorns4ever',
+    'acornRULZ',
+    'Rural_Squirrel',
+    'Sandy_Squirrel',
+    'The_Best_Guest',
+    'Nibbles_the_Squirrel',
+    'Cashew_Money'
+  ]
   $(".guest").click(function (e) {
+    var num = Math.floor(Math.random() * 10)
     e.preventDefault();
-    $(".user").val("guest");
+    $(".user").val(guests[num]);
     $(".pass").val("password");
     $(".signin").trigger("submit");
   })
