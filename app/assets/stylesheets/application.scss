@@ -111,6 +111,15 @@
       font-size: 2.5em;
       padding: 0px;
     }
+    li.create {
+      background: rgba(174,131,63, 0.7);
+      margin: 10px;
+      border-radius: 5px;
+      text-align: center;
+    }
+    a:hover {
+      border-radius: 5px;
+    }
   }
 }
 

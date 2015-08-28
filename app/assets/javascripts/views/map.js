@@ -32,6 +32,13 @@ AcornTrail.Views.Map = Backbone.View.extend({
         "stylers": [
           { "visibility": "off" }
         ]
+      },
+      {
+        "featureType": "transit",
+        "elementType": "labels",
+        "stylers": [
+          { "visibility": "off" }
+        ]
       }
     ]
     this._map.setOptions({styles: remove_poi});

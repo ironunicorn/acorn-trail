@@ -1,4 +1,4 @@
-<div class="dropdown">
+<div class="dropdown hamburger-nav">
   <div class="hamburger" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
     &#9776
   </div>
@@ -6,7 +6,7 @@
     <li><a href="#">about</a></li>
     <li><a href="#/explore">explore</a></li>
     <% if (currentUserID === -1) { %>
-      <li><a href="signin">sign in to create trail</a></li>
+      <li class="create"><a href="signin">sign in to<br>create trail</a></li>
     <% } else { %>
       <li><a href="#/trails/new">create trail</a></li>
       <li><a href="#/edit_profile">edit profile</a></li>
