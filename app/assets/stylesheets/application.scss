@@ -485,11 +485,13 @@
  .header {
    position: absolute;
    top: 0px;
+   left: 0px;
    padding: 10px;
    font-size: 2.5em;
    font-weight: bold;
    color: #A52C1B;
-   max-width: 70%;
+   width: 100%;
+   background: rgba(216,205,183, 0.6);
  }
 .search-options {
    width: 30%;
@@ -511,6 +513,7 @@
      font-weight: bold;
      color: #A52C1B;
      max-width: 70%;
+     background: none;
    }
   .search-options {
      width: 30%;
