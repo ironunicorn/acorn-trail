@@ -82,11 +82,13 @@
     text-align: right;
     a {
       color: #A52C1B;
+      text-shadow: none;
     }
     a:hover {
       color: #442813;
       cursor: pointer;
       text-decoration: none;
+      text-shadow: none;
     }
     .bar {
       text-align: right;
@@ -104,6 +106,7 @@
   }
   .ham-nav {
     text-align: right;
+
     border-radius: 5px;
     border: none;
     background: rgba(235,234,239, 0.7);
@@ -141,6 +144,7 @@
        font-weight: bold;
        z-index: 10;
        text-align: right;
+       text-shadow: 1px 1px 1px black;
        a {
          color: #A52C1B;
        }
@@ -514,6 +518,7 @@
      color: #A52C1B;
      max-width: 70%;
      background: none;
+     text-shadow: 1px 1px 1px black;
    }
   .search-options {
      width: 30%;
@@ -524,6 +529,7 @@
        font-size: 0.6em;
        padding-left: 5px;
        color: #AE833F;
+       box-shadow: 2px 2px 2px grey;
      }
    }
  }
