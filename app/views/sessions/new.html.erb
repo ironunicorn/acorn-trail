@@ -16,6 +16,7 @@
         <br>
           <input type="text" class="form-control user" name="user[username]" placeholder="username">
           <input type="password" class="form-control pass" name="user[password]" placeholder="password">
+          <input type="hidden" name="saved_url" value="<%= @location %>">
         <input type="submit" value="Login" class="btn btn-primary sign-in">
       </form>
       <%= render "users/new" %>

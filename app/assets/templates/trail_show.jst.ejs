@@ -15,6 +15,10 @@
         <% if (trail.reviews().length) { %>
           <div class="review-header">Reviews</div>
         <% } %>
+        <% if (currentUserID === -1) { %>
+          <br>
+          <a href="signin?trailid=<%= trail.escape('id') %>"><button class="btn btn-success">Write a Review</button></a>
+        <% } %>
         <div class="reviews container"></div>
       </div>
     </div>

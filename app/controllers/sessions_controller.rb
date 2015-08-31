@@ -1,5 +1,7 @@
 class SessionsController < ApplicationController
   def new
+    @location = params["trailid"] || ''
+    render 'new'
   end
 
   def create
@@ -10,7 +12,11 @@ class SessionsController < ApplicationController
     if @user
       login(@user)
       flash[:messages] = "Welcome, #{@user.username}!"
-      redirect_to "/#/trails/new"
+      if params["saved_url"] != ''
+        redirect_to "/#/trails/#{params["saved_url"]}"
+      else
+        redirect_to root_url
+      end
     else
       flash.now[:errors] = ["Invalid username or password"]
       render 'new'
