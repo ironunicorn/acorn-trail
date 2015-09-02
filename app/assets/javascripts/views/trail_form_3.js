@@ -105,7 +105,7 @@ AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
         }
       }
     }.bind(this));
-    return { coords: coords, trail_coordinate_id: trail_coordinate_id };;
+    return { coords: coords, trail_coordinate_id: trail_coordinate_id };
   },
 
   addLines: function () {

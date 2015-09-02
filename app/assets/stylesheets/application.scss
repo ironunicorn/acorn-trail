@@ -98,6 +98,7 @@
       position: relative;
       top: 40vh;
       font-size: 0.4em;
+      text-shadow: none;
     }
   }
   .top-right:hover {
@@ -144,7 +145,7 @@
        font-weight: bold;
        z-index: 10;
        text-align: right;
-       text-shadow: 1px 1px 1px black;
+       text-shadow: 1px 1px 1px grey;
        a {
          color: #A52C1B;
        }
@@ -162,6 +163,7 @@
          position: relative;
          top: 15vh;
          font-size: 0.5em;
+         text-shadow: none;
        }
      }
      .top-right:hover {
@@ -518,7 +520,7 @@
      color: #A52C1B;
      max-width: 70%;
      background: none;
-     text-shadow: 1px 1px 1px black;
+     text-shadow: 1px 1px 1px grey;
    }
   .search-options {
      width: 30%;

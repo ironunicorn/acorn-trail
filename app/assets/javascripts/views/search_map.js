@@ -55,7 +55,7 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
 
   // Event handlers
   addMarker: function (trail) {
-    if (this._markers[trail.get('id')]) { return };
+    if (this._markers[trail.get('id')]) { return; }
     var searchItem = new AcornTrail.Views.SearchItem({
       model: trail
     });
