@@ -9,6 +9,8 @@ class Trail < ActiveRecord::Base
   has_many :acorn_stashes, through: :trail_coordinates
   has_many :reviews
 
+  accepts_nested_attributes_for :trail_coordinates
+
   validates :title, :author, presence: true
 
   def trail_head

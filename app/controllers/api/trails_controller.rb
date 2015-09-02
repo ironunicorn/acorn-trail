@@ -22,7 +22,10 @@ class Api::TrailsController < ApplicationController
   end
 
   def show
-    @trail = Trail.includes(:acorn_stashes, :author, [reviews: :author]).find(params[:id])
+    @trail = Trail.eager_load([trail_coordinates: :acorn_stash],
+                              :author,
+                              [reviews: :author])
+                  .find(params[:id])
     render 'show'
   end
 

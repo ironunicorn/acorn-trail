@@ -28,7 +28,6 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
     // this.$('.trail-show').addClass("full");
     this.$('.info').css({
       height           : '100vh',
-      'overflow-y'     : 'none',
       WebkitTransition : 'height 0.5s ease-in-out',
       MozTransition    : 'height 0.5s ease-in-out',
       MsTransition     : 'height 0.5s ease-in-out',
@@ -45,6 +44,11 @@ AcornTrail.Views.TrailShow = Backbone.CompositeView.extend({
       OTransition      : 'height 0.5s ease-in-out, background 0.5s ease-in-out',
       transition       : 'height 0.5s ease-in-out, background 0.5s ease-in-out'
     });
+    setTimeout(function () {
+      this.$('.info').css({
+        'overflow-y'     : 'inherit'
+      });
+    }.bind(this), 500);
   },
 
   showLess: function () {

@@ -1,9 +1,7 @@
 AcornTrail.Collections.Trails = Backbone.Collection.extend({
   url: '/api/trails',
   model: AcornTrail.Models.Trail,
-  // comparator: function () {
-  //   this will host my feed logic.
-  // },
+
   getOrFetch: function (id) {
     var trails = this;
     var trail = this.get(id);

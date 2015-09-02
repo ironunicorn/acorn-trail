@@ -75,10 +75,9 @@ by giving squirrels a brief overview of what AcornTrail does.
 [Details][phase-six]
 
 ### Bonus Features (TBD)
-- [ ] Public feed based on popularity
-- [ ] Optional list search by miles from search spot
-- [ ] Public feed also based on squirrel location
-- [ ] Pagination/infinite scroll
+- [x] SquirrelShow page with all authored trails
+- [ ] Process trail and trail coordinates creation in one transaction (maybe even acorn stashes)
+- [ ] Caching
 - [ ] Create trails with gpx files
 - [ ] Automatically place acorn stash on map based on image timestamp and gpx time
 

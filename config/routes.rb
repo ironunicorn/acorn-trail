@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :users, only: [:update, :show]
     get '/trails/search/', to: 'trails#search'
     get '/trails/feed/', to: 'trails#feed'
+    get '/authors/:id/', to: 'users#author'
     resources :trails, only: [:create, :destroy, :index, :show, :update] do
       resources :trail_coordinates, only: [:create, :index]
       resources :reviews, only: [:create, :show]

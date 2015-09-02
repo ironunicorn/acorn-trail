@@ -1,0 +1,21 @@
+<div class="trail-show full">
+  <div class="trail-title">
+    <div class="title less">
+      <%= author.escape('username') %>
+      <span class="glyphicon glyphicon-menu-up stuff" aria-label="more info"></span>
+    </div>
+    <div class="info">
+      <hr>
+      <div class="description">
+        <%= author.escape('description') %>
+      </div>
+      <br>
+      <div class="picture">
+        <img src="<%= author.get('image_url') %>"/>
+      </div>
+      <hr>
+      <div class="trail-list-title">Trails</div>
+      <div class="trail-list"></div>
+    </div>
+  </div>
+</div>

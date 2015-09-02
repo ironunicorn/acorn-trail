@@ -12,7 +12,8 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
     'trails/:id': 'trailShow',
     'edit_profile': 'editProfile',
     'explore': 'trailSearch',
-    'about': 'About'
+    'about': 'About',
+    'squirrels/:id': 'squirrelShow'
   },
 
   baseView: function () {
@@ -98,6 +99,27 @@ AcornTrail.Routers.AcornRouter = Backbone.Router.extend({
       map: this.baseView()._map
     });
 
+    this._swapView(view);
+  },
+
+  squirrelShow: function (id) {
+    var location = { lat: 37.7833, lng: -122.4167 }
+    this.baseView()._map._map.setOptions({
+      center: location,
+      zoomControl: true,
+      zoomControlOptions: {
+        style: google.maps.ZoomControlStyle.SMALL,
+        position: google.maps.ControlPosition.RIGHT_BOTTOM
+      },
+      zoom: 10,
+      draggableCursor:''
+    });
+    var squirrel = new AcornTrail.Models.Author({id: id});
+    squirrel.fetch();
+    var view = new AcornTrail.Views.SquirrelShow({
+      model: squirrel,
+      map: this.baseView()._map._map
+    });
     this._swapView(view);
   },
 

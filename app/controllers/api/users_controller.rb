@@ -14,6 +14,12 @@ class Api::UsersController < ApplicationController
     end
   end
 
+  def author
+    @user = User.eager_load(authored_trails: [:trail_coordinates, :acorn_stashes])
+                .find(params[:id])
+    render 'author'
+  end
+
   private
   def user_params
     params.require(:user).permit(:description, :image_url)

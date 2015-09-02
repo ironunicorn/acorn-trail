@@ -11,7 +11,7 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
 
   render: function () {
     var view = this;
-    
+
     this.$el.html(this.template());
     var navigation = new AcornTrail.Views.Navigation();
     $('.navigation').html(navigation.render().$el);
@@ -71,6 +71,7 @@ AcornTrail.Views.SearchMap = Backbone.View.extend({
       model: trail,
       icon: "http://res.cloudinary.com/disran0g3/image/upload/c_scale,h_38,w_34/v1439589233/better_acorn_nrfwkw.png",
       infoWindow: infoWindow,
+      animation: google.maps.Animation.DROP,
       id: trail.get('id')
     });
     google.maps.event.addListener(marker, 'mouseover', function (event) {
