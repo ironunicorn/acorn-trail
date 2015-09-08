@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
 
   private
   def ensure_login
-    redirect_to new_session_url unless current_user
+    redirect_to root_url unless current_user
   end
 
   def ensure_author
@@ -35,4 +35,7 @@ class ApplicationController < ActionController::Base
     params.require(:user).permit(:username, :password, :description)
   end
 
+  def ensure_logged_out
+    redirect_to root_url if current_user
+  end
 end

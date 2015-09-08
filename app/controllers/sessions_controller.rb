@@ -1,4 +1,7 @@
 class SessionsController < ApplicationController
+  before_action :ensure_logged_out, only: [:new, :create]
+  before_action :ensure_login, only: :destroy
+
   def new
     @location = params["trailid"] || ''
     render 'new'

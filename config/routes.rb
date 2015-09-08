@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   get '/signin', to: 'sessions#new'
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:create]
   resource :session, only: [:create, :destroy]
 
   namespace :api, defaults: { format: :json } do
