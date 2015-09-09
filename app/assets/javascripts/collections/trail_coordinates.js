@@ -5,11 +5,24 @@ AcornTrail.Collections.TrailCoordinates = Backbone.Collection.extend({
   },
 
   initialize: function (params, options) {
-    this.trail = options.trail
+    if (options && options.trail) {
+      this.trail = options.trail
+    }
   },
 
   comparator: function (coord) {
     return coord.get('order');
-  }
+  },
 
+  toJSON: function(){
+    var json = [];
+    this.each(function (coord) {
+      var model = coord.toJSON();
+      if (coord.acornStash().get('title')) {
+        model.acorn_stash_attributes = coord.acornStash();
+      }
+      json.push(model);
+    })
+    return json;
+  }
 });

@@ -45,6 +45,7 @@ AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
 
   addMarker: function (location) {
     var options = this.locateNearestMarker(location);
+    var trail_coordinate = options.trail_coordinate
     var marker = null;
     for (var i = 0; i < this.markers.length; i++) {
       if (!this.markers[i].void && this.markers[i].position.G === options.coords.G &&
@@ -53,9 +54,7 @@ AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
       };
     }
     if (!marker) {
-      var acornStash = new AcornTrail.Models.AcornStash({
-        trail_coordinate_id: options.trail_coordinate_id
-      });
+      var acornStash = trail_coordinate.acornStash();
       var content = new AcornTrail.Views.AcornStashForm({
         model: acornStash,
         map: this
@@ -82,7 +81,7 @@ AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
   locateNearestMarker: function (location) {
     var best = '';
     var coords = null;
-    var trail_coordinate_id = null;
+    var trail_coordinate = null;
     this.collection.each( function (model) {
       var latDiff = Math.pow((model.get('latitude') - location.G), 2);
       var lngDiff = Math.pow((model.get('longitude') - location.K), 2);
@@ -92,7 +91,7 @@ AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
           model.get('latitude'),
           model.get('longitude')
         );
-        trail_coordinate_id = model.get('id');
+        trail_coordinate = model;
       } else {
         var potential = Math.sqrt(latDiff + lngDiff);
         if (best > potential) {
@@ -101,11 +100,11 @@ AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
             model.get('latitude'),
             model.get('longitude')
           );
-          trail_coordinate_id = model.get('id');
+          trail_coordinate = model;
         }
       }
     }.bind(this));
-    return { coords: coords, trail_coordinate_id: trail_coordinate_id };
+    return { coords: coords, trail_coordinate: trail_coordinate };
   },
 
   addLines: function () {
@@ -154,22 +153,16 @@ AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
       $('.confirmation').html($div);
       return;
     }
-    for (var i = 0; i < acornStashes.length; i++) {
-      if (i === acornStashes.length - 1) {
-        acornStashes[i].save({}, {success: function () {
-          var $div = $('<div>');
-          $div.addClass('alert alert-success alert-dismissible');
-          $div.html('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + view.model.get('title') + " stored successfully");
-          $('.confirmation').html($div);
-          view.remove();
-          Backbone.history.navigate(
-            '/trails/' + view.model.get('id'),
-            { trigger: true }
-          );
-        }});
-      } else {
-        acornStashes[i].save();
-      }
-    }
+    this.model.save({}, { success: function () {
+      var $div = $('<div>');
+      $div.addClass('alert alert-success alert-dismissible');
+      $div.html('<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>' + view.model.get('title') + " stored successfully");
+      $('.confirmation').html($div);
+      view.remove();
+      Backbone.history.navigate(
+        '/trails/' + view.model.get('id'),
+        { trigger: true }
+      );
+    }});
   }
 });

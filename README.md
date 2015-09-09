@@ -1,8 +1,8 @@
 # AcornTrail
 
-[See it live][heroku]
+[See it live][live]
 
-[heroku]: http://www.acorn-trail.com/
+[live]: http://www.acorn-trail.com/
 
 ## Minimum Viable Product
 AcornTrail is EveryTrail for Squirrels on Rails and Backbone. Squirrels can:
@@ -76,7 +76,7 @@ by giving squirrels a brief overview of what AcornTrail does.
 
 ### Bonus Features (TBD)
 - [x] SquirrelShow page with all authored trails
-- [ ] Process trail and trail coordinates creation in one transaction (maybe even acorn stashes)
+- [x] Process trail, trail coordinates, and acorn stash creation in one transaction
 - [ ] Caching
 - [ ] Create trails with gpx files
 - [ ] Automatically place acorn stash on map based on image timestamp and gpx time

@@ -46,13 +46,21 @@ class Api::TrailsController < ApplicationController
 
   def search
     @trails = filter_trails(filter_options)
-    # render json: @trails
     render 'search'
   end
 
   private
   def trail_params
-    params.require(:trail).permit(:title, :description)
+    params.require(:trail).permit(
+      :title,
+      :description,
+      trail_coordinates_attributes: [
+        :latitude,
+        :longitude,
+        :order,
+        acorn_stash_attributes: [:title, :description, :image_url]
+      ]
+    )
   end
 
   def filter_options

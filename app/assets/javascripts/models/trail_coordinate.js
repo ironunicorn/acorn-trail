@@ -4,14 +4,14 @@ AcornTrail.Models.TrailCoordinate = Backbone.Model.extend({
   },
 
   initialize: function (params, options) {
-    this.trail = options.trail;
+    if (options && options.trail) {
+      this.trail = options.trail;
+    }
   },
 
   acornStash: function () {
     if (!this._acornStash) {
-      this._acornStash = new AcornTrail.Models.AcornStash(
-        { coord: this }
-      );
+      this._acornStash = new AcornTrail.Models.AcornStash();
     }
 
     return this._acornStash;

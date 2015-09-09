@@ -95,29 +95,21 @@ AcornTrail.Views.TrailForm2b = Backbone.CompositeView.extend({
       $('.confirmation').html($div);
       return;
     }
-    var view = this;
     var route = this.trailPath;
     for (var i = 0; i < route.length; i++) {
       var newCoord = new AcornTrail.Models.TrailCoordinate({
-        trail_id: this.model.get('id'),
         latitude: route[i].G,
         longitude: route[i].K,
         order: i
-      }, { trail: view.model });
-      newCoord.save({}, {
-        success: function (data) {
-          view.model.trailCoordinates().add(newCoord);
-          if (data.get('order') === route.length - 1) {
-            view.model.fetch();
-          }
-        }
-      })
+      });
+      this.model.trailCoordinates().add(newCoord);
     };
     var view = new AcornTrail.Views.TrailForm3({
       map: this._map,
       model: this.model,
       collection: this.model.trailCoordinates()
     });
+
     $('.switcheroo').css({
       opacity          : 0,
       WebkitTransition : 'opacity 0.5s ease-in-out',

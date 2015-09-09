@@ -58,5 +58,11 @@ AcornTrail.Models.Trail = Backbone.Model.extend({
       delete response.acornImages;
     }
     return response;
+  },
+
+  toJSON: function(){
+    var json = {trail: this.attributes};
+    json.trail.trail_coordinates_attributes = this.trailCoordinates().toJSON();
+    return json;
   }
 });
