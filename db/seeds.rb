@@ -517,7 +517,7 @@ coord31.acorn_stash = AcornStash.create(title: "Macadamia Mission Statement", de
 coord32.acorn_stash = AcornStash.create(title: "Pivot Peanut", description: "Shhh! This nut's in stealth mode while we build out the user experience.", image_url: "http://res.cloudinary.com/disran0g3/image/upload/v1440454478/ywgzvaemub7aecmmnhe1.png")
 
 steven.authored_reviews.create(trail: trail15, rating: 5, content: "What a masterpiece")
-sparky.authored_reviews.create(trail: trail15, rating: 5, content: "A unicorn")
+flower.authored_reviews.create(trail: trail15, rating: 5, content: "So invigorating!")
 
 
 trail16.trail_coordinates.create(latitude: 37.8749888949328, longitude: -122.260279655457, order:  0)
