@@ -48,8 +48,8 @@ AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
     var trail_coordinate = options.trail_coordinate
     var marker = null;
     for (var i = 0; i < this.markers.length; i++) {
-      if (!this.markers[i].void && this.markers[i].position.G === options.coords.G &&
-        this.markers[i].position.K === options.coords.K) {
+      if (!this.markers[i].void && this.markers[i].position.H === options.coords.H &&
+        this.markers[i].position.L === options.coords.L) {
         marker = this.markers[i];
       };
     }
@@ -83,8 +83,8 @@ AcornTrail.Views.TrailForm3 = Backbone.CompositeView.extend({
     var coords = null;
     var trail_coordinate = null;
     this.collection.each( function (model) {
-      var latDiff = Math.pow((model.get('latitude') - location.G), 2);
-      var lngDiff = Math.pow((model.get('longitude') - location.K), 2);
+      var latDiff = Math.pow((model.get('latitude') - location.H), 2);
+      var lngDiff = Math.pow((model.get('longitude') - location.L), 2);
       if (best === '') {
         best = Math.sqrt(latDiff + lngDiff);
         coords = new google.maps.LatLng(

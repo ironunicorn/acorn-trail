@@ -98,8 +98,8 @@ AcornTrail.Views.TrailForm2b = Backbone.CompositeView.extend({
     var route = this.trailPath;
     for (var i = 0; i < route.length; i++) {
       var newCoord = new AcornTrail.Models.TrailCoordinate({
-        latitude: route[i].G,
-        longitude: route[i].K,
+        latitude: route[i].H,
+        longitude: route[i].L,
         order: i
       });
       this.model.trailCoordinates().add(newCoord);
