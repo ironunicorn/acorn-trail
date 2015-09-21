@@ -16,16 +16,13 @@ class Api::TrailsController < ApplicationController
     render json: @trails
   end
 
-  def feed
-    @trails = trail_feed
-    render 'feed'
-  end
-
   def show
-    @trail = Trail.eager_load([trail_coordinates: :acorn_stash],
-                              :author,
-                              [reviews: :author])
-                  .find(params[:id])
+    @trail = Rails.cache.fetch("trail #{params[:id]}", :expires_in => 30.seconds) do
+      Trail.eager_load([trail_coordinates: :acorn_stash],
+                                :author,
+                                [reviews: :author])
+                    .find(params[:id])
+    end
     render 'show'
   end
 

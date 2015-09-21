@@ -32,6 +32,8 @@ gem 'bootstrap-sass'
 
 gem 'cloudinary'
 
+gem 'redis-rails'
+
 
 # Use Unicorn as the app server
 # gem 'unicorn'

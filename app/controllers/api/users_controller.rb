@@ -15,8 +15,10 @@ class Api::UsersController < ApplicationController
   end
 
   def author
-    @user = User.eager_load(authored_trails: [:trail_coordinates, :acorn_stashes])
+    @user = Rails.cache.fetch("user #{params[:id]}", :expires_in => 30.seconds) do
+      User.eager_load(authored_trails: [:trail_coordinates, :acorn_stashes])
                 .find(params[:id])
+    end
     render 'author'
   end
 
